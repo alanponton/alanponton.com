@@ -1,0 +1,120 @@
+I'm building a premium developer portfolio. The Replit project is already initialized with Next.js. I need you to set up the foundation — dependencies, design system, layout shell, and deployment readiness.
+
+## STEP 1: Install Dependencies
+
+Run this in the terminal:
+
+npm install framer-motion gsap @studio-freight/lenis three @react-three/fiber @react-three/drei next-mdx-remote gray-matter reading-time @supabase/supabase-js tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react
+
+## STEP 2: Tailwind Configuration
+
+Update tailwind.config.ts with this custom theme:
+
+Colors (dark-first design):
+- background: #0A0A0B
+- surface: #141416
+- surfaceHover: #1C1C1F
+- border: #2A2A2E
+- textPrimary: #F5F5F7
+- textSecondary: #8E8E93
+- accent: #6366F1 (indigo)
+- accentCyan: #22D3EE
+- accentWarm: #F97316
+- success: #22C55E
+
+Fonts:
+- heading: "Space Grotesk" (import from Google Fonts via next/font/google)
+- body: "Inter" (import from Google Fonts via next/font/google)
+- mono: "JetBrains Mono" (import from Google Fonts via next/font/google)
+
+Add custom animation keyframes for fadeUp, fadeIn, slideIn, and scaleIn.
+
+## STEP 3: Global Styles
+
+In app/globals.css:
+- Set dark background (#0A0A0B) as default body background
+- Set text color to #F5F5F7
+- Add smooth scrolling (html { scroll-behavior: smooth })
+- Add selection color using accent indigo
+- Remove default margins/padding
+- Add custom scrollbar styling (thin, dark track, accent thumb)
+
+## STEP 4: App Layout (app/layout.tsx)
+
+- Apply the three Google Fonts (Space Grotesk, Inter, JetBrains Mono) using next/font/google
+- Set metadata: title "Alan Ponton — Full-Stack Developer & AI Builder", description "I build AI-powered platforms that solve real problems for real people."
+- Set Open Graph and Twitter card metadata
+- Body should use Inter as default font, antialiased
+
+## STEP 5: Build Core UI Components
+
+Create these in /components/ui/:
+
+### cn utility (lib/utils.ts)
+- Export a cn() function using clsx + tailwind-merge for conditional class merging
+
+### Button (components/ui/button.tsx)
+- Variants: primary (indigo bg, white text), secondary (surface bg, border, textPrimary), ghost (transparent, textSecondary hover:textPrimary), accent (orange bg, white text)
+- Sizes: sm, md, lg
+- Include hover animations (subtle scale + brightness)
+- Use class-variance-authority for variant management
+
+### Container (components/ui/container.tsx)
+- Max-width wrapper (max-w-7xl, centered, px-6)
+- Variants: default, wide (max-w-screen-2xl), narrow (max-w-4xl)
+
+### SectionHeading (components/ui/section-heading.tsx)
+- Props: title, subtitle (optional), align (left/center)
+- Title uses Space Grotesk, large, textPrimary
+- Subtitle uses Inter, textSecondary
+- Subtle accent line or gradient underline on title
+
+### TechPill (components/ui/tech-pill.tsx)
+- Small rounded pill showing a technology name
+- Surface background with border, textSecondary
+- Hover: accent border glow
+
+## STEP 6: Build Navigation (components/navigation.tsx)
+
+- Fixed top navbar with blur backdrop (backdrop-blur-xl, bg-background/80)
+- Left: "AP" logo/monogram (Space Grotesk, bold, accent color)
+- Right: nav links — Projects, About, Contact
+- Mobile: hamburger icon → slide-in menu with Framer Motion
+- Active link indicator (accent underline or dot)
+- Scroll behavior: navbar gets a subtle border-bottom after scrolling past hero
+- Use Framer Motion for mobile menu animation
+
+## STEP 7: Build Footer (components/footer.tsx)
+
+- Minimal design
+- Left: "© 2026 Alan Ponton"
+- Center or right: social links (GitHub, LinkedIn) as icon buttons
+- Subtle top border
+- Small text: "Built with Next.js, Framer Motion & Three.js"
+
+## STEP 8: Build Home Page Shell (app/page.tsx)
+
+For now, just create the page structure with placeholder sections. We'll fill in real content in Sprint 2. Create these sections as empty components with IDs for scroll targeting:
+
+- HeroSection (id="hero") — just show "ALAN PONTON" heading + subtitle placeholder + 2 button placeholders
+- ProjectsSection (id="projects") — heading "Featured Work" + 6 placeholder project cards in a grid
+- AboutTeaser (id="about") — heading + placeholder text + CTA link
+- SecondaryProjects — heading "More Work" + 4 smaller placeholder cards
+- ContactTeaser — heading "Let's build something together." + placeholder CTA
+
+Each section should be a separate component file in /components/sections/.
+
+## STEP 9: Set Up Lenis Smooth Scroll
+
+Create a SmoothScroll provider component (components/smooth-scroll.tsx) that wraps the app layout. Initialize Lenis in a useEffect with cleanup.
+
+## STEP 10: Verify Everything Works
+
+After all steps:
+1. The dev server should run without errors
+2. The home page should show the dark background with the placeholder sections
+3. Navigation should be visible and the mobile menu should animate open/close
+4. Smooth scrolling should be active
+5. All fonts should load correctly (Space Grotesk for headings, Inter for body)
+
+Do each step sequentially. Confirm each step works before moving to the next. If you encounter an error, fix it before proceeding.
