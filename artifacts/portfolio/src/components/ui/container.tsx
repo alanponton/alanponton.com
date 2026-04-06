@@ -10,7 +10,7 @@ export function Container({ children, className, variant = "default" }: Containe
   return (
     <div
       className={cn(
-        "mx-auto px-6",
+        "w-full mx-auto px-6 sm:px-8 lg:px-12",
         variant === "default" && "max-w-7xl",
         variant === "wide" && "max-w-screen-2xl",
         variant === "narrow" && "max-w-4xl",

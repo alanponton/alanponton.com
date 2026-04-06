@@ -23,7 +23,7 @@ export function SectionHeading({
     >
       <h2
         className={cn(
-          "font-heading text-3xl md:text-4xl font-bold text-[#F5F5F7] relative inline-block",
+          "font-heading text-3xl md:text-4xl font-bold text-text-primary relative inline-block",
         )}
       >
         {title}
@@ -35,7 +35,7 @@ export function SectionHeading({
         />
       </h2>
       {subtitle && (
-        <p className="mt-3 text-[#8E8E93] text-base md:text-lg leading-relaxed">
+        <p className="mt-3 text-text-secondary text-base md:text-lg leading-relaxed">
           {subtitle}
         </p>
       )}

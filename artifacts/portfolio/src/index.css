@@ -25,13 +25,14 @@
   --radius-xl: 16px;
 }
 
+/* Light mode (base) */
 :root {
-  --background: #0A0A0B;
-  --surface: #141416;
-  --surface-hover: #1C1C1F;
-  --border: #2A2A2E;
-  --text-primary: #F5F5F7;
-  --text-secondary: #8E8E93;
+  --background: #FAFAF9;
+  --surface: #FFFFFF;
+  --surface-hover: #F5F5F4;
+  --border: #E5E5E5;
+  --text-primary: #1A1A1B;
+  --text-secondary: #6B7280;
   --accent: #6366F1;
   --accent-cyan: #22D3EE;
   --accent-warm: #F97316;
@@ -40,6 +41,16 @@
   --app-font-sans: 'Inter', sans-serif;
   --app-font-heading: 'Space Grotesk', sans-serif;
   --app-font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Dark mode */
+.dark {
+  --background: #0A0A0B;
+  --surface: #141416;
+  --surface-hover: #1C1C1F;
+  --border: #2A2A2E;
+  --text-primary: #F5F5F7;
+  --text-secondary: #8E8E93;
 }
 
 @keyframes fadeUp {
@@ -66,10 +77,12 @@ html {
   scroll-behavior: smooth;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 body {
@@ -78,6 +91,13 @@ body {
   font-family: var(--app-font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide default cursor on pointer devices (custom cursor replaces it) */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 ::selection {
