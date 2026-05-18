@@ -6,12 +6,6 @@ import { ExternalLink } from "lucide-react";
 
 const secondaryProjects = [
   {
-    title: "AWS Study Quest",
-    description: "Turned the 200-hour certification grind into a game with XP, achievements, and streaks.",
-    tech: ["React", "Supabase", "Cloudflare Pages"],
-    url: "learn.alanponton.com",
-  },
-  {
     title: "Lonnie's Locations",
     description: "Complete digital platform for a travel agency — website, trip planner, admin CRM — all under $3/month.",
     tech: ["React", "Supabase", "n8n", "Cloudflare"],
