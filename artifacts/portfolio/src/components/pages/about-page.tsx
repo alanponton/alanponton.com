@@ -520,7 +520,7 @@ const inProgressCerts = [
   },
   {
     title: "AWS Machine Learning Specialty",
-    issuer: "Amazon Web Services (via Study Quest)",
+    issuer: "Amazon Web Services",
   },
 ];
 

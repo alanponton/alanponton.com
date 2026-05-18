@@ -382,7 +382,55 @@ function DecisionsSection({ project }: { project: (typeof projects)[0] }) {
   );
 }
 
-// ── Section 6: Results ─────────────────────────────────────────────────────────
+// ── Section 6: Version History ────────────────────────────────────────────────
+
+function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
+  if (!project.versions?.length) return null;
+
+  return (
+    <section className="py-20 md:py-28">
+      <Container>
+        <div className="max-w-5xl mx-auto">
+          <FadeUp className="mb-12">
+            <SectionLabel color={project.color}>Version History</SectionLabel>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary leading-tight">
+              How it evolved
+            </h2>
+          </FadeUp>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {project.versions.map((v, i) => (
+              <FadeUp key={v.label} delay={i * 0.1}>
+                <div className="p-6 rounded-xl bg-background border border-border h-full flex flex-col gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none">
+                  <div>
+                    <span
+                      className="text-xs uppercase tracking-widest font-mono font-medium"
+                      style={{ color: project.color }}
+                    >
+                      {v.label}
+                    </span>
+                  </div>
+                  <h3 className="font-heading font-bold text-xl text-text-primary">{v.headline}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed flex-1">{v.body}</p>
+                  <div>
+                    <span className="text-xs uppercase tracking-widest text-text-secondary font-mono">
+                      Learning
+                    </span>
+                    <p className="text-sm leading-relaxed mt-1" style={{ color: project.color }}>
+                      {v.learning}
+                    </p>
+                  </div>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+// ── Section 7: Results ─────────────────────────────────────────────────────────
 
 function ResultsSection({ project }: { project: (typeof projects)[0] }) {
   return (
@@ -422,7 +470,7 @@ function ResultsSection({ project }: { project: (typeof projects)[0] }) {
   );
 }
 
-// ── Section 7: Features Deep Dive ─────────────────────────────────────────────
+// ── Section 8: Features Deep Dive ─────────────────────────────────────────────
 
 function FeaturesSection({ project }: { project: (typeof projects)[0] }) {
   const [expanded, setExpanded] = useState(false);
@@ -481,7 +529,7 @@ function FeaturesSection({ project }: { project: (typeof projects)[0] }) {
   );
 }
 
-// ── Section 8: Project Navigation ─────────────────────────────────────────────
+// ── Section 9: Project Navigation ─────────────────────────────────────────────
 
 function ProjectNav({ currentSlug }: { currentSlug: string }) {
   const currentIndex = projects.findIndex((p) => p.slug === currentSlug);
@@ -564,6 +612,7 @@ export function CaseStudyPage() {
       <SolutionSection project={project} />
       <ArchitectureSection project={project} />
       <DecisionsSection project={project} />
+      <VersionHistorySection project={project} />
       <ResultsSection project={project} />
       <FeaturesSection project={project} />
       <ProjectNav currentSlug={project.slug} />

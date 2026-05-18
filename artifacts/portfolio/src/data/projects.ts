@@ -39,6 +39,12 @@ export interface ProjectData {
     label: string;
     description?: string;
   }[];
+  versions?: {
+    label: string;
+    headline: string;
+    body: string;
+    learning: string;
+  }[];
   features?: string[];
 }
 
@@ -127,20 +133,20 @@ export const projects: ProjectData[] = [
     slug: "trip-buddy",
     title: "Trip Buddy",
     description:
-      "Your AI travel companion that plans the trip, keeps family updated in real-time, and gives your travel agent a dashboard — all in one platform.",
+      "Your AI travel companion that plans the trip, coordinates outfits, tracks visitors, and keeps family updated in real-time — with a voice AI assistant that knows your name, your itinerary, and what you're wearing tonight.",
     category: "AI Platform",
     color: "#F97316",
-    tech: ["React", "TypeScript", "Supabase", "OpenAI", "Cloudflare"],
+    tech: ["React", "TypeScript", "Supabase", "OpenAI", "Cloudflare", "TTS"],
     stats: [
-      { value: "3", label: "Role-Based Dashboards" },
-      { value: "5", label: "AI Tools" },
-      { value: "1", label: "Custom Domain" },
+      { value: "18", label: "Database Tables" },
+      { value: "7", label: "AI Tools" },
+      { value: "4", label: "Modules" },
     ],
     hero: {
-      headline: "One platform for the traveler, their family, and their agent — all in sync.",
+      headline: "One platform for the traveler, their family, and their agent — with a voice AI that knows everything about the trip.",
       role: "Solo Developer & Designer",
-      timeline: "6 weeks",
-      status: "Live",
+      timeline: "14 sessions",
+      status: "Live — travel.alanponton.com",
     },
     problem: {
       headline: "Travel planning is still fragmented across five different tools.",
@@ -150,17 +156,17 @@ export const projects: ProjectData[] = [
     },
     solution: {
       headline: "Three dashboards, one source of truth, zero duplicate communication.",
-      body: "Trip Buddy unifies trip management across three distinct user roles: the traveler, family members, and the travel agent. Each role sees a dashboard optimized for their needs — the traveler has itinerary management and AI planning tools, family members have a read-only live view of the trip, and the travel agent has a client portfolio dashboard.\n\nThe AI layer handles the heavy lifting of trip planning — generating daily itineraries, suggesting restaurants based on preferences, answering travel questions, and proactively surfacing useful information like weather forecasts and local tips for the destination.\n\nAll roles share a single trip record in real-time. When the traveler updates their itinerary, family and the agent see it immediately. One update, three audiences informed.",
+      body: "Trip Buddy unifies trip management across three distinct user roles: the traveler, family members, and the travel agent. Each role sees a dashboard optimized for their needs — the traveler has itinerary management, outfit planning, and AI tools; family members have a read-only live view of the trip; and the travel agent has a client portfolio dashboard.\n\nSophia, the built-in AI assistant, handles trip planning — generating daily itineraries, suggesting restaurants, answering travel questions, and surfacing weather forecasts. She also knows every planned outfit, can suggest alternatives from the wardrobe inventory, and greets every user by name with a unique AI-generated voice message when they open the app.\n\nThe Outfit Buddy module adds day-by-day outfit coordination for the traveler and companion, with wardrobe inventory management, coordination badges, photo priority flags, and auto-generated packing lists. Visitor analytics track who's following the trip and what they're looking at.\n\nAll roles share a single trip record in real-time. When the traveler updates anything — itinerary, outfits, packing — family and the agent see it immediately.",
       valueProposition:
         "Your entire travel ecosystem — planner, family tracker, and agent portal — unified in a single platform that keeps everyone in the loop without anyone lifting a finger.",
     },
     architecture: {
       description:
-        "Supabase handles the shared data layer with real-time subscriptions powering live updates across all three dashboards. The frontend is a single React app with role-based routing that shows completely different UI based on the user's role. OpenAI powers the trip planning and Q&A features. Cloudflare Workers handles edge functions for the agent notification system.",
+        "Supabase handles the shared data layer across 18 tables with real-time subscriptions powering live updates across all dashboards. The frontend is a single React app with role-based routing. OpenAI powers Sophia — the trip AI assistant with voice TTS (Fable voice), auto-greetings, outfit awareness, and function calling across 7 tools. The Outfit Buddy module uses trip_outfits and wardrobe_items tables with JSONB for flexible outfit storage. Cloudflare Workers handles edge functions. Visitor tracking stores page views and session data for the admin analytics dashboard. Three Supabase storage buckets handle outfit photos, closet photos, and itinerary images.",
       techStack: [
         { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
-        { category: "Backend", items: ["Supabase", "PostgreSQL", "Realtime Subscriptions"] },
-        { category: "AI Layer", items: ["OpenAI GPT-4o", "Function Calling", "Streaming"] },
+        { category: "Backend", items: ["Supabase", "PostgreSQL", "Realtime Subscriptions", "JSONB", "RLS", "Storage Buckets"] },
+        { category: "AI Layer", items: ["OpenAI GPT-4o", "Function Calling", "Streaming", "TTS (Fable Voice)", "Auto-Greetings"] },
         { category: "Infrastructure", items: ["Cloudflare Pages", "Cloudflare Workers", "Custom Domain"] },
       ],
     },
@@ -169,29 +175,42 @@ export const projects: ProjectData[] = [
         title: "Single app, three role-based views",
         decision: "Build one React app with role-based routing rather than three separate apps.",
         why: "Separate apps would mean three codebases to maintain, three deployments, and duplicate logic for the shared data layer. A single app with role-based routing shares all the infrastructure and the real-time data layer automatically.",
-        result: "Shipped in 6 weeks instead of the estimated 3-4 months for three separate apps. Role switching is instant — a user invited in both traveler and family roles can toggle between dashboards.",
+        result: "Role switching is instant — a user invited in both traveler and family roles can toggle between dashboards. Shipped faster than three separate apps would have allowed.",
       },
       {
-        title: "Supabase Realtime for live updates",
-        decision: "Use Supabase's built-in Realtime subscriptions instead of polling.",
-        why: "Family members watching a trip live need actual real-time updates, not 30-second refresh cycles. Supabase Realtime gives WebSocket subscriptions on database changes without managing any socket infrastructure.",
-        result: "Family dashboards update instantly when the traveler changes anything. The 'last seen' indicator updates in real time, which single-handedly eliminates the anxiety of 'is everything ok?'",
+        title: "Full outfit module over lightweight integration",
+        decision: "Build a dedicated Outfit Buddy module with its own tables, dashboard tab, and AI tools rather than attaching outfit notes to existing itinerary items.",
+        why: "A lightweight approach would have stored outfits as itinerary metadata — quick to build but impossible to query, edit independently, or scale. A full module with trip_outfits and wardrobe_items tables gives Sophia structured data to reason about and makes the feature reusable for future trips.",
+        result: "Sophia can answer 'What am I wearing to Giovanni\\'s tonight?' and suggest alternatives from the wardrobe. Packing lists auto-generate from unique items across all outfits. Companion coordination is visible at a glance with matching/complementary badges.",
+      },
+      {
+        title: "Voice-first AI with personalized greetings",
+        decision: "Give Sophia a voice (TTS) and have her auto-greet every user by name when they open the AI tab, with a unique AI-generated message every time.",
+        why: "A text-only chatbot feels generic. Making Sophia speak first — addressing the user by name with context-aware greetings — transforms her from a tool into a companion. Visitors get a 'following along with the trip' greeting; admins get trip planning context.",
+        result: "Every user interaction starts with Sophia speaking directly to them. The personal touch creates an emotional connection that makes the app feel alive — real visitors like Debra, Fran, and Mary experienced this on the actual trip.",
       },
     ],
     results: [
-      { value: "3", label: "Role-Based Dashboards", description: "Traveler, family, and agent views" },
-      { value: "5", label: "AI Planning Tools", description: "Itinerary, Q&A, recommendations, weather, packing" },
-      { value: "6w", label: "Build Time", description: "From concept to live" },
-      { value: "0", label: "Missed Updates", description: "Family always in the loop" },
+      { value: "18", label: "Database Tables", description: "Full relational schema with RLS" },
+      { value: "7", label: "AI Tools", description: "Itinerary, Q&A, recommendations, weather, packing, outfit lookup, wardrobe suggestions" },
+      { value: "4", label: "Modules", description: "Itinerary, Packing, Outfit Buddy, Visitor Analytics" },
+      { value: "6+", label: "Real Visitors", description: "Family and friends tracked on a live trip" },
     ],
     features: [
-      "Three fully distinct dashboards for traveler, family, and travel agent",
-      "AI-powered itinerary generation with daily scheduling",
+      "Three role-based dashboards for traveler, family, and travel agent",
+      "Sophia AI assistant with voice TTS, auto-greetings, and personalized name awareness",
+      "AI-powered itinerary generation with daily scheduling across 19 items",
       "Real-time trip updates across all roles via Supabase Realtime",
+      "Outfit Buddy module with day-by-day outfit planning for traveler and companion",
+      "Side-by-side outfit view with coordination badges and photo priority flags",
+      "Sophia answers outfit questions and suggests alternatives from wardrobe inventory",
+      "Auto-generated packing lists derived from unique items across all planned outfits",
+      "Wardrobe inventory system with closet photo storage",
+      "Visitor analytics dashboard with page view tracking and activity timelines",
+      "Personalized visitor experience with name-based greetings throughout the app",
       "Restaurant and activity recommendations based on preferences",
-      "Packing list generator with destination-aware suggestions",
       "Travel agent client portfolio view with upcoming trips",
-      "Family members can add comments/notes visible to traveler",
+      "Three Supabase storage buckets for outfit, closet, and itinerary images",
       "Offline-capable itinerary view for areas with poor connectivity",
     ],
   },
@@ -356,73 +375,91 @@ export const projects: ProjectData[] = [
     slug: "2100-security",
     title: "2100 Security",
     description:
-      "Operations platform for a 24/7 security team at a 33-floor high-rise. Replaced manual scheduling, added team comms, and modernized a legacy Wix site.",
-    category: "Client Project",
+      "Operations platform for a 24/7 security team at a 33-floor high-rise. Three production versions: killed the no-SSL warnings, built the rotation engine, shipped real auth and safety tracking.",
+    category: "Personal / Operational Tool",
     color: "#22C55E",
-    tech: ["React", "TypeScript", "Supabase", "n8n", "Cloudflare"],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Node/Express", "Cloudflare"],
     stats: [
-      { value: "16", label: "Officers Managed" },
-      { value: "33", label: "Floor Building" },
-      { value: "24/7", label: "Coverage" },
+      { value: "3", label: "Production Versions" },
+      { value: "5", label: "Officers, Nightly Use" },
+      { value: "33", label: "Floor High-Rise" },
     ],
     hero: {
-      headline: "From spreadsheets and phone calls to a real operations platform.",
-      role: "Solo Developer & Designer",
-      timeline: "8 weeks",
-      status: "Live",
+      headline: "From a broken no-SSL site to an operations tool the night shift actually uses.",
+      role: "Solo UX Designer & Developer",
+      timeline: "3 versions, ongoing",
+      status: "Live in production",
     },
     problem: {
-      headline: "A 16-person security operation running on spreadsheets and group texts.",
-      body: "The 2100 McKinney building in Dallas is a 33-floor commercial high-rise requiring 24/7 security coverage. When I came on, the security company managing the contract was operating their entire scheduling and communications system through a shared Google Sheets document and a WhatsApp group chat.\n\nSchedule changes required calls or texts to individual officers. Coverage gaps were discovered the hard way. The company's public-facing website was still on Wix from several years prior and reflected none of the professionalism the client demanded. Leadership had no visibility into who was on shift without digging through the spreadsheet.\n\nFor a team responsible for the safety of a major commercial property, the operational infrastructure was alarmingly fragile.",
+      headline: "A five-person overnight team running on a broken legacy site.",
+      body: "The team ran on a free-tier Wix site with no SSL, so every officer who opened it got a browser security warning — for a security operation, an embarrassment that quietly eroded trust before anyone used the tool. The site was static, so I rebuilt the schedule by hand every month. On a phone it required pinch-zoom and horizontal scrolling to read an assignment. There was no authentication, no awareness of who was on shift, and nothing operational beyond a schedule grid.",
       userStory:
-        "The operations manager told me they'd had three scheduling mishaps in the prior quarter — shifts where no one showed up because of communication breakdowns. Each incident created a tense conversation with the building management. After the platform launched, they went 6 months without a single coverage gap.",
+        "Evaluating a team chat tool, I watched Slack die on free-tier limits and Microsoft Teams die because officers had scattered emails and forgotten passwords. Google Chat won only because everyone already had Gmail. The lesson became the platform's governing principle: the best technology is worthless if users can't get into it.",
     },
     solution: {
-      headline: "An operations platform purpose-built for shift-based security teams.",
-      body: "The platform I built has two components: an internal operations system for the security team and a client-facing marketing site for the company. The operations system handles scheduling (with visual shift calendars and automated conflict detection), team communications (replacing the WhatsApp group with a structured channel system), incident logging, and a manager dashboard with real-time coverage status.\n\nThe new public site was rebuilt from the ground up on Cloudflare Pages with a professional design that matched the standard of their client roster. The old Wix site was actively hurting them in the sales process.\n\nn8n handles shift reminder notifications, coverage gap alerts, and the daily schedule digest sent to all officers each morning.",
+      headline: "An operations hub designed for a tired person, one-handed, in a dark stairwell.",
+      body: "I designed the app around the single question an officer asks every night: what am I doing right now? The home screen answers it on open — current block, post, floor range — with the full rotation one tap down. Constraints came from direct observation of officers using the old site in real conditions: dark by default, high-contrast type, large tap targets, never any horizontal scroll. Identity is a guard-picker, not a login form — tap your name, set an employee ID once, under five seconds, no email or app store. Where a careless tap causes real harm — confirming a fire-extinguisher safety inspection — I deliberately ADDED friction with required ID re-entry.",
       valueProposition:
-        "Professional-grade operations infrastructure for a security company that was one scheduling mistake away from losing their most important contract.",
+        "Zero-friction access where friction kills adoption; deliberate friction exactly where a careless tap is real-world harm.",
     },
     architecture: {
       description:
-        "Supabase powers the data layer for officers, schedules, shifts, incidents, and messages with Row Level Security ensuring officers only see their own data. The React frontend has two distinct interfaces — the officer mobile-optimized view and the manager desktop dashboard. n8n runs the notification and alerting workflows. The marketing site is a separate Cloudflare Pages deployment.",
+        "React/TypeScript PWA with Tailwind, deployed on Replit. A Node/Express backend serves a weather proxy and guard authentication. Replit Database stores guard credentials and inspection records. Cloudflare handles SSL, DNS, and caching. A constraint-based rotation engine cycles guards through three posts across three time blocks, honoring 5–7 simultaneous scheduling rules, with floors travelling with each guard through every rotation.",
       techStack: [
         { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
-        { category: "Backend", items: ["Supabase", "PostgreSQL", "Row Level Security"] },
-        { category: "Automation", items: ["n8n", "Shift Reminders", "Coverage Alerts"] },
-        { category: "Infrastructure", items: ["Cloudflare Pages", "Cloudflare Workers"] },
+        { category: "Backend", items: ["Node/Express", "Replit Database"] },
+        { category: "Infrastructure", items: ["Cloudflare SSL/DNS", "PWA"] },
+        { category: "Logic", items: ["Constraint scheduling engine"] },
       ],
     },
     decisions: [
       {
-        title: "Separate marketing site from ops platform",
-        decision: "Build the marketing site and operations platform as two separate deployments.",
-        why: "The marketing site needs to be fast, public, and SEO-optimized. The operations platform needs auth, real-time data, and complex state. Combining them would have added complexity to both.",
-        result: "The marketing site loads in under 0.8 seconds. The ops platform can be updated and deployed independently without any downtime risk to the public site.",
+        title: "Guard picker as identity, not a login form",
+        decision: "Replace traditional auth with a tap-your-name picker plus a one-time employee ID.",
+        why: "A failed chat-tool rollout proved access friction kills internal tools regardless of features. Officers needed in under five seconds with no email or app store.",
+        result: "Full team adoption with zero onboarding friction. Five officers use it nightly across Android and iOS.",
       },
       {
-        title: "Mobile-first for officer interface",
-        decision: "Design the officer view as a mobile-first interface rather than a responsive desktop layout.",
-        why: "Officers access the system on their phones, often at the start of a shift in poor lighting conditions. Desktop-optimized UI adapted to mobile is noticeably worse for this use case than UI designed for mobile first.",
-        result: "Officer adoption was immediate — the team moved to the platform within the first week without needing training sessions. The previous Google Sheets approach required help from the ops manager to interpret.",
+        title: "Deliberately adding friction for safety inspections",
+        decision: "Require employee-ID re-entry to confirm a fire-extinguisher inspection.",
+        why: "A fat-fingered tap marking a safety inspection complete when it wasn't is real-world harm, not a UI annoyance — the inverse of the zero-friction principle.",
+        result: "Inspection confirmations are deliberate; accidental completions designed out.",
+      },
+    ],
+    versions: [
+      {
+        label: "V1 — Migration & Foundation",
+        headline: "Killed the security warnings, looked the part — and got readability wrong.",
+        body: "Replaced Wix with a React PWA: animated dark landing, cyan accents, particle effects, weather, Cloudflare SSL. Security warnings gone immediately.",
+        learning: "The visual treatment was impressive and hard to read on a long overnight shift. Mobile-first readability is a foundational constraint, not a polish pass — and my taste is not the user's eyesight.",
+      },
+      {
+        label: "V2 — Operational Platform",
+        headline: "Reversed my own design in the users' favor.",
+        body: "Stripped styling back to a clean, high-readability palette with a real dark-mode toggle. Added the guard picker, block rotation with active-card highlighting, floor-specific patrol notes, and a patrol-reminder overlay. Rebuilt the schedule data architecture after a decoupling bug let guard names and floor assignments drift apart.",
+        learning: "Complex constraint problems require incremental, single-transformation validation — change one thing, verify, then the next.",
+      },
+      {
+        label: "V3 — Authentication & Automation (current)",
+        headline: "Real auth, automated safety tracking, and the hard cross-platform edges.",
+        body: "Employee-ID authentication backed by Replit Database; guard switcher locked behind verification; logout. Built the fire-extinguisher inspection system with automatic month-boundary activation and the deliberate ID-confirmation UX. Migrated from four blocks to three (3/3/2) and executed two full roster changes with constraint-honoring reshuffles.",
+        learning: "Real-world robustness lives in the edges: Safari/iOS cache-busting, type=text + inputMode=numeric so iOS stops stripping leading zeros from IDs, visible error states replacing silent failures.",
       },
     ],
     results: [
-      { value: "16", label: "Officers Managed", description: "Across all shifts and roles" },
-      { value: "0", label: "Coverage Gaps", description: "In 6 months post-launch" },
-      { value: "33", label: "Floor Building", description: "High-rise requiring continuous coverage" },
-      { value: "8w", label: "Build Time", description: "Full ops platform + marketing site" },
+      { value: "100%", label: "Security Warnings Eliminated", description: "No-SSL Wix to Cloudflare-protected hosting" },
+      { value: "1", label: "Data-Array Edit", description: "Replaced monthly hand-rebuilding of the schedule" },
+      { value: "5", label: "Officers, Nightly", description: "Across Android and iOS" },
+      { value: "5–7", label: "Simultaneous Constraints", description: "Honored per generated rotation" },
     ],
     features: [
-      "Visual shift calendar with drag-and-drop scheduling",
-      "Automated conflict detection for overlapping or uncovered shifts",
-      "Team communications system with role-based channels",
-      "Incident logging with timestamps and officer attribution",
-      "Manager dashboard with real-time coverage status",
-      "Mobile-optimized officer interface",
-      "n8n-powered shift reminders and coverage gap alerts",
-      "Daily schedule digest sent via notification to all active officers",
-      "New marketing site with professional design on Cloudflare Pages",
+      "Passwordless guard-picker identity (under five seconds, no email)",
+      "Shift-aware home screen answering 'what am I doing right now'",
+      "Constraint-based rotation engine (5–7 simultaneous rules)",
+      "Automated fire-extinguisher inspection tracking with deliberate ID confirmation",
+      "Dark-by-default, high-contrast, mobile-first, zero horizontal scroll",
+      "Employee-ID authentication with locked guard switcher and logout",
+      "Safari/iOS compatibility hardening across all interactive features",
     ],
   },
   {
