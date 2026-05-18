@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTheme } from "@/context/theme-context";
@@ -45,6 +45,8 @@ export function Navigation() {
   const [scrolled, setScrolled]       = useState(false);
   const [mobileOpen, setMobileOpen]   = useState(false);
   const [activeHash, setActiveHash]   = useState("");
+  const [location, navigate] = useLocation();
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -60,11 +62,33 @@ export function Navigation() {
     return () => window.removeEventListener("hashchange", onHashChange);
   }, []);
 
+  useEffect(() => {
+    if (location !== "/") setActiveHash("");
+  }, [location]);
+
+  useEffect(() => {
+    if (location === "/" && pendingScroll) {
+      const el = document.querySelector(pendingScroll);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        setActiveHash(pendingScroll);
+      }
+      setPendingScroll(null);
+    }
+  }, [location, pendingScroll]);
+
   function handleNavClick(href: string) {
-    setActiveHash(href);
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (location !== "/") {
+      setPendingScroll(href);
+      navigate("/");
+    } else {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        setActiveHash(href);
+      }
+    }
   }
 
   return (

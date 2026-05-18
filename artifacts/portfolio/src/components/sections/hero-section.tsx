@@ -135,7 +135,7 @@ export function HeroSection() {
           transition={{ duration: 0.6, delay: 0 }}
           className="font-mono text-text-secondary text-xs sm:text-sm tracking-[0.25em] uppercase mb-8 max-w-[280px] sm:max-w-none mx-auto"
         >
-          AI Solutions Engineer &amp; Full-Stack Developer
+          UX / Product Designer
         </motion.p>
 
         {/* Heading */}
@@ -179,9 +179,9 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.85 }}
           className="text-text-secondary text-lg md:text-xl max-w-[320px] md:max-w-xl mx-auto leading-relaxed mt-8"
         >
-          I build AI-powered platforms that solve real problems for real people.
+          I design and ship production software end to end — research to live product.
           <br />
-          <span className="text-text-secondary">Focused on product, performance, and craft.</span>
+          <span className="text-text-secondary">AI-augmented development is my force multiplier.</span>
         </motion.p>
 
         {/* CTA Buttons */}
