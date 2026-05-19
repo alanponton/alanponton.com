@@ -177,11 +177,11 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.85 }}
-          className="text-text-secondary text-lg md:text-xl max-w-[320px] md:max-w-xl mx-auto leading-relaxed mt-8"
+          className="text-text-secondary text-lg md:text-xl max-w-[280px] md:max-w-xl mx-auto leading-relaxed mt-8"
         >
           I design and ship production software,
           <br className="hidden md:block" />
-          from research to live product.
+          {" "}from research to live product.
           <br />
           AI-augmented development is my force multiplier.
         </motion.p>
