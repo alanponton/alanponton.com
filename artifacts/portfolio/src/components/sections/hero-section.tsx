@@ -181,7 +181,7 @@ export function HeroSection() {
         >
           I design and ship production software,
           <br className="hidden md:block" />
-          {" "}from research to live product.
+          {" "}from research to live{" "}product.
           <br />
           AI-augmented development is my force multiplier.
         </motion.p>
