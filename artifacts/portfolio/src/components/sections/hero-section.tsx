@@ -179,9 +179,11 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.85 }}
           className="text-text-secondary text-lg md:text-xl max-w-[320px] md:max-w-xl mx-auto leading-relaxed mt-8"
         >
-          I design and ship production software end to end — research to live product.
+          I design and ship production software,
+          <br className="hidden md:block" />
+          from research to live product.
           <br />
-          <span className="text-text-secondary">AI-augmented development is my force multiplier.</span>
+          AI-augmented development is my force multiplier.
         </motion.p>
 
         {/* CTA Buttons */}
