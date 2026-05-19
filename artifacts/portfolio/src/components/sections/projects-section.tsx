@@ -26,15 +26,17 @@ function ProjectCardInner({
   hovered,
   isFlagship,
   isFullWidth,
+  cardNumber,
 }: {
   project: ProjectData;
   hovered: boolean;
   isFlagship: boolean;
   isFullWidth: boolean;
+  cardNumber: number;
 }) {
   const { theme } = useTheme();
   const padding = isFlagship ? "p-8" : "p-6";
-  const titleSize = isFlagship || isFullWidth ? "text-2xl md:text-3xl" : "text-xl md:text-2xl";
+  const titleSize = isFlagship ? "text-3xl md:text-4xl tracking-tight" : isFullWidth ? "text-2xl md:text-3xl" : "text-xl md:text-2xl";
   const baseBorder = theme === "dark" ? "#2A2A2E" : "#E5E7EB";
   const baseBoxShadow =
     theme === "dark" ? "none" : "0 1px 3px rgba(0,0,0,0.08)";
@@ -50,13 +52,42 @@ function ProjectCardInner({
       className={`flex border rounded-xl overflow-hidden h-full ${isFullWidth ? "flex-row" : "flex-col"}`}
       style={{ borderColor: baseBorder }}
     >
+      {/* Ghost number — flagship and full-width only */}
+      {(isFlagship || isFullWidth) && (
+        <div
+          aria-hidden="true"
+          className="absolute pointer-events-none select-none font-heading font-bold leading-none"
+          style={{
+            top: isFullWidth ? "50%" : "-0.15em",
+            right: "0.05em",
+            transform: isFullWidth ? "translateY(-50%)" : "none",
+            fontSize: isFullWidth ? "180px" : "260px",
+            color: project.color,
+            opacity: 0.06,
+            zIndex: 0,
+          }}
+        >
+          {String(cardNumber).padStart(2, "0")}
+        </div>
+      )}
+
       {/* Accent bar */}
       <div
         className={isFullWidth ? "w-1 flex-none" : "h-1 w-full flex-none"}
         style={{ background: project.color }}
       />
 
-      {/* Gradient overlay on hover */}
+      {/* Persistent ambient corner wash */}
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none"
+        style={{
+          background: (isFlagship || isFullWidth)
+            ? `radial-gradient(ellipse 70% 50% at 85% 0%, ${project.color}0F 0%, transparent 60%)`
+            : "none",
+          zIndex: 0,
+        }}
+      />
+      {/* Hover intensifier */}
       <motion.div
         className="absolute inset-0 rounded-xl pointer-events-none"
         animate={{ opacity: hovered ? 1 : 0 }}
@@ -68,7 +99,7 @@ function ProjectCardInner({
 
       {isFullWidth ? (
         /* Full-width horizontal layout — Sophia AI */
-        <div className={`relative ${padding} flex flex-col lg:flex-row lg:items-start lg:gap-12 flex-1`}>
+        <div className={`relative z-10 ${padding} flex flex-col lg:flex-row lg:items-start lg:gap-12 flex-1`}>
           <div className="flex flex-col flex-1">
             <p className="text-xs uppercase tracking-[0.2em] font-medium mb-3" style={{ color: project.color }}>
               {project.category}
@@ -104,7 +135,7 @@ function ProjectCardInner({
         </div>
       ) : (
         /* Regular vertical layout */
-        <div className={`relative ${padding} flex flex-col flex-1`}>
+        <div className={`relative z-10 ${padding} flex flex-col flex-1`}>
           <p className="text-xs uppercase tracking-[0.2em] font-medium mb-3" style={{ color: project.color }}>
             {project.category}
           </p>
@@ -145,11 +176,13 @@ function ProjectCard({
   index,
   isFlagship,
   isFullWidth,
+  cardNumber,
 }: {
   project: ProjectData;
   index: number;
   isFlagship: boolean;
   isFullWidth: boolean;
+  cardNumber: number;
 }) {
   const { theme } = useTheme();
   const [hovered, setHovered] = useState(false);
@@ -182,6 +215,7 @@ function ProjectCard({
           hovered={hovered}
           isFlagship={isFlagship}
           isFullWidth={isFullWidth}
+          cardNumber={cardNumber}
         />
       </motion.div>
     </Link>
@@ -249,8 +283,8 @@ export function ProjectsSection() {
   const headingInView = useInView(headingRef, { once: true, amount: 0.2 });
 
   return (
-    <section id="projects" className="py-28">
-      <Container>
+    <section id="projects" className="pt-24 pb-40">
+      <Container variant="wide">
         {/* Section heading */}
         <motion.div
           ref={headingRef}
@@ -283,6 +317,7 @@ export function ProjectsSection() {
               index={i}
               isFlagship={i < 2}
               isFullWidth={i === 5}
+              cardNumber={i + 1}
             />
           ))}
         </div>
