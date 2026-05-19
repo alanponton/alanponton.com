@@ -160,11 +160,6 @@ const inProgressCerts = [
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export function ResumePage() {
-  function handleDownload() {
-    // TODO: Wire up actual PDF download — link to hosted PDF or trigger generation
-    console.log("Download PDF clicked");
-  }
-
   return (
     <main className="min-h-screen pt-24 pb-20">
       <Container>
@@ -183,7 +178,7 @@ export function ResumePage() {
                 Alan Ponton
               </h1>
               <p className="font-mono text-sm text-[#6366F1] tracking-wide mb-2">
-                AI Solutions Engineer &amp; Full-Stack Developer
+                UX / Product Designer &middot; Designs and Ships
               </p>
               <p className="text-text-secondary text-sm mb-3">Dallas–Fort Worth, TX</p>
               <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm text-text-secondary">
@@ -222,14 +217,17 @@ export function ResumePage() {
               </div>
             </div>
 
-            {/* Download button */}
-            <button
-              onClick={handleDownload}
-              className="flex-none inline-flex items-center gap-2 h-10 px-5 text-sm font-medium rounded-lg border border-border text-text-primary hover:border-[#6366F1] hover:text-[#6366F1] hover:bg-[#6366F1]/5 transition-all duration-200"
-            >
-              <Download size={15} />
-              Download PDF
-            </button>
+            {/* Download buttons */}
+            <div className="flex items-center gap-3">
+              <a href="/Alan_Ponton_Resume.pdf" download className="flex-none inline-flex items-center gap-2 h-10 px-5 text-sm font-medium rounded-lg border border-border text-text-primary hover:border-[#6366F1] hover:text-[#6366F1] hover:bg-[#6366F1]/5 transition-all duration-200">
+                <Download size={15} />
+                Download PDF
+              </a>
+              <a href="/Alan_Ponton_Resume.docx" download className="flex-none inline-flex items-center gap-2 h-10 px-5 text-sm font-medium rounded-lg border border-border text-text-secondary hover:border-[#6366F1] hover:text-[#6366F1] hover:bg-[#6366F1]/5 transition-all duration-200">
+                <Download size={15} />
+                .docx
+              </a>
+            </div>
           </motion.div>
 
           <motion.div
@@ -243,12 +241,7 @@ export function ResumePage() {
           <FadeUp className="mb-10">
             <SectionLabel>Summary</SectionLabel>
             <p className="text-text-secondary text-base leading-relaxed">
-              AI Solutions Engineer with a career spanning enterprise programming, government
-              infrastructure, UX design, and security operations. I architect and ship AI-powered
-              production platforms — achieving measurable results like 94% cost reduction in AI
-              processing and 70% latency improvement through systematic optimization. 9+ applications
-              in production, 50+ database tables designed, 15+ AI integrations shipped. I leverage
-              AI development tools as a force multiplier to build more, faster, at a higher standard.
+              Product-minded UX designer who owns the full arc: research, information architecture, interaction and visual design, and the production build. I design for real users under real constraints, ship, and iterate. Two end-to-end case studies carry the story. One is a productized travel platform built under severe constraint. The other is a security operations tool taken through three documented versions. Google UX Design and Meta Front-End certified. AI-augmented development is my force multiplier. It lets one designer carry an idea from research to a live, maintained product.
             </p>
           </FadeUp>
 
