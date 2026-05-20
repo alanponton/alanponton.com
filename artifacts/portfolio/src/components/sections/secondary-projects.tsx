@@ -6,12 +6,6 @@ import { ExternalLink } from "lucide-react";
 
 const secondaryProjects = [
   {
-    title: "Lonnie's Locations",
-    description: "Complete digital platform for a travel agency — website, trip planner, admin CRM — all under $3/month.",
-    tech: ["React", "Supabase", "n8n", "Cloudflare"],
-    url: "lonnieslocations.com",
-  },
-  {
     title: "Xoe Designs",
     description: "Website redesign for a web design agency. Full UX process from research to prototype.",
     tech: ["UX Design", "Wireframing", "Prototyping"],

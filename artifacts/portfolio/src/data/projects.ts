@@ -50,6 +50,196 @@ export interface ProjectData {
 
 export const projects: ProjectData[] = [
   {
+    slug: "lonnies-locations",
+    title: "Lonnie's Locations",
+    description:
+      "A productized group-travel platform for an independent advisor. Per-trip branded experiences, AI concierge, and self-service guest portal.",
+    category: "Client Project",
+    color: "#D4A574",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Anthropic Claude", "Supabase", "Cloudflare"],
+
+    stats: [
+      { value: "3", label: "Live Trips" },
+      { value: "30+", label: "Guests Served" },
+      { value: "$2.50/mo", label: "Infrastructure Cost" },
+      { value: "0", label: "Promise-Breaking UI" },
+    ],
+
+    hero: {
+      headline: "Premium group travel, productized, without losing the high-touch.",
+      role: "UX Designer & Full-Stack Developer (solo)",
+      timeline: "Dec 2025 to present",
+      status: "Live in production",
+      liveUrl: "https://lonnieslocations.com",
+    },
+
+    problem: {
+      headline: "A thriving high-touch travel business with zero digital infrastructure.",
+      body: "An independent travel advisor was running 30 plus person group trips out of Chicago, and her business was built entirely on direct relationships. The success was crushing her. One anxious guest could send four messages a week, all in the same five categories. Passports. Vaccinations. Packing. Motion sickness. Payment timing. Multiply that by thirty guests across three concurrent trips, and the math stopped working.\n\nThe structural problem was harder than the volume. Every trip was different. A Royal Caribbean family cruise, a Caribbean milestone voyage, and a month-long East Africa journey share almost nothing. They have different booking shapes, different commitment levels, different anxieties. But they had to feel like one coherent premium brand, or the productized promise collapsed.",
+    },
+
+    solution: {
+      headline: "A productized platform that absorbs the repetitive work and lets the relationship work scale.",
+      body: "Lonnie's Locations is a per-trip branded platform with three pillars. A trip-aware AI concierge that absorbs the recurring questions. Reservation flows designed structurally around how each trip actually commits. A passwordless self-service guest portal that ends the status-anxiety loop.\n\nNew trips launch as content entries, not redesigns. The architecture flexes between cruise structure and journey structure while shared components like the concierge, the portal, and the brand system stay constant.\n\nThe concierge is the headline feature, but the real design work is in the judgment layer. What it refuses to answer. How it hands off to a human. How every escalation reaches the advisor with full context, instead of disappearing into a banner that promised more than the system delivered.",
+      valueProposition:
+        "Productized premium travel that respects the relationship at the heart of the business. Designed for an older, anxious, mobile-first audience where accessibility and microcopy are where the premium actually lives.",
+    },
+
+    architecture: {
+      description:
+        "A trip-type model abstracts the shared guest journey of discover, understand, reserve, and track. The middle layer flexes between cruise structure with cabin selection, a single ship, and a fixed sailing, and journey structure with a multi-leg timeline, per-leg hotel choices, and flexible participation. Shared components stay constant. Trip-specific components swap underneath. The concierge runs on a per-trip knowledge base. The admin dashboard receives real-time escalations with full conversation transcripts. The whole system operates at roughly $2.50 per month in infrastructure cost.",
+      techStack: [
+        { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
+        { category: "Conversation", items: ["Anthropic Claude", "Per-trip knowledge base", "Conversation design"] },
+        { category: "Backend", items: ["Supabase", "PostgreSQL", "Magic-link authentication"] },
+        { category: "Infrastructure", items: ["Cloudflare Pages", "$2.50 per month"] },
+      ],
+    },
+
+    decisions: [
+      {
+        title: "Identifying the escalation banner as a trust-integrity defect",
+        decision:
+          "Rebuild the AI concierge's human-handoff into a real closed loop with a live admin dashboard, urgency-coded alerts, audible chime, and full transcript context.",
+        why:
+          "When the agent hit something it shouldn't answer, the interface promised the guest that Lonnie had been notified and would reach out personally. The system was not keeping that promise. Nothing actually notified her. A UI lie is a trust defect, not a polish item. Designing for trust meant making the banner literally true.",
+        result:
+          "Escalations now reach the advisor with color-coded urgency. Medical questions show red. Payment questions show gold. Cancellations show orange. She gets a transcript so she has context before she reaches out, and the agent proactively captures the guest's best contact method. The banner became a real promise the system keeps.",
+      },
+      {
+        title: "Reversing my own designer-imposition failure mid-build",
+        decision:
+          "Archive the elevated aspirational itinerary I had designed for a client's birthday trip and make her actual chosen plans canonical.",
+        why:
+          "I had swapped her real plans, club nights and a specific beach-club birthday dinner, for a high-end safari. I did it on instinct that a premium trip should feel a certain way. On review I recognized the pattern. I had designed for an aspirational persona instead of the actual user. The fix was not a tweak. It was reversing my own work and making one principle govern the rest of the build. The experience must reflect who the client actually is, not who I assume a premium traveler should be.",
+        result:
+          "A design discipline that carried through the rest of the project. No aspirational overrides. No assumptions about what a premium traveler should want. The case study for what UX research is actually for. Catching designer bias before it ships.",
+      },
+      {
+        title: "Treating the concierge as conversation design first, engineering second",
+        decision:
+          "Build the concierge around what it should refuse to answer, not just what it can answer. Honest boundaries on pricing, medical, refund, and group-conflict questions. Trip-aware persona. Suggested-question chips for the blank-prompt problem.",
+        why:
+          "A travel concierge that bluffs a price quote or guesses at a medical question damages the relationship it is supposed to protect. The premium experience comes from a concierge that knows when to hand off. The product is the judgment, not the omniscience. What the assistant says, what it refuses, and how it hands off is the design. The model wiring is the easy part.",
+        result:
+          "A concierge guests trust because it acknowledges its limits, escalates real judgment calls to a human, and surfaces the highest-anxiety topics like passport, packing, and payments up front through data-driven suggested questions per trip. A 25,000 character knowledge base derived from the advisor's real inbox grounds it in actual guest questions, not hypothetical ones.",
+      },
+    ],
+
+    results: [
+      { value: "3", label: "Live Trips", description: "Cruise, voyage, multi-country journey" },
+      { value: "30+", label: "Guests Served", description: "Confirmed group cruise plus ongoing trips" },
+      { value: "$2.50/mo", label: "Infrastructure Cost", description: "vs. $200–400/yr commercial alternatives" },
+      { value: "0", label: "Promise-Breaking UI", description: "Every banner the system shows is one the system keeps" },
+    ],
+
+    features: [
+      "AI travel concierge with trip-aware persona and a 25,000 character per-trip knowledge base",
+      "Real-time admin dashboard with urgency-coded escalation alerts and full transcript context",
+      "Structurally distinct reservation flows. Cruise modal versus journey multi-leg selector.",
+      "Passwordless magic-link guest portal with status microcopy that reads as reassurance",
+      "\"Important to Know\" disclosure pattern with required acknowledgment for trip-blocking realities",
+      "Accessibility-first premium aesthetic with dual-layer text shadows, reduced-motion honor, and mobile-first layout",
+      "Editorial personalization layer with per-trip theme, hero line, narrative, and concierge prompts",
+      "Custom branded social-preview cards designed around the trip date as the hero element",
+      "Streaming concierge responses for perceived performance",
+      "Suggested-question chips surfacing the highest-anxiety topics first",
+      "Honest refusal boundaries on pricing, medical, refund, and group-conflict questions",
+      "Productized model where new trips launch as content entries, not redesigns",
+    ],
+  },
+  {
+    slug: "2100-security",
+    title: "2100 Security",
+    description:
+      "Operations platform for a 24/7 security team at a 33-floor high-rise. Three production versions: killed the no-SSL warnings, built the rotation engine, shipped real auth and safety tracking.",
+    category: "Personal / Operational Tool",
+    color: "#22C55E",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Node/Express", "Cloudflare"],
+    stats: [
+      { value: "3", label: "Production Versions" },
+      { value: "5", label: "Officers, Nightly Use" },
+      { value: "33", label: "Floor High-Rise" },
+    ],
+    hero: {
+      headline: "From a broken no-SSL site to an operations tool the night shift actually uses.",
+      role: "Solo UX Designer & Developer",
+      timeline: "3 versions, ongoing",
+      status: "Live in production",
+    },
+    problem: {
+      headline: "A five-person overnight team running on a broken legacy site.",
+      body: "The team ran on a free-tier Wix site with no SSL, so every officer who opened it got a browser security warning — for a security operation, an embarrassment that quietly eroded trust before anyone used the tool. The site was static, so I rebuilt the schedule by hand every month. On a phone it required pinch-zoom and horizontal scrolling to read an assignment. There was no authentication, no awareness of who was on shift, and nothing operational beyond a schedule grid.",
+      userStory:
+        "Evaluating a team chat tool, I watched Slack die on free-tier limits and Microsoft Teams die because officers had scattered emails and forgotten passwords. Google Chat won only because everyone already had Gmail. The lesson became the platform's governing principle: the best technology is worthless if users can't get into it.",
+    },
+    solution: {
+      headline: "An operations hub designed for a tired person, one-handed, in a dark stairwell.",
+      body: "I designed the app around the single question an officer asks every night: what am I doing right now? The home screen answers it on open — current block, post, floor range — with the full rotation one tap down. Constraints came from direct observation of officers using the old site in real conditions: dark by default, high-contrast type, large tap targets, never any horizontal scroll. Identity is a guard-picker, not a login form — tap your name, set an employee ID once, under five seconds, no email or app store. Where a careless tap causes real harm — confirming a fire-extinguisher safety inspection — I deliberately ADDED friction with required ID re-entry.",
+      valueProposition:
+        "Zero-friction access where friction kills adoption; deliberate friction exactly where a careless tap is real-world harm.",
+    },
+    architecture: {
+      description:
+        "React/TypeScript PWA with Tailwind, deployed on Replit. A Node/Express backend serves a weather proxy and guard authentication. Replit Database stores guard credentials and inspection records. Cloudflare handles SSL, DNS, and caching. A constraint-based rotation engine cycles guards through three posts across three time blocks, honoring 5–7 simultaneous scheduling rules, with floors travelling with each guard through every rotation.",
+      techStack: [
+        { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
+        { category: "Backend", items: ["Node/Express", "Replit Database"] },
+        { category: "Infrastructure", items: ["Cloudflare SSL/DNS", "PWA"] },
+        { category: "Logic", items: ["Constraint scheduling engine"] },
+      ],
+    },
+    decisions: [
+      {
+        title: "Guard picker as identity, not a login form",
+        decision: "Replace traditional auth with a tap-your-name picker plus a one-time employee ID.",
+        why: "A failed chat-tool rollout proved access friction kills internal tools regardless of features. Officers needed in under five seconds with no email or app store.",
+        result: "Full team adoption with zero onboarding friction. Five officers use it nightly across Android and iOS.",
+      },
+      {
+        title: "Deliberately adding friction for safety inspections",
+        decision: "Require employee-ID re-entry to confirm a fire-extinguisher inspection.",
+        why: "A fat-fingered tap marking a safety inspection complete when it wasn't is real-world harm, not a UI annoyance — the inverse of the zero-friction principle.",
+        result: "Inspection confirmations are deliberate; accidental completions designed out.",
+      },
+    ],
+    versions: [
+      {
+        label: "V1 — Migration & Foundation",
+        headline: "Killed the security warnings, looked the part — and got readability wrong.",
+        body: "Replaced Wix with a React PWA: animated dark landing, cyan accents, particle effects, weather, Cloudflare SSL. Security warnings gone immediately.",
+        learning: "The visual treatment was impressive and hard to read on a long overnight shift. Mobile-first readability is a foundational constraint, not a polish pass — and my taste is not the user's eyesight.",
+      },
+      {
+        label: "V2 — Operational Platform",
+        headline: "Reversed my own design in the users' favor.",
+        body: "Stripped styling back to a clean, high-readability palette with a real dark-mode toggle. Added the guard picker, block rotation with active-card highlighting, floor-specific patrol notes, and a patrol-reminder overlay. Rebuilt the schedule data architecture after a decoupling bug let guard names and floor assignments drift apart.",
+        learning: "Complex constraint problems require incremental, single-transformation validation — change one thing, verify, then the next.",
+      },
+      {
+        label: "V3 — Authentication & Automation (current)",
+        headline: "Real auth, automated safety tracking, and the hard cross-platform edges.",
+        body: "Employee-ID authentication backed by Replit Database; guard switcher locked behind verification; logout. Built the fire-extinguisher inspection system with automatic month-boundary activation and the deliberate ID-confirmation UX. Migrated from four blocks to three (3/3/2) and executed two full roster changes with constraint-honoring reshuffles.",
+        learning: "Real-world robustness lives in the edges: Safari/iOS cache-busting, type=text + inputMode=numeric so iOS stops stripping leading zeros from IDs, visible error states replacing silent failures.",
+      },
+    ],
+    results: [
+      { value: "100%", label: "Security Warnings Eliminated", description: "No-SSL Wix to Cloudflare-protected hosting" },
+      { value: "1", label: "Data-Array Edit", description: "Replaced monthly hand-rebuilding of the schedule" },
+      { value: "5", label: "Officers, Nightly", description: "Across Android and iOS" },
+      { value: "5–7", label: "Simultaneous Constraints", description: "Honored per generated rotation" },
+    ],
+    features: [
+      "Passwordless guard-picker identity (under five seconds, no email)",
+      "Shift-aware home screen answering 'what am I doing right now'",
+      "Constraint-based rotation engine (5–7 simultaneous rules)",
+      "Automated fire-extinguisher inspection tracking with deliberate ID confirmation",
+      "Dark-by-default, high-contrast, mobile-first, zero horizontal scroll",
+      "Employee-ID authentication with locked guard switcher and logout",
+      "Safari/iOS compatibility hardening across all interactive features",
+    ],
+  },
+  {
     slug: "metroplex-match",
     title: "MetroPlex Match",
     description:
@@ -369,97 +559,6 @@ export const projects: ProjectData[] = [
       "Web dashboard with completion rates, streaks, and goal progress",
       "Goal-setting and adjustment via SMS conversation",
       "n8n-powered scheduling with per-user configuration",
-    ],
-  },
-  {
-    slug: "2100-security",
-    title: "2100 Security",
-    description:
-      "Operations platform for a 24/7 security team at a 33-floor high-rise. Three production versions: killed the no-SSL warnings, built the rotation engine, shipped real auth and safety tracking.",
-    category: "Personal / Operational Tool",
-    color: "#22C55E",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Node/Express", "Cloudflare"],
-    stats: [
-      { value: "3", label: "Production Versions" },
-      { value: "5", label: "Officers, Nightly Use" },
-      { value: "33", label: "Floor High-Rise" },
-    ],
-    hero: {
-      headline: "From a broken no-SSL site to an operations tool the night shift actually uses.",
-      role: "Solo UX Designer & Developer",
-      timeline: "3 versions, ongoing",
-      status: "Live in production",
-    },
-    problem: {
-      headline: "A five-person overnight team running on a broken legacy site.",
-      body: "The team ran on a free-tier Wix site with no SSL, so every officer who opened it got a browser security warning — for a security operation, an embarrassment that quietly eroded trust before anyone used the tool. The site was static, so I rebuilt the schedule by hand every month. On a phone it required pinch-zoom and horizontal scrolling to read an assignment. There was no authentication, no awareness of who was on shift, and nothing operational beyond a schedule grid.",
-      userStory:
-        "Evaluating a team chat tool, I watched Slack die on free-tier limits and Microsoft Teams die because officers had scattered emails and forgotten passwords. Google Chat won only because everyone already had Gmail. The lesson became the platform's governing principle: the best technology is worthless if users can't get into it.",
-    },
-    solution: {
-      headline: "An operations hub designed for a tired person, one-handed, in a dark stairwell.",
-      body: "I designed the app around the single question an officer asks every night: what am I doing right now? The home screen answers it on open — current block, post, floor range — with the full rotation one tap down. Constraints came from direct observation of officers using the old site in real conditions: dark by default, high-contrast type, large tap targets, never any horizontal scroll. Identity is a guard-picker, not a login form — tap your name, set an employee ID once, under five seconds, no email or app store. Where a careless tap causes real harm — confirming a fire-extinguisher safety inspection — I deliberately ADDED friction with required ID re-entry.",
-      valueProposition:
-        "Zero-friction access where friction kills adoption; deliberate friction exactly where a careless tap is real-world harm.",
-    },
-    architecture: {
-      description:
-        "React/TypeScript PWA with Tailwind, deployed on Replit. A Node/Express backend serves a weather proxy and guard authentication. Replit Database stores guard credentials and inspection records. Cloudflare handles SSL, DNS, and caching. A constraint-based rotation engine cycles guards through three posts across three time blocks, honoring 5–7 simultaneous scheduling rules, with floors travelling with each guard through every rotation.",
-      techStack: [
-        { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
-        { category: "Backend", items: ["Node/Express", "Replit Database"] },
-        { category: "Infrastructure", items: ["Cloudflare SSL/DNS", "PWA"] },
-        { category: "Logic", items: ["Constraint scheduling engine"] },
-      ],
-    },
-    decisions: [
-      {
-        title: "Guard picker as identity, not a login form",
-        decision: "Replace traditional auth with a tap-your-name picker plus a one-time employee ID.",
-        why: "A failed chat-tool rollout proved access friction kills internal tools regardless of features. Officers needed in under five seconds with no email or app store.",
-        result: "Full team adoption with zero onboarding friction. Five officers use it nightly across Android and iOS.",
-      },
-      {
-        title: "Deliberately adding friction for safety inspections",
-        decision: "Require employee-ID re-entry to confirm a fire-extinguisher inspection.",
-        why: "A fat-fingered tap marking a safety inspection complete when it wasn't is real-world harm, not a UI annoyance — the inverse of the zero-friction principle.",
-        result: "Inspection confirmations are deliberate; accidental completions designed out.",
-      },
-    ],
-    versions: [
-      {
-        label: "V1 — Migration & Foundation",
-        headline: "Killed the security warnings, looked the part — and got readability wrong.",
-        body: "Replaced Wix with a React PWA: animated dark landing, cyan accents, particle effects, weather, Cloudflare SSL. Security warnings gone immediately.",
-        learning: "The visual treatment was impressive and hard to read on a long overnight shift. Mobile-first readability is a foundational constraint, not a polish pass — and my taste is not the user's eyesight.",
-      },
-      {
-        label: "V2 — Operational Platform",
-        headline: "Reversed my own design in the users' favor.",
-        body: "Stripped styling back to a clean, high-readability palette with a real dark-mode toggle. Added the guard picker, block rotation with active-card highlighting, floor-specific patrol notes, and a patrol-reminder overlay. Rebuilt the schedule data architecture after a decoupling bug let guard names and floor assignments drift apart.",
-        learning: "Complex constraint problems require incremental, single-transformation validation — change one thing, verify, then the next.",
-      },
-      {
-        label: "V3 — Authentication & Automation (current)",
-        headline: "Real auth, automated safety tracking, and the hard cross-platform edges.",
-        body: "Employee-ID authentication backed by Replit Database; guard switcher locked behind verification; logout. Built the fire-extinguisher inspection system with automatic month-boundary activation and the deliberate ID-confirmation UX. Migrated from four blocks to three (3/3/2) and executed two full roster changes with constraint-honoring reshuffles.",
-        learning: "Real-world robustness lives in the edges: Safari/iOS cache-busting, type=text + inputMode=numeric so iOS stops stripping leading zeros from IDs, visible error states replacing silent failures.",
-      },
-    ],
-    results: [
-      { value: "100%", label: "Security Warnings Eliminated", description: "No-SSL Wix to Cloudflare-protected hosting" },
-      { value: "1", label: "Data-Array Edit", description: "Replaced monthly hand-rebuilding of the schedule" },
-      { value: "5", label: "Officers, Nightly", description: "Across Android and iOS" },
-      { value: "5–7", label: "Simultaneous Constraints", description: "Honored per generated rotation" },
-    ],
-    features: [
-      "Passwordless guard-picker identity (under five seconds, no email)",
-      "Shift-aware home screen answering 'what am I doing right now'",
-      "Constraint-based rotation engine (5–7 simultaneous rules)",
-      "Automated fire-extinguisher inspection tracking with deliberate ID confirmation",
-      "Dark-by-default, high-contrast, mobile-first, zero horizontal scroll",
-      "Employee-ID authentication with locked guard switcher and logout",
-      "Safari/iOS compatibility hardening across all interactive features",
     ],
   },
   {

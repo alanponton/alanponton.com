@@ -8,16 +8,17 @@ import { ArrowUpRight } from "lucide-react";
 import { projects as allProjects, type ProjectData } from "@/data/projects";
 import { useTheme } from "@/context/theme-context";
 
-// First 6 projects for the bento grid
-const featuredProjects = allProjects.slice(0, 6);
+// First 7 projects for the bento grid
+const featuredProjects = allProjects.slice(0, 7);
 
 // Desktop 12-col bento layout
 const gridLayout = [
-  { colStart: 1, colSpan: 7, rowSpan: 2 }, // MetroPlex Match — flagship large
-  { colStart: 8, colSpan: 5, rowSpan: 2 }, // Trip Buddy — flagship medium
-  { colStart: 1, colSpan: 4, rowSpan: 1 }, // FollowThisModel
-  { colStart: 5, colSpan: 4, rowSpan: 1 }, // Push Coach
-  { colStart: 9, colSpan: 4, rowSpan: 1 }, // 2100 Security
+  { colStart: 1, colSpan: 7, rowSpan: 2 },  // Lonnie's Locations — flagship large
+  { colStart: 8, colSpan: 5, rowSpan: 2 },  // 2100 Security — flagship medium
+  { colStart: 1, colSpan: 3, rowSpan: 1 },  // MetroPlex Match
+  { colStart: 4, colSpan: 3, rowSpan: 1 },  // Trip Buddy
+  { colStart: 7, colSpan: 3, rowSpan: 1 },  // FollowThisModel
+  { colStart: 10, colSpan: 3, rowSpan: 1 }, // Push Coach
   { colStart: 1, colSpan: 12, rowSpan: 1 }, // Sophia AI — full width
 ];
 
@@ -316,7 +317,7 @@ export function ProjectsSection() {
               project={project}
               index={i}
               isFlagship={i < 2}
-              isFullWidth={i === 5}
+              isFullWidth={i === 6}
               cardNumber={i + 1}
             />
           ))}
