@@ -80,7 +80,7 @@ const skills = [
     category: "AI & ML",
     items: [
       "OpenAI API", "Claude API", "Prompt Engineering", "AI Agents",
-      "RAG", "Vector Search", "AI Coaching Systems", "n8n AI Workflows",
+      "RAG", "Vector Search", "n8n AI Workflows",
     ],
   },
   {
@@ -101,11 +101,11 @@ const skills = [
 
 const experience = [
   {
-    role: "AI Solutions Engineer",
+    role: "UX / Product Designer & AI-Augmented Developer",
     company: "Independent",
     period: "2025–Present",
     description:
-      "Architecting and shipping AI-powered production platforms end-to-end. Built MetroPlex Match (AI dating platform, 205+ users, 6 AI coaches), Trip Buddy (AI travel companion with real-time family dashboard), Sophia AI (voice assistant with 94% token cost reduction, 70% latency improvement), Push Coach (SMS-based AI accountability coach), and FollowThisModel (creator economy platform with Stripe payouts). 9+ apps shipped, 50+ database tables designed, 15+ AI integrations in production.",
+      "Designing and shipping production software end-to-end — research, IA, interaction and visual design, and the build. Owned the full arc on two flagship case studies: Lonnie's Locations (productized group-travel platform with AI concierge, guest portal, real-time admin escalation) and 2100 Security (three documented versions, including a self-correction reversing my own work in users' favor). 9+ shipped products. AI-augmented development as force multiplier.",
   },
   {
     role: "Security Operations Lead",
