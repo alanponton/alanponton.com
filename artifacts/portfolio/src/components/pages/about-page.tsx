@@ -141,7 +141,7 @@ function HeroSection() {
               transition={{ duration: 0.5, delay: 0.35 }}
               className="font-mono text-sm text-[#6366F1] tracking-wide mb-8"
             >
-              AI Solutions Engineer &amp; Full-Stack Developer
+              UX / Product Designer &middot; Designs and Ships
             </motion.p>
 
             {/* Narrative */}
@@ -223,10 +223,10 @@ const timelineEntries = [
   },
   {
     period: "2025–Present",
-    role: "AI Solutions Engineer",
+    role: "UX / Product Designer & AI-Augmented Developer",
     org: "Independent",
     description:
-      "Building AI-powered production platforms — from dating apps with AI coaches to travel companions with real-time dashboards. 9+ apps shipped, 50+ database tables designed, 15+ AI integrations in production.",
+      "Designing and shipping production software end-to-end — research, IA, interaction and visual design, and the build. Owned the full arc on two flagship case studies: Lonnie's Locations and 2100 Security. 9+ shipped products. AI-augmented development as force multiplier.",
   },
 ];
 
@@ -399,7 +399,7 @@ const skillCategories = [
     title: "AI & Machine Learning",
     techs: [
       "OpenAI API", "Claude API", "Prompt Engineering", "AI Agents",
-      "RAG", "Vector Search", "AI Coaching Systems", "n8n AI Workflows",
+      "RAG", "Vector Search", "n8n AI Workflows",
     ],
   },
   {
