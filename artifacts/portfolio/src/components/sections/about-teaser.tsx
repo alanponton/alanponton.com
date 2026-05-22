@@ -117,8 +117,8 @@ export function AboutTeaser() {
   const rightInView = useInView(rightRef, { once: true, amount: 0.2 });
 
   return (
-    <section id="about" className="py-28 bg-surface">
-      <Container>
+    <section id="about" className="py-36 bg-surface">
+      <Container variant="narrow">
         <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-12 lg:gap-16 items-center">
           {/* Left: text */}
           <div ref={leftRef}>

@@ -9,7 +9,7 @@ export function ContactTeaser() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section id="contact" className="py-32 bg-surface">
+    <section id="contact" className="pt-28 pb-40 bg-surface">
       <Container>
         <div className="max-w-3xl mx-auto" ref={ref}>
           {/* Animated gradient border — always rotating */}
