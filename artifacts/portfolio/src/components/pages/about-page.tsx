@@ -5,7 +5,6 @@ import {
   Brain,
   Camera,
   CheckCircle2,
-  Clock,
   Cloud,
   Monitor,
   Palette,
@@ -504,25 +503,6 @@ const completedCerts = [
   },
 ];
 
-const inProgressCerts = [
-  {
-    title: "IBM AI Engineering Professional Certificate",
-    issuer: "Coursera",
-  },
-  {
-    title: "Microsoft AI-900 Azure AI Fundamentals",
-    issuer: "Microsoft",
-  },
-  {
-    title: "AWS Solutions Architect",
-    issuer: "Amazon Web Services",
-  },
-  {
-    title: "AWS Machine Learning Specialty",
-    issuer: "Amazon Web Services",
-  },
-];
-
 const professionalExp = [
   {
     role: "Application Developer",
@@ -571,38 +551,6 @@ function CredentialsSection() {
                   </p>
                   <p className="font-mono text-xs text-text-secondary mt-1">
                     {cert.issuer} · {cert.year}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </FadeUp>
-
-        {/* In Progress */}
-        <FadeUp delay={0.1} className="mb-10">
-          <p className="font-mono text-xs uppercase tracking-widest text-text-secondary mb-4">
-            In Progress
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {inProgressCerts.map((cert, i) => (
-              <motion.div
-                key={cert.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94], delay: i * 0.07 }}
-                className="flex items-start gap-3 p-4 rounded-xl bg-background border border-border shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none"
-              >
-                <Clock
-                  size={18}
-                  className="text-[#F97316] flex-none mt-0.5"
-                />
-                <div>
-                  <p className="font-medium text-sm text-text-primary leading-snug">
-                    {cert.title}
-                  </p>
-                  <p className="font-mono text-xs text-text-secondary mt-1">
-                    {cert.issuer}
                   </p>
                 </div>
               </motion.div>
