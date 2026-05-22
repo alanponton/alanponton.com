@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
   Brain,
-  Camera,
   CheckCircle2,
   Cloud,
   Monitor,
@@ -85,10 +84,11 @@ function PhotoPlaceholder() {
             "linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(34,211,238,0.06) 100%)",
         }}
       >
-        <Camera size={36} className="text-text-secondary opacity-40" />
-        <p className="font-mono text-[10px] uppercase tracking-widest text-text-secondary opacity-50">
-          Photo coming soon
-        </p>
+        <img
+          src="/alan-headshot.jpg"
+          alt="Alan Ponton, UX / Product Designer"
+          className="w-full h-full object-cover"
+        />
       </div>
       {/* Decorative corner accents */}
       <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#6366F1]/40 rounded-tl-lg pointer-events-none" />
