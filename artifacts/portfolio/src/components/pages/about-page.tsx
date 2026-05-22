@@ -152,17 +152,16 @@ function HeroSection() {
               className="space-y-4 mb-8"
             >
               <p className="text-text-secondary text-lg leading-relaxed">
-                I've been writing code since 1998 — long before the frameworks, the cloud,
+                I've been shipping software since 1998. Long before the frameworks, the cloud,
                 or the AI tools that define modern development.
               </p>
               <p className="text-text-secondary text-lg leading-relaxed">
-                My path took me from programming at Experian to managing enterprise networks for
-                the State of New Jersey, through UX design and security operations, and into what
-                I do now: architecting AI-powered platforms that solve real problems for real people.
+                My path took me from programming at Experian, through 14 years managing enterprise
+                networks for the State of New Jersey, into UX design and security operations, and
+                now into what I do today: designing and building AI-powered products end to end.
               </p>
               <p className="text-text-secondary text-lg leading-relaxed">
-                Every role taught me something the last one couldn't. The result is an engineer
-                who thinks in systems, not just code.
+                Every role taught me something the last one couldn't. The result is a designer who ships.
               </p>
             </motion.div>
 
@@ -175,8 +174,8 @@ function HeroSection() {
               style={{ borderLeft: "3px solid #6366F1" }}
             >
               <p className="text-text-secondary text-base leading-relaxed">
-                I architect systems, design databases, integrate APIs, and ship production
-                software — leveraging AI development tools as a force multiplier. This isn't
+                I own the full design arc. Research, information architecture, interaction design,
+                and the production build. AI development is my force multiplier. This isn't
                 about shortcuts.{" "}
                 <span className="text-text-primary font-medium">
                   It's about building more, faster, at a higher standard.
