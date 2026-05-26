@@ -220,6 +220,13 @@ const timelineEntries = [
       "Formalized frontend skills. Modern React, TypeScript, component architecture, and production-grade UI development.",
   },
   {
+    period: "2025",
+    role: "Infrastructure Modernization",
+    org: "Self-Hosted AWS Migration",
+    description:
+      "Migrated 30+ production n8n workflows from cloud to self-hosted Ubuntu/Docker on AWS EC2. ~50% infrastructure cost reduction. IAM policies, security groups, Elastic IP, persistent volumes.",
+  },
+  {
     period: "2025–Present",
     role: "UX / Product Designer & AI-Augmented Developer",
     org: "Independent",
@@ -404,8 +411,9 @@ const skillCategories = [
     icon: Cloud,
     title: "Infrastructure",
     techs: [
-      "Cloudflare Pages", "Supabase Auth", "Supabase Storage", "DNS Management",
-      "CI/CD", "Replit", "GitHub", "Vercel",
+      "Cloudflare Pages", "Supabase Auth", "Supabase Storage",
+      "AWS EC2", "IAM", "Docker", "Self-Hosted n8n",
+      "DNS Management", "CI/CD", "Replit", "GitHub", "Vercel",
     ],
   },
   {
