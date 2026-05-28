@@ -86,8 +86,8 @@ const skills = [
   {
     category: "Infrastructure",
     items: [
-      "Cloudflare Pages", "Supabase Auth & Storage", "DNS Management",
-      "CI/CD", "GitHub", "Vercel",
+      "Cloudflare Pages", "Supabase Auth & Storage", "AWS EC2", "IAM",
+      "Docker", "Self-Hosted n8n", "DNS Management", "CI/CD", "GitHub", "Vercel",
     ],
   },
   {

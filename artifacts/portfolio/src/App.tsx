@@ -6,6 +6,7 @@ import { ScrollToTop } from "@/components/scroll-to-top";
 import { CustomCursor } from "@/components/custom-cursor";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { ConciergeWidget } from "@/components/concierge/ConciergeWidget";
 import { HomePage } from "@/components/pages/home-page";
 import { CaseStudyPage } from "@/components/pages/case-study-page";
 import { AboutPage } from "@/components/pages/about-page";
@@ -45,6 +46,7 @@ export default function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />
+      <ConciergeWidget />
     </SmoothScroll>
     </ThemeProvider>
   );
