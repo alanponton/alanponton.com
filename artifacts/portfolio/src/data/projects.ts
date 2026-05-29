@@ -4,6 +4,7 @@ export interface ProjectData {
   description: string;
   category: string;
   color: string;
+  gallery?: { src: string; caption: string; inCard?: boolean; theme?: "light" | "dark"; }[];
   tech: string[];
   stats: { value: string; label: string }[];
   hero: {
@@ -155,6 +156,11 @@ export const projects: ProjectData[] = [
       "Operations platform for a 24/7 security team at a 33-floor high-rise. Three production versions: killed the no-SSL warnings, built the rotation engine, shipped real auth and safety tracking.",
     category: "Personal / Operational Tool",
     color: "#22C55E",
+    gallery: [
+      { src: "/projects/2100-security-desktop-light.png", caption: "Tonight's shift home screen — answers 'what am I doing right now' at a glance.", inCard: true, theme: "light" },
+      { src: "/projects/2100-security-desktop-dark.png", caption: "Same home screen, dark mode — designed for overnight shifts in low light.", inCard: true, theme: "dark" },
+      { src: "/projects/2100-Security_Home.png", caption: "Mobile view — designed for an officer one-handed in a dark stairwell.", inCard: false },
+    ],
     tech: ["React", "TypeScript", "Tailwind CSS", "Node/Express", "Cloudflare"],
     stats: [
       { value: "3", label: "Production Versions" },

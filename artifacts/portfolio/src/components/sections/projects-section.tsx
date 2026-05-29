@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "wouter";
 import { Container } from "@/components/ui/container";
@@ -7,6 +7,40 @@ import { CountUpStat } from "@/components/ui/count-up-stat";
 import { ArrowUpRight } from "lucide-react";
 import { projects as allProjects, type ProjectData } from "@/data/projects";
 import { useTheme } from "@/context/theme-context";
+
+function RotatingCardImage({ images, color, title, hovered }: { images: { src: string; caption: string; theme?: "light" | "dark" }[]; color: string; title: string; hovered: boolean; }) {
+  if (images.length === 0) {
+    return (
+      <div className="w-full h-full" style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }} />
+    );
+  }
+
+  const lightImg = images.find((img) => img.theme === "light") ?? images[0];
+  const darkImg = images.find((img) => img.theme === "dark") ?? images[0];
+  const hasBoth = lightImg !== darkImg;
+
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      <img
+        src={lightImg.src}
+        alt={lightImg.caption || title}
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {hasBoth && (
+        <motion.img
+          src={darkImg.src}
+          alt={darkImg.caption || title}
+          loading="lazy"
+          initial={false}
+          animate={{ opacity: hovered ? 1 : 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+    </div>
+  );
+}
 
 // First 7 projects for the bento grid
 const featuredProjects = allProjects.slice(0, 7);
@@ -69,6 +103,17 @@ function ProjectCardInner({
           }}
         >
           {String(cardNumber).padStart(2, "0")}
+        </div>
+      )}
+
+      {!isFullWidth && (
+        <div className={`relative w-full overflow-hidden ${isFlagship ? "flex-1 min-h-[280px]" : "flex-none"}`} style={!isFlagship ? { aspectRatio: "16 / 10" } : undefined}>
+          <RotatingCardImage
+            images={(project.gallery ?? []).filter((g) => g.inCard)}
+            color={project.color}
+            title={project.title}
+            hovered={hovered}
+          />
         </div>
       )}
 
@@ -136,7 +181,7 @@ function ProjectCardInner({
         </div>
       ) : (
         /* Regular vertical layout */
-        <div className={`relative z-10 ${padding} flex flex-col flex-1`}>
+        <div className={`relative z-10 ${padding} flex flex-col${isFlagship ? "" : " flex-1"}`}>
           <p className="text-xs uppercase tracking-[0.2em] font-medium mb-3" style={{ color: project.color }}>
             {project.category}
           </p>
@@ -153,11 +198,6 @@ function ProjectCardInner({
           <p className="text-text-secondary text-sm leading-relaxed mb-5 line-clamp-3 flex-1">
             {project.description}
           </p>
-          <div className="flex flex-wrap gap-2 mb-5">
-            {project.tech.map((t) => (
-              <TechPill key={t} label={t} />
-            ))}
-          </div>
           <div className="flex gap-4 pt-4 border-t border-border">
             {project.stats.map((stat, i) => (
               <div key={i} className="flex flex-col">
@@ -247,6 +287,15 @@ function MobileCard({ project, index }: { project: ProjectData; index: number })
           transition: "all 0.3s ease-out",
         }}
       >
+        <div className="relative w-full overflow-hidden flex-none" style={{ aspectRatio: "16 / 10" }}>
+          {project.cardImage ? (
+            <div className="w-full h-full flex items-center justify-center p-3" style={{ background: `linear-gradient(135deg, ${project.color}18 0%, ${project.color}08 100%)` }}>
+              <img src={project.cardImage} alt={project.title} className="h-full w-auto max-w-full object-contain rounded-lg shadow-md" loading="lazy" />
+            </div>
+          ) : (
+            <div className="w-full h-full" style={{ background: `linear-gradient(135deg, ${project.color}22 0%, ${project.color}08 100%)` }} />
+          )}
+        </div>
         <div className="h-1 w-full flex-none" style={{ background: project.color }} />
         <div className="p-5 flex flex-col flex-1">
           <p className="text-xs uppercase tracking-[0.2em] font-medium mb-2" style={{ color: project.color }}>
@@ -256,11 +305,6 @@ function MobileCard({ project, index }: { project: ProjectData; index: number })
           <p className="text-text-secondary text-sm leading-relaxed mb-4 flex-1 line-clamp-3">
             {project.description}
           </p>
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {project.tech.map((t) => (
-              <TechPill key={t} label={t} />
-            ))}
-          </div>
           <div className="flex gap-4 pt-3 border-t border-border">
             {project.stats.map((stat, i) => (
               <div key={i} className="flex flex-col">
