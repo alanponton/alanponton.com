@@ -107,7 +107,7 @@ function ProjectCardInner({
       )}
 
       {!isFullWidth && (
-        <div className={`relative w-full overflow-hidden ${isFlagship ? "flex-1 min-h-[280px]" : "flex-none"}`} style={!isFlagship ? { aspectRatio: "16 / 10" } : undefined}>
+        <div className={`relative w-full overflow-hidden p-6 ${isFlagship ? "flex-1 min-h-[280px]" : "flex-none"}`} style={!isFlagship ? { aspectRatio: "16 / 10" } : undefined}>
           <RotatingCardImage
             images={(project.gallery ?? []).filter((g) => g.inCard)}
             color={project.color}
