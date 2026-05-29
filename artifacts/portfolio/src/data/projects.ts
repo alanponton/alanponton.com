@@ -57,6 +57,11 @@ export const projects: ProjectData[] = [
       "A productized group-travel platform for an independent advisor. Per-trip branded experiences, AI concierge, and self-service guest portal.",
     category: "Client Project",
     color: "#D4A574",
+    gallery: [
+      { src: "/projects/Lonnies/lonnies_home_mobile_trip_card.png", caption: "Trip card — Sunny Celebration", inCard: true },
+      { src: "/projects/Lonnies/lonnies_home_mobile.png", caption: "Homepage hero", inCard: true },
+      { src: "/projects/Lonnies/lonnies_home_mobile_concierge.png", caption: "AI concierge", inCard: true },
+    ],
     tech: ["React", "TypeScript", "Tailwind CSS", "Anthropic Claude", "Supabase", "Cloudflare"],
 
     stats: [
@@ -157,9 +162,10 @@ export const projects: ProjectData[] = [
     category: "Personal / Operational Tool",
     color: "#22C55E",
     gallery: [
-      { src: "/projects/2100-security-desktop-light.png", caption: "Tonight's shift home screen — answers 'what am I doing right now' at a glance.", inCard: true, theme: "light" },
-      { src: "/projects/2100-security-desktop-dark.png", caption: "Same home screen, dark mode — designed for overnight shifts in low light.", inCard: true, theme: "dark" },
-      { src: "/projects/2100-Security_Home.png", caption: "Mobile view — designed for an officer one-handed in a dark stairwell.", inCard: false },
+      { src: "/projects/2100/2100-security-mobile-daily_rotation.png", caption: "Rotation calendar", inCard: true },
+      { src: "/projects/2100-Security_Home.png", caption: "Tonight's rotation dashboard", inCard: true },
+      { src: "/projects/2100-security-desktop-light.png", caption: "Tonight's shift home screen — answers 'what am I doing right now' at a glance.", inCard: false, theme: "light" },
+      { src: "/projects/2100-security-desktop-dark.png", caption: "Same home screen, dark mode — designed for overnight shifts in low light.", inCard: false, theme: "dark" },
     ],
     tech: ["React", "TypeScript", "Tailwind CSS", "Node/Express", "Cloudflare"],
     stats: [
@@ -252,6 +258,9 @@ export const projects: ProjectData[] = [
       "A dating platform where AI coaches guide DFW singles to real compatibility — not just swiping. Personality science meets modern matchmaking.",
     category: "AI Platform",
     color: "#6366F1",
+    gallery: [
+      { src: "/projects/metroplex-match/mobile_home.png", caption: "Home", inCard: true },
+    ],
     tech: ["React", "TypeScript", "Supabase", "OpenAI", "n8n"],
     stats: [
       { value: "205+", label: "Active Users" },
@@ -332,6 +341,9 @@ export const projects: ProjectData[] = [
       "Your AI travel companion that plans the trip, coordinates outfits, tracks visitors, and keeps family updated in real-time — with a voice AI assistant that knows your name, your itinerary, and what you're wearing tonight.",
     category: "AI Platform",
     color: "#F97316",
+    gallery: [
+      { src: "/projects/trip-buddy/mobile-home.png", caption: "Home", inCard: true },
+    ],
     tech: ["React", "TypeScript", "Supabase", "OpenAI", "Cloudflare", "TTS"],
     stats: [
       { value: "18", label: "Database Tables" },
@@ -417,6 +429,9 @@ export const projects: ProjectData[] = [
       "Creator economy platform where fans chat with AI-powered personas trained on real model personalities. Token payments, Stripe payouts, zero ghostwriting.",
     category: "SaaS Platform",
     color: "#EC4899",
+    gallery: [
+      { src: "/projects/follow-this-model/mobile-home.png", caption: "Home", inCard: true },
+    ],
     tech: ["React", "TypeScript", "Supabase", "Claude API", "Stripe"],
     stats: [
       { value: "540+", label: "Community Members" },
@@ -495,6 +510,9 @@ export const projects: ProjectData[] = [
       "AI accountability coach that texts you a personalized task every morning and follows up if you don't respond. No app download needed — just SMS.",
     category: "AI Coaching",
     color: "#22D3EE",
+    gallery: [
+      { src: "/projects/push-coach/mobile-home.png", caption: "Home", inCard: true },
+    ],
     tech: ["React", "TypeScript", "Supabase", "Claude API", "Twilio"],
     stats: [
       { value: "99.7%", label: "Cost Reduction" },

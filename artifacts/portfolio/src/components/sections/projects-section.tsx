@@ -15,29 +15,113 @@ function RotatingCardImage({ images, color, title, hovered }: { images: { src: s
     );
   }
 
-  const lightImg = images.find((img) => img.theme === "light") ?? images[0];
-  const darkImg = images.find((img) => img.theme === "dark") ?? images[0];
-  const hasBoth = lightImg !== darkImg;
+  // Single phone: centered with hover lift
+  if (images.length === 1) {
+    const primary = images[0];
+    return (
+      <div
+        className="relative w-full h-full overflow-hidden flex items-center justify-center p-8"
+        style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
+      >
+        <motion.img
+          src={primary.src}
+          alt={primary.caption || title}
+          loading="lazy"
+          animate={{ y: hovered ? -6 : 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="h-full w-auto max-w-full object-contain rounded-xl"
+          style={{ boxShadow: `0 20px 50px ${color}40, 0 8px 20px rgba(0,0,0,0.15)` }}
+        />
+      </div>
+    );
+  }
+
+  // Two phones: primary forward, secondary behind-right
+  if (images.length === 2) {
+    const back = images[0];
+    const front = images[1];
+    return (
+      <div
+        className="relative w-full h-full overflow-hidden flex items-center justify-center p-8"
+        style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
+      >
+        <motion.img
+          src={back.src}
+          alt={back.caption || title}
+          loading="lazy"
+          animate={{ x: hovered ? 12 : 0, rotate: hovered ? 10 : 8 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="absolute h-[82%] w-auto object-contain rounded-xl"
+          style={{
+            right: "22%",
+            boxShadow: `0 12px 30px ${color}30, 0 4px 10px rgba(0,0,0,0.12)`,
+            zIndex: 1,
+          }}
+        />
+        <motion.img
+          src={front.src}
+          alt={front.caption || title}
+          loading="lazy"
+          animate={{ y: hovered ? -8 : 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="relative h-full w-auto max-w-full object-contain rounded-xl"
+          style={{
+            boxShadow: `0 20px 50px ${color}40, 0 8px 20px rgba(0,0,0,0.15)`,
+            zIndex: 2,
+          }}
+        />
+      </div>
+    );
+  }
+
+  // Multiple phones: cascade — first left-back, second center-front, third right-back
+  const left = images[0];
+  const center = images[1] ?? images[0];
+  const right = images[2] ?? images[0];
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
-      <img
-        src={lightImg.src}
-        alt={lightImg.caption || title}
+    <div
+      className="relative w-full h-full overflow-hidden flex items-center justify-center p-8"
+      style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
+    >
+      <motion.img
+        src={left.src}
+        alt={left.caption || title}
         loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover"
+        animate={{ x: hovered ? -8 : 0, rotate: hovered ? -10 : -8 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="absolute h-[78%] w-auto object-contain rounded-xl"
+        style={{
+          left: "18%",
+          boxShadow: `0 12px 30px ${color}30, 0 4px 10px rgba(0,0,0,0.12)`,
+          zIndex: 1,
+        }}
       />
-      {hasBoth && (
-        <motion.img
-          src={darkImg.src}
-          alt={darkImg.caption || title}
-          loading="lazy"
-          initial={false}
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      )}
+      <motion.img
+        src={right.src}
+        alt={right.caption || title}
+        loading="lazy"
+        animate={{ x: hovered ? 8 : 0, rotate: hovered ? 10 : 8 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="absolute h-[78%] w-auto object-contain rounded-xl"
+        style={{
+          right: "18%",
+          boxShadow: `0 12px 30px ${color}30, 0 4px 10px rgba(0,0,0,0.12)`,
+          zIndex: 1,
+        }}
+      />
+      <motion.img
+        src={center.src}
+        alt={center.caption || title}
+        loading="lazy"
+        animate={{ y: hovered ? -8 : 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative h-full w-auto max-w-full object-contain rounded-xl"
+        style={{
+          boxShadow: `0 20px 50px ${color}40, 0 8px 20px rgba(0,0,0,0.15)`,
+          zIndex: 2,
+        }}
+      />
     </div>
   );
 }
@@ -107,7 +191,7 @@ function ProjectCardInner({
       )}
 
       {!isFullWidth && (
-        <div className={`relative w-full overflow-hidden p-6 ${isFlagship ? "flex-1 min-h-[280px]" : "flex-none"}`} style={!isFlagship ? { aspectRatio: "16 / 10" } : undefined}>
+        <div className={`relative w-full overflow-hidden ${isFlagship ? "flex-1 min-h-[280px] max-h-[420px]" : "flex-none"}`} style={!isFlagship ? { aspectRatio: "16 / 10" } : undefined}>
           <RotatingCardImage
             images={(project.gallery ?? []).filter((g) => g.inCard)}
             color={project.color}
@@ -288,13 +372,12 @@ function MobileCard({ project, index }: { project: ProjectData; index: number })
         }}
       >
         <div className="relative w-full overflow-hidden flex-none" style={{ aspectRatio: "16 / 10" }}>
-          {project.cardImage ? (
-            <div className="w-full h-full flex items-center justify-center p-3" style={{ background: `linear-gradient(135deg, ${project.color}18 0%, ${project.color}08 100%)` }}>
-              <img src={project.cardImage} alt={project.title} className="h-full w-auto max-w-full object-contain rounded-lg shadow-md" loading="lazy" />
-            </div>
-          ) : (
-            <div className="w-full h-full" style={{ background: `linear-gradient(135deg, ${project.color}22 0%, ${project.color}08 100%)` }} />
-          )}
+          <RotatingCardImage
+            images={(project.gallery ?? []).filter((g) => g.inCard)}
+            color={project.color}
+            title={project.title}
+            hovered={hovered}
+          />
         </div>
         <div className="h-1 w-full flex-none" style={{ background: project.color }} />
         <div className="p-5 flex flex-col flex-1">
