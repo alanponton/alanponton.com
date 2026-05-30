@@ -109,12 +109,20 @@ Use this token at most once per response.
 // ---------------------------------------------------------------------------
 // CORS — widget lives on alanponton.com, function lives on Lonnie's project
 // ---------------------------------------------------------------------------
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://alanponton.com",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+const ALLOWED_ORIGINS = ["https://alanponton.com", "http://localhost:5173"];
+
+function buildCorsHeaders(req: Request): Record<string, string> {
+  const origin = req.headers.get("Origin") ?? "";
+  const allowedOrigin = ALLOWED_ORIGINS.includes(origin)
+    ? origin
+    : ALLOWED_ORIGINS[0];
+  return {
+    "Access-Control-Allow-Origin": allowedOrigin,
+    "Access-Control-Allow-Headers":
+      "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+  };
+}
 
 // ---------------------------------------------------------------------------
 // Supabase client (service role — bypasses RLS for backend writes)
@@ -241,7 +249,7 @@ async function sessionMessageCount(conversationId: string): Promise<number> {
 // ---------------------------------------------------------------------------
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
+    return new Response("ok", { headers: buildCorsHeaders(req) });
   }
 
   try {
@@ -250,7 +258,7 @@ Deno.serve(async (req) => {
     if (!session_id || !message) {
       return new Response(
         JSON.stringify({ error: "session_id and message required" }),
-        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        { status: 400, headers: { ...buildCorsHeaders(req), "Content-Type": "application/json" } },
       );
     }
 
@@ -264,7 +272,7 @@ Deno.serve(async (req) => {
           error: "session_limit",
           message: "This session has reached its message limit. Refresh to start a new one.",
         }),
-        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        { status: 429, headers: { ...buildCorsHeaders(req), "Content-Type": "application/json" } },
       );
     }
 
@@ -303,7 +311,7 @@ Deno.serve(async (req) => {
       console.error("Anthropic error", anthropicRes.status, errText);
       return new Response(
         JSON.stringify({ error: "upstream_error", detail: errText }),
-        { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        { status: 502, headers: { ...buildCorsHeaders(req), "Content-Type": "application/json" } },
       );
     }
 
@@ -376,7 +384,7 @@ Deno.serve(async (req) => {
 
     return new Response(stream, {
       headers: {
-        ...corsHeaders,
+        ...buildCorsHeaders(req),
         "Content-Type": "text/event-stream",
         "Cache-Control": "no-cache",
         "Connection": "keep-alive",
@@ -386,7 +394,7 @@ Deno.serve(async (req) => {
     console.error("handler error", err);
     return new Response(
       JSON.stringify({ error: "internal_error", detail: String(err) }),
-      { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+      { status: 500, headers: { ...buildCorsHeaders(req), "Content-Type": "application/json" } },
     );
   }
 });
