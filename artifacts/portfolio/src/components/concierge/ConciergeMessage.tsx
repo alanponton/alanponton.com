@@ -1,7 +1,12 @@
 // src/components/concierge/ConciergeMessage.tsx
 
 import { motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 import type { ChatMessage } from "./types";
+
+const ALLOWED_ELEMENTS: string[] = [
+  "strong", "em", "a", "ul", "ol", "li", "p", "br",
+];
 
 interface Props {
   message: ChatMessage;
@@ -20,14 +25,20 @@ export function ConciergeMessage({ message }: Props) {
       <div
         className={`
           max-w-[85%] px-4 py-3 rounded-2xl text-[15px] leading-relaxed
-          whitespace-pre-wrap
+          whitespace-pre-wrap [&>*]:whitespace-pre-wrap
           ${isUser
             ? "bg-neutral-900 text-neutral-50 rounded-br-sm"
             : "bg-neutral-100 text-neutral-900 rounded-bl-sm"
           }
         `}
       >
-        {message.content}
+        {isUser ? (
+          message.content
+        ) : (
+          <ReactMarkdown allowedElements={ALLOWED_ELEMENTS} unwrapDisallowed>
+            {message.content}
+          </ReactMarkdown>
+        )}
         {message.streaming && message.content === "" && (
           <span className="inline-flex gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse" />
