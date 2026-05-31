@@ -187,13 +187,13 @@ export const projects: ProjectData[] = [
     },
     problem: {
       headline: "A five-person overnight team running on a broken legacy site.",
-      body: "The team ran on a free-tier Wix site with no SSL, so every officer who opened it got a browser security warning — for a security operation, an embarrassment that quietly eroded trust before anyone used the tool. The site was static, so I rebuilt the schedule by hand every month. On a phone it required pinch-zoom and horizontal scrolling to read an assignment. There was no authentication, no awareness of who was on shift, and nothing operational beyond a schedule grid.",
+      body: "The team ran on a free-tier Wix site with no SSL, so every officer who opened it got a browser security warning. For a security operation, an embarrassment that quietly eroded trust before anyone used the tool. The site was static, so I rebuilt the schedule by hand every month. On a phone it required pinch-zoom and horizontal scrolling to read an assignment. There was no authentication, no awareness of who was on shift, and nothing operational beyond a schedule grid.",
       userStory:
         "Evaluating a team chat tool, I watched Slack die on free-tier limits and Microsoft Teams die because officers had scattered emails and forgotten passwords. Google Chat won only because everyone already had Gmail. The lesson became the platform's governing principle: the best technology is worthless if users can't get into it.",
     },
     solution: {
       headline: "An operations hub designed for a tired person, one-handed, in a dark stairwell.",
-      body: "I designed the app around the single question an officer asks every night: what am I doing right now? The home screen answers it on open — current block, post, floor range — with the full rotation one tap down. Constraints came from direct observation of officers using the old site in real conditions: dark by default, high-contrast type, large tap targets, never any horizontal scroll. Identity is a guard-picker, not a login form — tap your name, set an employee ID once, under five seconds, no email or app store. Where a careless tap causes real harm — confirming a fire-extinguisher safety inspection — I deliberately ADDED friction with required ID re-entry.",
+      body: "I designed the app around the single question an officer asks every night: what am I doing right now? The home screen answers it on open: current block, post, floor range. The full rotation is one tap down. Constraints came from direct observation of officers using the old site in real conditions: dark by default, high-contrast type, large tap targets, never any horizontal scroll. Identity is a guard-picker, not a login form. Tap your name, set an employee ID once, under five seconds, no email or app store. Where a careless tap causes real harm (confirming a fire-extinguisher safety inspection), I deliberately ADDED friction with required ID re-entry.",
       valueProposition:
         "Zero-friction access where friction kills adoption; deliberate friction exactly where a careless tap is real-world harm.",
     },
