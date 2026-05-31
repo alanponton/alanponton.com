@@ -155,11 +155,13 @@ async function retrieveKnowledge(message: string): Promise<string> {
 
   // Score each entry by token hits in topic + content
   const scored = entries.map((e) => {
-    const hay = `${e.topic} ${e.content}`.toLowerCase();
-    const score = tokens.reduce(
-      (acc, t) => acc + (hay.includes(t) ? 1 : 0),
-      0,
-    );
+    const topicLower = e.topic.toLowerCase();
+    const contentLower = e.content.toLowerCase();
+    const score = tokens.reduce((acc, t) => {
+      const topicHit = topicLower.includes(t) ? 3 : 0;
+      const contentHit = contentLower.includes(t) ? 1 : 0;
+      return acc + topicHit + contentHit;
+    }, 0);
     return { ...e, score };
   });
 

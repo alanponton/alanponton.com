@@ -385,48 +385,132 @@ function DecisionsSection({ project }: { project: (typeof projects)[0] }) {
 // ── Section 6: Version History ────────────────────────────────────────────────
 
 function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [lightbox]);
+
   if (!project.versions?.length) return null;
 
-  return (
-    <section className="py-20 md:py-28">
-      <Container>
-        <div className="max-w-5xl mx-auto">
-          <FadeUp className="mb-12">
-            <SectionLabel color={project.color}>Version History</SectionLabel>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary leading-tight">
-              How it evolved
-            </h2>
-          </FadeUp>
+  const gridFor = (layout: "single" | "pair" | "trio" | "quad") => {
+    switch (layout) {
+      case "single": return "grid grid-cols-1";
+      case "pair": return "grid grid-cols-2 gap-3";
+      case "trio": return "grid grid-cols-3 gap-2 md:gap-3";
+      case "quad": return "grid grid-cols-2 md:grid-cols-4 gap-3";
+    }
+  };
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {project.versions.map((v, i) => (
-              <FadeUp key={v.label} delay={i * 0.1}>
-                <div className="p-6 rounded-xl bg-background border border-border h-full flex flex-col gap-4 shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none">
-                  <div>
-                    <span
-                      className="text-xs uppercase tracking-widest font-mono font-medium"
-                      style={{ color: project.color }}
-                    >
-                      {v.label}
-                    </span>
+  const containerFor = (layout: "single" | "pair" | "trio" | "quad") =>
+    layout === "single" ? "max-w-md mx-auto" : "max-w-2xl mx-auto";
+
+  return (
+    <>
+      <section className="py-20 md:py-28">
+        <Container>
+          <div className="max-w-5xl mx-auto">
+            <FadeUp className="mb-12">
+              <SectionLabel color={project.color}>Version History</SectionLabel>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary leading-tight">
+                How it evolved
+              </h2>
+            </FadeUp>
+            <div className="flex flex-col gap-8">
+              {project.versions.map((v, i) => (
+                <FadeUp key={v.label} delay={i * 0.1}>
+                  <div className="p-6 md:p-8 rounded-xl bg-background border border-border shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none">
+                    <div className="flex flex-col gap-3">
+                      <span
+                        className="text-xs uppercase tracking-widest font-mono font-medium"
+                        style={{ color: project.color }}
+                      >
+                        {v.label}
+                      </span>
+                      <h3 className="font-heading font-bold text-lg md:text-xl text-text-primary">{v.headline}</h3>
+                      <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">{v.body}</p>
+                      <div>
+                        <span className="text-xs uppercase tracking-widest text-text-secondary font-mono">
+                          Learning
+                        </span>
+                        <p className="text-sm leading-relaxed mt-1" style={{ color: project.color }}>
+                          {v.learning}
+                        </p>
+                      </div>
+                    </div>
+                    {v.imageGroups && v.imageGroups.length > 0 && (
+                      <div className="flex flex-col gap-6 mt-6">
+                        {v.imageGroups.map((group, gi) => (
+                          <div key={gi} className={`flex flex-col gap-2 ${containerFor(group.layout)}`}>
+                            {group.caption && (
+                              <span className="text-[10px] uppercase tracking-widest text-text-secondary font-mono text-center">
+                                {group.caption}
+                              </span>
+                            )}
+                            <div className={gridFor(group.layout)}>
+                              {group.images.map((img, ii) => (
+                                <button
+                                  key={ii}
+                                  type="button"
+                                  onClick={() => setLightbox({ src: img.src, alt: img.alt })}
+                                  className="block w-full overflow-hidden rounded border border-border bg-foreground/5 hover:opacity-90 transition cursor-zoom-in"
+                                  aria-label={`Expand: ${img.alt}`}
+                                >
+                                  <img
+                                    src={img.src}
+                                    alt={img.alt}
+                                    className="w-full h-auto block"
+                                    loading="lazy"
+                                  />
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <h3 className="font-heading font-bold text-xl text-text-primary">{v.headline}</h3>
-                  <p className="text-text-secondary text-sm leading-relaxed flex-1">{v.body}</p>
-                  <div>
-                    <span className="text-xs uppercase tracking-widest text-text-secondary font-mono">
-                      Learning
-                    </span>
-                    <p className="text-sm leading-relaxed mt-1" style={{ color: project.color }}>
-                      {v.learning}
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
-            ))}
+                </FadeUp>
+              ))}
+            </div>
           </div>
+        </Container>
+      </section>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-zoom-out"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.alt}
+        >
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            className="max-w-full max-h-full object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            className="absolute top-4 right-4 text-white text-2xl hover:opacity-80 w-10 h-10 flex items-center justify-center rounded-full bg-black/40"
+            aria-label="Close"
+          >
+            ×
+          </button>
         </div>
-      </Container>
-    </section>
+      )}
+    </>
   );
 }
 

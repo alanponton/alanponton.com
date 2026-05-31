@@ -45,6 +45,11 @@ export interface ProjectData {
     headline: string;
     body: string;
     learning: string;
+    imageGroups?: {
+      layout: "single" | "pair" | "trio" | "quad";
+      caption?: string;
+      images: { src: string; alt: string; theme?: "light" | "dark" }[];
+    }[];
   }[];
   features?: string[];
 }
@@ -162,10 +167,11 @@ export const projects: ProjectData[] = [
     category: "Personal / Operational Tool",
     color: "#22C55E",
     gallery: [
-      { src: "/projects/2100/2100-security-mobile-daily_rotation.png", caption: "Rotation calendar", inCard: true },
-      { src: "/projects/2100-Security_Home.png", caption: "Tonight's rotation dashboard", inCard: true },
-      { src: "/projects/2100-security-desktop-light.png", caption: "Tonight's shift home screen — answers 'what am I doing right now' at a glance.", inCard: false, theme: "light" },
-      { src: "/projects/2100-security-desktop-dark.png", caption: "Same home screen, dark mode — designed for overnight shifts in low light.", inCard: false, theme: "dark" },
+      { src: "/projects/2100/V3/live-guard-select-dark-v3.jpg", caption: "Guard picker, tap your name", inCard: true },
+      { src: "/projects/2100/V3/live-landing-dark-v3.jpg", caption: "Tonight's rotation dashboard", inCard: true },
+      { src: "/projects/2100/V3/live-rotation-light-v3.jpg", caption: "Monthly rotation schedule", inCard: true },
+      { src: "/projects/2100/V3/live-landing-light-v3.jpg", caption: "Tonight's shift home screen, light mode.", inCard: false, theme: "light" },
+      { src: "/projects/2100/V3/live-rotation-dark-v3.jpg", caption: "Monthly schedule, dark mode for overnight shifts.", inCard: false, theme: "dark" },
     ],
     tech: ["React", "TypeScript", "Tailwind CSS", "Node/Express", "Cloudflare"],
     stats: [
@@ -217,22 +223,94 @@ export const projects: ProjectData[] = [
     ],
     versions: [
       {
-        label: "V1 — Migration & Foundation",
-        headline: "Killed the security warnings, looked the part — and got readability wrong.",
-        body: "Replaced Wix with a React PWA: animated dark landing, cyan accents, particle effects, weather, Cloudflare SSL. Security warnings gone immediately.",
-        learning: "The visual treatment was impressive and hard to read on a long overnight shift. Mobile-first readability is a foundational constraint, not a polish pass — and my taste is not the user's eyesight.",
+        label: "V1: Paper Era",
+        headline: "A color-coded Excel rotation taped to the command desk.",
+        body: "Before any web tool existed, the team ran on a color-coded Excel rotation I rebuilt monthly. Posts, shift codes, and floor ranges all expressed in cells and color.\n\nInstantly readable at a glance, but with no awareness of who was working or when. Updates required reprinting. Conflicts solved by hand. Every monthly change cost me an evening.",
+        learning: "The constraints were the data model. The eventual app would automate the same five-to-seven rules I was solving manually in a spreadsheet.",
+        imageGroups: [
+          {
+            layout: "single",
+            images: [
+              { src: "/projects/2100/V1/excel-rotation-color-coded-v1.png", alt: "Excel rotation schedule, color-coded by post" },
+            ],
+          },
+        ],
       },
       {
-        label: "V2 — Operational Platform",
-        headline: "Reversed my own design in the users' favor.",
-        body: "Stripped styling back to a clean, high-readability palette with a real dark-mode toggle. Added the guard picker, block rotation with active-card highlighting, floor-specific patrol notes, and a patrol-reminder overlay. Rebuilt the schedule data architecture after a decoupling bug let guard names and floor assignments drift apart.",
-        learning: "Complex constraint problems require incremental, single-transformation validation — change one thing, verify, then the next.",
+        label: "V2: Wix Era",
+        headline: "The first web tool. No SSL, no auth, no shift awareness.",
+        body: "A free-tier Wix site that gave every officer a browser security warning. For a security company, an embarrassment.\n\nThe site was static, so I rebuilt the schedule page by hand every month. On a phone it required pinch-zoom and horizontal scrolling.\n\nI pushed the platform with wireframes, prototypes, passdown notes, and social sign-up. But Wix could not support the dynamic shift-aware behavior the team actually needed. The problem wasn't the design. It was the foundation.",
+        learning: "Watching a separate chat-tool rollout fail on forgotten passwords (not capability) gave me the governing principle: zero-friction access beats feature richness every time.",
+        imageGroups: [
+          {
+            layout: "trio",
+            caption: "Wireframes (low-fi design exploration)",
+            images: [
+              { src: "/projects/2100/V2/2100_Security_wireframes/wireframe-landing-v2.jpg", alt: "Landing wireframe" },
+              { src: "/projects/2100/V2/2100_Security_wireframes/wireframe-rotation-v2.jpg", alt: "Rotation wireframe" },
+              { src: "/projects/2100/V2/2100_Security_wireframes/wireframe-signup-v2.jpg", alt: "Sign-up wireframe" },
+            ],
+          },
+          {
+            layout: "quad",
+            caption: "Prototypes (deployed on Wix)",
+            images: [
+              { src: "/projects/2100/V2/prototype-landing-v2.jpg", alt: "Wix landing page" },
+              { src: "/projects/2100/V2/prototype-passdown-v2.jpg", alt: "Wix passdown notes form" },
+              { src: "/projects/2100/V2/prototype-rotation-v2.jpg", alt: "Wix daily rotation view" },
+              { src: "/projects/2100/V2/prototype-social-login-v2.jpg", alt: "Wix sign-up with Google and Facebook" },
+            ],
+          },
+        ],
       },
       {
-        label: "V3 — Authentication & Automation (current)",
-        headline: "Real auth, automated safety tracking, and the hard cross-platform edges.",
-        body: "Employee-ID authentication backed by Replit Database; guard switcher locked behind verification; logout. Built the fire-extinguisher inspection system with automatic month-boundary activation and the deliberate ID-confirmation UX. Migrated from four blocks to three (3/3/2) and executed two full roster changes with constraint-honoring reshuffles.",
-        learning: "Real-world robustness lives in the edges: Safari/iOS cache-busting, type=text + inputMode=numeric so iOS stops stripping leading zeros from IDs, visible error states replacing silent failures.",
+        label: "V3: The Production Platform (current)",
+        headline: "A solo build that survived three internal iterations and the night shift.",
+        body: "A custom PWA replacing Wix. Three internal builds got it here.\n\nBuild 1 prioritized aesthetics and lost to readability on overnight shifts.\n\nBuild 2 reversed that: stripped styling, dark-mode toggle, guard picker, block-rotation highlighting, floor-specific patrol notes, patrol-reminder overlay.\n\nBuild 3 added employee-ID authentication backed by Replit Database, automated fire-extinguisher inspection tracking with deliberate ID-confirmation, and Safari/iOS hardening across every interactive feature.",
+        learning: "The decisions I'm proudest of are the self-correcting ones. Build 1 was a designer designing for himself; the users couldn't read it on shift and said so. The inspection-confirmation pattern is the inverse move: deliberately adding friction exactly where a careless tap causes real-world harm.",
+        imageGroups: [
+          {
+            layout: "trio",
+            caption: "Identity flow: tap your name, then your employee ID",
+            images: [
+              { src: "/projects/2100/V3/live-guard-select-dark-v3.jpg", alt: "Guard picker, dark mode", theme: "dark" },
+              { src: "/projects/2100/V3/live-login-start-dark-v3.jpg", alt: "Login start, dark mode", theme: "dark" },
+              { src: "/projects/2100/V3/live-login-dark-v3.jpg", alt: "Employee ID entry with numeric keypad", theme: "dark" },
+            ],
+          },
+          {
+            layout: "pair",
+            caption: "Tonight's shift, dark and light",
+            images: [
+              { src: "/projects/2100/V3/live-landing-dark-v3.jpg", alt: "Dashboard with current block highlighted, dark mode", theme: "dark" },
+              { src: "/projects/2100/V3/live-landing-light-v3.jpg", alt: "Dashboard, light mode", theme: "light" },
+            ],
+          },
+          {
+            layout: "pair",
+            caption: "Monthly rotation schedule",
+            images: [
+              { src: "/projects/2100/V3/live-rotation-dark-v3.jpg", alt: "Monthly rotation, dark mode", theme: "dark" },
+              { src: "/projects/2100/V3/live-rotation-light-v3.jpg", alt: "Monthly rotation, light mode", theme: "light" },
+            ],
+          },
+          {
+            layout: "pair",
+            caption: "Full schedule overlay",
+            images: [
+              { src: "/projects/2100/V3/live-rotation-detail-full-schedule-background-dark-v3.jpg", alt: "Full schedule detail, dark mode", theme: "dark" },
+              { src: "/projects/2100/V3/live-rotation-detail-full-schedule-background-light-v3.jpg", alt: "Full schedule detail, light mode", theme: "light" },
+            ],
+          },
+          {
+            layout: "pair",
+            caption: "Mid-shift moments",
+            images: [
+              { src: "/projects/2100/V3/live-landing-detail-rotation-light-v3.jpg", alt: "Rotation card detail expanded, light mode", theme: "light" },
+              { src: "/projects/2100/V3/live-reminder-popup-dark-v3.jpg", alt: "Patrol reminder modal, dark mode", theme: "dark" },
+            ],
+          },
+        ],
       },
     ],
     results: [
