@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { TechPill } from "@/components/ui/tech-pill";
 import { CountUpStat } from "@/components/ui/count-up-stat";
 import { projects } from "@/data/projects";
+import { RotatingCardImage } from "@/components/sections/projects-section";
 
 // ── Shared primitives ──────────────────────────────────────────────────────────
 
@@ -78,139 +79,142 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
       />
 
       <Container className="relative z-10">
-        {/* Back link */}
-        <motion.div
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
-          <Link
-            href="/#projects"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary text-sm transition-colors group"
-          >
-            <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
-            All Projects
-          </Link>
-        </motion.div>
-
-        {/* Category */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-mono text-xs uppercase tracking-[0.25em] font-medium mb-5"
-          style={{ color: project.color }}
-        >
-          {project.category}
-        </motion.p>
-
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.18 }}
-          className="font-heading font-bold text-5xl md:text-7xl text-text-primary leading-none tracking-tight mb-5"
-        >
-          {project.title}
-        </motion.h1>
-
-        {/* Headline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.28 }}
-          className="text-text-secondary text-xl md:text-2xl max-w-3xl leading-relaxed mb-8"
-        >
-          {project.hero.headline}
-        </motion.p>
-
-        {/* Info pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.38 }}
-          className="flex flex-wrap gap-3 mb-8"
-        >
-          {[
-            { label: "Role", value: project.hero.role },
-            { label: "Timeline", value: project.hero.timeline },
-            { label: "Status", value: project.hero.status },
-          ].map(({ label, value }) => (
-            <div
-              key={label}
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-sm bg-surface border border-border"
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {(project.gallery?.filter((g) => g.inCard).length ?? 0) > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="order-first lg:order-last relative w-full max-w-sm lg:max-w-none mx-auto overflow-hidden aspect-[16/10]"
             >
-              <span className="text-text-secondary">{label}</span>
-              <span className="text-text-primary font-medium">{value}</span>
-            </div>
-          ))}
-        </motion.div>
-
-        {project.hero.image && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-4 rounded-2xl overflow-hidden border border-border shadow-lg max-w-4xl"
-          >
-            <img
-              src={project.hero.image.src}
-              alt={project.hero.image.alt}
-              className="w-full h-auto block"
-              loading="eager"
-            />
-          </motion.div>
-        )}
-
-        {/* Tech pills */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.46 }}
-          className="flex flex-wrap gap-2 mb-8"
-        >
-          {project.tech.map((t) => (
-            <TechPill key={t} label={t} />
-          ))}
-        </motion.div>
-
-        {/* CTA buttons */}
-        {(project.hero.liveUrl || project.hero.githubUrl) && (
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.54 }}
-            className="flex flex-wrap gap-3"
-          >
-            {project.hero.liveUrl && (
-              <a
-                href={project.hero.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-200 hover:scale-[1.02]"
-                style={{
-                  background: project.color,
-                  boxShadow: `0 4px 20px ${project.color}40`,
-                }}
+              <RotatingCardImage
+                images={project.gallery!.filter((g) => g.inCard)}
+                color={project.color}
+                title={project.title}
+                hovered={false}
+              />
+            </motion.div>
+          )}
+          <div>
+            {/* Back link */}
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-10"
+            >
+              <Link
+                href="/#projects"
+                className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary text-sm transition-colors group"
               >
-                Live Site
-                <ExternalLink size={13} />
-              </a>
-            )}
-            {project.hero.githubUrl && (
-              <a
-                href={project.hero.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium text-text-primary border border-border hover:border-[#6366F1] transition-all duration-200 hover:scale-[1.02]"
+                <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
+                All Projects
+              </Link>
+            </motion.div>
+
+            {/* Category */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-mono text-xs uppercase tracking-[0.25em] font-medium mb-5"
+              style={{ color: project.color }}
+            >
+              {project.category}
+            </motion.p>
+
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.18 }}
+              className="font-heading font-bold text-5xl md:text-7xl text-text-primary leading-none tracking-tight mb-5"
+            >
+              {project.title}
+            </motion.h1>
+
+            {/* Headline */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.28 }}
+              className="text-text-secondary text-xl md:text-2xl max-w-3xl leading-relaxed mb-8"
+            >
+              {project.hero.headline}
+            </motion.p>
+
+            {/* Info pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.38 }}
+              className="flex flex-wrap gap-3 mb-8"
+            >
+              {[
+                { label: "Role", value: project.hero.role },
+                { label: "Timeline", value: project.hero.timeline },
+                { label: "Status", value: project.hero.status },
+              ].map(({ label, value }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full text-sm bg-surface border border-border"
+                >
+                  <span className="text-text-secondary">{label}</span>
+                  <span className="text-text-primary font-medium">{value}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Tech pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.46 }}
+              className="flex flex-wrap gap-2 mb-8"
+            >
+              {project.tech.map((t) => (
+                <TechPill key={t} label={t} />
+              ))}
+            </motion.div>
+
+            {/* CTA buttons */}
+            {(project.hero.liveUrl || project.hero.githubUrl) && (
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.54 }}
+                className="flex flex-wrap gap-3"
               >
-                View Source
-                <Github size={13} />
-              </a>
+                {project.hero.liveUrl && (
+                  <a
+                    href={project.hero.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-200 hover:scale-[1.02]"
+                    style={{
+                      background: project.color,
+                      boxShadow: `0 4px 20px ${project.color}40`,
+                    }}
+                  >
+                    Live Site
+                    <ExternalLink size={13} />
+                  </a>
+                )}
+                {project.hero.githubUrl && (
+                  <a
+                    href={project.hero.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium text-text-primary border border-border hover:border-[#6366F1] transition-all duration-200 hover:scale-[1.02]"
+                  >
+                    View Source
+                    <Github size={13} />
+                  </a>
+                )}
+              </motion.div>
             )}
-          </motion.div>
-        )}
+          </div>
+        </div>
       </Container>
 
       {/* Scroll indicator */}
