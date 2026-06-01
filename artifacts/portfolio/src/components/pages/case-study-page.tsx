@@ -86,7 +86,7 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
           className="mb-10"
         >
           <Link
-            href="/"
+            href="/#projects"
             className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary text-sm transition-colors group"
           >
             <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
