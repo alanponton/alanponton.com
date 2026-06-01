@@ -508,7 +508,9 @@ export const projects: ProjectData[] = [
     category: "SaaS Platform",
     color: "#EC4899",
     gallery: [
-      { src: "/projects/follow-this-model/mobile-home.png", caption: "Home", inCard: true },
+      { src: "/projects/follow-this-model/webapp-images/mobile-landing_dark-v1.png", caption: "Landing", inCard: true },
+      { src: "/projects/follow-this-model/webapp-images/mobile-browse_dark-v1.png", caption: "Browse", inCard: true },
+      { src: "/projects/follow-this-model/webapp-images/mobile-chat1a-dark-v1.png", caption: "Chat", inCard: true },
     ],
     tech: ["React", "TypeScript", "Supabase", "Claude API", "Stripe"],
     stats: [
@@ -579,6 +581,68 @@ export const projects: ProjectData[] = [
       "Creator dashboard with conversation analytics and earnings tracking",
       "Fan dashboard with token balance and conversation history",
       "Admin moderation tools for content policy compliance",
+    ],
+    versions: [
+      {
+        label: "Fan-side",
+        headline: "The Member Experience",
+        body: "The front door for members. Landing, discovery, and conversations with creators' AI twins. A token economy gates access so chat remains a deliberate purchase, not a feed.",
+        learning: "The token model changed the product's character. Because chat costs something, conversations felt more intentional — members who spent tokens sent fewer, higher-quality messages, which improved the quality signal fed back to creators.",
+        imageGroups: [
+          {
+            layout: "quad",
+            caption: "Landing, browse, discover, chat",
+            images: [
+              { src: "/projects/follow-this-model/webapp-images/mobile-landing_dark-v1.png", alt: "Landing page, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-browse_dark-v1.png", alt: "Browse creators, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-discover-dark-v1.png", alt: "Discover page, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-chat1a-dark-v1.png", alt: "Chat with AI twin, dark mode", theme: "dark" },
+            ],
+          },
+          {
+            layout: "pair",
+            caption: "Messages and token wallet",
+            images: [
+              { src: "/projects/follow-this-model/webapp-images/mobile-messages-dark-v1.png", alt: "Messages inbox, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-tokens-dark-v1.png", alt: "Token wallet, dark mode", theme: "dark" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Creator-side",
+        headline: "The Creator Studio",
+        body: "Creators generate their own AI twin through a guided ten-step onboarding. The twin learns voice, tone, and conversation patterns from material the creator approves. Profiles surface to members through the browse view.",
+        learning: "The ten-step onboarding has a 91% completion rate, which is unusually high. The friction is the feature: creators who complete it produce twins that pass the 'sounds like me' test. The ones who skip steps don't, and they know it immediately.",
+        imageGroups: [
+          {
+            layout: "quad",
+            caption: "Twin generation, ten-step onboarding, and profile views",
+            images: [
+              { src: "/projects/follow-this-model/webapp-images/mobile-generate-ai-twin-persona-dark-v1.png", alt: "Generate AI twin persona, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-model-ai-twin-10-steps-dark-v1.png", alt: "Ten-step AI twin onboarding, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-model-profile1-dark-v1.png", alt: "Creator profile view 1, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-model-profile2-dark-v1.png", alt: "Creator profile view 2, dark mode", theme: "dark" },
+            ],
+          },
+        ],
+      },
+      {
+        label: "Admin",
+        headline: "Operations",
+        body: "Authentication via Google sign-in. An admin dashboard tracks creator approvals, active sessions, and revenue tiers.",
+        learning: "The simplest decision with the highest leverage was Google sign-in. Eliminating password friction removed the entire 'forgot my password' support surface before the product launched.",
+        imageGroups: [
+          {
+            layout: "pair",
+            caption: "Auth and admin dashboard",
+            images: [
+              { src: "/projects/follow-this-model/webapp-images/mobile-google-login_dark-v1.png", alt: "Google sign-in, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-admin-dash-dark-v1.png", alt: "Admin dashboard, dark mode", theme: "dark" },
+            ],
+          },
+        ],
+      },
     ],
   },
   {
