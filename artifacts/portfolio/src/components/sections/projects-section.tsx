@@ -8,7 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import { projects as allProjects, type ProjectData } from "@/data/projects";
 import { useTheme } from "@/context/theme-context";
 
-function RotatingCardImage({ images, color, title, hovered }: { images: { src: string; caption: string; theme?: "light" | "dark" }[]; color: string; title: string; hovered: boolean; }) {
+export function RotatingCardImage({ images, color, title, hovered }: { images: { src: string; caption: string; theme?: "light" | "dark" }[]; color: string; title: string; hovered: boolean; }) {
   if (images.length === 0) {
     return (
       <div className="w-full h-full" style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }} />

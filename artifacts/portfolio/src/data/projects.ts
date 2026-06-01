@@ -14,7 +14,6 @@ export interface ProjectData {
     status: string;
     liveUrl?: string;
     githubUrl?: string;
-    image?: { src: string; alt: string };
   };
   problem: {
     headline: string;
@@ -185,10 +184,6 @@ export const projects: ProjectData[] = [
       role: "Solo UX Designer & Developer",
       timeline: "3 versions, ongoing",
       status: "Live in production",
-      image: {
-        src: "/projects/2100/V3/live-landing-dark-v3.jpg",
-        alt: "2100 Security dashboard, dark mode, showing tonight's guard rotation",
-      },
     },
     problem: {
       headline: "A five-person overnight team running on a broken legacy site.",
