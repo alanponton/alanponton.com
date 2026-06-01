@@ -147,6 +147,22 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
           ))}
         </motion.div>
 
+        {project.hero.image && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-4 rounded-2xl overflow-hidden border border-border shadow-lg max-w-4xl"
+          >
+            <img
+              src={project.hero.image.src}
+              alt={project.hero.image.alt}
+              className="w-full h-auto block"
+              loading="eager"
+            />
+          </motion.div>
+        )}
+
         {/* Tech pills */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
