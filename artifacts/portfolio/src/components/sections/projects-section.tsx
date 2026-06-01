@@ -8,10 +8,10 @@ import { ArrowUpRight } from "lucide-react";
 import { projects as allProjects, type ProjectData } from "@/data/projects";
 import { useTheme } from "@/context/theme-context";
 
-export function RotatingCardImage({ images, color, title, hovered }: { images: { src: string; caption: string; theme?: "light" | "dark" }[]; color: string; title: string; hovered: boolean; }) {
+export function RotatingCardImage({ images, color, title, hovered, transparent = false }: { images: { src: string; caption: string; theme?: "light" | "dark" }[]; color: string; title: string; hovered: boolean; transparent?: boolean; }) {
   if (images.length === 0) {
     return (
-      <div className="w-full h-full" style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }} />
+      <div className="w-full h-full" style={transparent ? undefined : { background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }} />
     );
   }
 
@@ -21,7 +21,7 @@ export function RotatingCardImage({ images, color, title, hovered }: { images: {
     return (
       <div
         className="relative w-full h-full overflow-hidden flex items-center justify-center p-8"
-        style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
+        style={transparent ? undefined : { background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
       >
         <motion.img
           src={primary.src}
@@ -43,7 +43,7 @@ export function RotatingCardImage({ images, color, title, hovered }: { images: {
     return (
       <div
         className="relative w-full h-full overflow-hidden flex items-center justify-center p-8"
-        style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
+        style={transparent ? undefined : { background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
       >
         <motion.img
           src={back.src}
@@ -82,7 +82,7 @@ export function RotatingCardImage({ images, color, title, hovered }: { images: {
   return (
     <div
       className="relative w-full h-full overflow-hidden flex items-center justify-center p-8"
-      style={{ background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
+      style={transparent ? undefined : { background: `linear-gradient(135deg, ${color}22 0%, ${color}08 100%)` }}
     >
       <motion.img
         src={left.src}

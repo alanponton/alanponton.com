@@ -85,13 +85,14 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="order-first lg:order-last relative w-full max-w-sm lg:max-w-none mx-auto overflow-hidden aspect-[16/10]"
+              className="order-first lg:order-last relative w-full max-w-xs lg:max-w-md mx-auto overflow-hidden aspect-[16/10]"
             >
               <RotatingCardImage
                 images={project.gallery!.filter((g) => g.inCard)}
                 color={project.color}
                 title={project.title}
                 hovered={false}
+                transparent
               />
             </motion.div>
           )}
