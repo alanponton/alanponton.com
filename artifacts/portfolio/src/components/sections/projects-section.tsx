@@ -316,6 +316,7 @@ function ProjectCard({
   return (
     <Link
       href={`/projects/${project.slug}`}
+      onClick={() => sessionStorage.setItem("projectsScrollY", String(window.scrollY))}
       style={{
         gridColumnStart: layout.colStart,
         gridColumnEnd: `span ${layout.colSpan}`,
@@ -354,7 +355,7 @@ function MobileCard({ project, index }: { project: ProjectData; index: number })
     theme === "dark" ? "none" : "0 1px 3px rgba(0,0,0,0.08)";
 
   return (
-    <Link href={`/projects/${project.slug}`} className="block">
+    <Link href={`/projects/${project.slug}`} onClick={() => sessionStorage.setItem("projectsScrollY", String(window.scrollY))} className="block">
       <motion.article
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -408,6 +409,14 @@ function MobileCard({ project, index }: { project: ProjectData; index: number })
 export function ProjectsSection() {
   const headingRef = useRef<HTMLDivElement>(null);
   const headingInView = useInView(headingRef, { once: true, amount: 0.2 });
+
+  useEffect(() => {
+    const saved = sessionStorage.getItem("projectsScrollY");
+    if (saved) {
+      window.scrollTo({ top: Number(saved), behavior: "instant" });
+      sessionStorage.removeItem("projectsScrollY");
+    }
+  }, []);
 
   return (
     <section id="projects" className="pt-24 pb-40">
