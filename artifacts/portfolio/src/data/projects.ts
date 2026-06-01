@@ -508,8 +508,8 @@ export const projects: ProjectData[] = [
     category: "SaaS Platform",
     color: "#EC4899",
     gallery: [
-      { src: "/projects/follow-this-model/webapp-images/mobile-landing_dark-v1.png", caption: "Landing", inCard: true },
-      { src: "/projects/follow-this-model/webapp-images/mobile-browse_dark-v1.png", caption: "Browse", inCard: true },
+      { src: "/projects/follow-this-model/webapp-images/mobile-landing-dark-v1.png", caption: "Landing", inCard: true },
+      { src: "/projects/follow-this-model/webapp-images/mobile-browse-dark-v1.png", caption: "Browse", inCard: true },
       { src: "/projects/follow-this-model/webapp-images/mobile-chat1a-dark-v1.png", caption: "Chat", inCard: true },
     ],
     tech: ["React", "TypeScript", "Supabase", "Claude API", "Stripe"],
@@ -593,8 +593,8 @@ export const projects: ProjectData[] = [
             layout: "quad",
             caption: "Landing, browse, discover, chat",
             images: [
-              { src: "/projects/follow-this-model/webapp-images/mobile-landing_dark-v1.png", alt: "Landing page, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-browse_dark-v1.png", alt: "Browse creators, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-landing-dark-v1.png", alt: "Landing page, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-browse-dark-v1.png", alt: "Browse creators, dark mode", theme: "dark" },
               { src: "/projects/follow-this-model/webapp-images/mobile-discover-dark-v1.png", alt: "Discover page, dark mode", theme: "dark" },
               { src: "/projects/follow-this-model/webapp-images/mobile-chat1a-dark-v1.png", alt: "Chat with AI twin, dark mode", theme: "dark" },
             ],
@@ -637,7 +637,7 @@ export const projects: ProjectData[] = [
             layout: "pair",
             caption: "Auth and admin dashboard",
             images: [
-              { src: "/projects/follow-this-model/webapp-images/mobile-google-login_dark-v1.png", alt: "Google sign-in, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-google-login-dark-v1.png", alt: "Google sign-in, dark mode", theme: "dark" },
               { src: "/projects/follow-this-model/webapp-images/mobile-admin-dash-dark-v1.png", alt: "Admin dashboard, dark mode", theme: "dark" },
             ],
           },
