@@ -807,4 +807,80 @@ export const projects: ProjectData[] = [
       "n8n integration middleware for maintainable external connections",
     ],
   },
+  {
+    slug: "aws-infrastructure",
+    title: "AWS Infrastructure",
+    description:
+      "Migrated a production automation server off a cloud subscription onto self-hosted AWS. Provisioned and secured an EC2 instance, containerized n8n with Docker, and cut monthly cost roughly in half.",
+    category: "Cloud Infrastructure",
+    color: "#FF9900",
+    gallery: [
+      { src: "/projects/aws/aws-ec2-instance.png", caption: "EC2 t3.micro running, 3/3 status checks passed", inCard: true },
+      { src: "/projects/aws/aws-security-group.png", caption: "Inbound rules: SSH locked to my IP, app ports open by design", inCard: false },
+      { src: "/projects/aws/aws-docker-ps.png", caption: "n8n container up eight days, port 5678 mapped", inCard: false },
+      { src: "/projects/aws/aws-n8n-workflows.png", caption: "Production workflows running on the migrated instance", inCard: false },
+    ],
+    tech: ["AWS EC2", "Docker", "Ubuntu", "n8n", "IAM"],
+    stats: [
+      { value: "~50%", label: "Monthly Cost Cut" },
+      { value: "30+", label: "Workflows Migrated" },
+      { value: "100%", label: "Uptime, Auto-Restart" },
+    ],
+    hero: {
+      headline: "From a monthly cloud bill to self-hosted AWS infrastructure, secured and running.",
+      role: "Solo Infrastructure Build",
+      timeline: "Provisioned and migrated, ongoing",
+      status: "Live in production",
+    },
+    problem: {
+      headline: "A cloud automation subscription costing more than it should, with no infrastructure to show for it.",
+      body: "An automation server ran on a paid cloud subscription. The cost climbed as workflows grew, and the setup taught me nothing about the infrastructure underneath. I wanted hands-on AWS experience toward a Solutions Architect path, and a cheaper, fully owned home for the same workloads. The catch: I had no prior AWS infrastructure experience. Provisioning, networking, security groups, and Linux administration were all new.",
+      userStory:
+        "Every guide made it look like one click. The reality was IAM users, MFA, CIDR notation, security group rules, and a Linux box I had to secure myself. The learning was the point.",
+    },
+    solution: {
+      headline: "A secured EC2 instance running a containerized server, locked down where it counts and open only where it must be.",
+      body: "I provisioned an EC2 t3.micro on Ubuntu, created a dedicated IAM user with MFA, and locked the root account away. I designed a security group on the least-privilege principle: SSH restricted to my own IP via /32 CIDR, application ports open only because an external service needs them. n8n runs in Docker with a persistent volume and restart-on-boot, so a reboot never loses state. An Elastic IP gives a stable address for webhooks across stop/start cycles.",
+      valueProposition:
+        "Least-privilege access where exposure is risk; deliberate openness only where an external caller genuinely requires it.",
+    },
+    architecture: {
+      description:
+        "EC2 t3.micro (us-east-2) on Ubuntu 24.04 LTS, 20GB EBS SSD. A dedicated IAM user with MFA replaces root for daily operations. A custom security group enforces least-privilege inbound rules. n8n runs as a Docker container with a persistent volume and automatic restart-on-boot. An Elastic IP provides static public addressing for stable webhook URLs.",
+      techStack: [
+        { category: "Compute", items: ["EC2 t3.micro", "Ubuntu 24.04 LTS"] },
+        { category: "Security", items: ["IAM + MFA", "Security Groups", "CIDR /32"] },
+        { category: "Runtime", items: ["Docker", "n8n"] },
+        { category: "Network", items: ["Elastic IP", "EBS persistent volume"] },
+      ],
+    },
+    decisions: [
+      {
+        title: "Least-privilege security group, not open-by-default",
+        decision: "Lock SSH to a single /32 IP; open application ports only where an external service requires reach.",
+        why: "An open SSH port on a public box is an invitation. The discipline is to open exactly what the system needs and nothing more.",
+        result: "SSH reachable only from a known address, with EC2 Instance Connect as a never-locked-out fallback.",
+      },
+      {
+        title: "Containerized with restart-on-boot, not a bare install",
+        decision: "Run n8n in Docker with a persistent volume and automatic restart.",
+        why: "A bare install dies on reboot and loses state. A container with a mounted volume survives restarts and moves cleanly between hosts.",
+        result: "The server self-heals on reboot. Eight-plus days of continuous uptime with zero manual intervention.",
+      },
+    ],
+    results: [
+      { value: "~50%", label: "Cost Reduction", description: "From a paid cloud subscription to roughly ten dollars a month" },
+      { value: "$0", label: "First-Year Cost", description: "AWS free tier covers twelve months" },
+      { value: "30+", label: "Workflows Migrated", description: "Moved from cloud to self-hosted with full feature parity" },
+      { value: "100%", label: "Uptime", description: "Auto-restart on boot, persistent Docker volume" },
+    ],
+    features: [
+      "EC2 t3.micro provisioned on Ubuntu 24.04 with a dedicated IAM user and MFA",
+      "Least-privilege security group: SSH locked to a /32 IP, app ports open by design",
+      "n8n containerized with Docker, persistent volume, and restart-on-boot",
+      "Elastic IP for stable webhook URLs across instance stop/start cycles",
+      "Workflows migrated from a paid cloud subscription at near-zero cost",
+      "Mapped directly to AWS Solutions Architect Associate exam domains",
+    ],
+  },
 ];
