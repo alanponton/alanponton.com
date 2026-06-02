@@ -265,6 +265,11 @@ function ProblemSection({ project }: { project: (typeof projects)[0] }) {
               </blockquote>
             </FadeUp>
           )}
+            {project.problem.imageGroups && project.problem.imageGroups.length > 0 && (
+              <FadeUp delay={0.3} className="mt-12">
+                <ImageZoomGallery groups={project.problem.imageGroups} />
+              </FadeUp>
+            )}
         </div>
       </Container>
     </section>
@@ -287,6 +292,11 @@ function SolutionSection({ project }: { project: (typeof projects)[0] }) {
           <FadeUp delay={0.1}>
             <BodyParagraphs text={project.solution.body} />
           </FadeUp>
+          {project.solution.imageGroups && project.solution.imageGroups.length > 0 && (
+            <FadeUp delay={0.15} className="mt-12">
+              <ImageZoomGallery groups={project.solution.imageGroups} />
+            </FadeUp>
+          )}
           <FadeUp delay={0.2} className="mt-12">
             <div
               className="relative px-8 py-10 rounded-2xl text-center"
@@ -351,6 +361,11 @@ function ArchitectureSection({ project }: { project: (typeof projects)[0] }) {
               </FadeUp>
             ))}
           </div>
+          {project.architecture.imageGroups && project.architecture.imageGroups.length > 0 && (
+            <FadeUp delay={0.2} className="mt-12">
+              <ImageZoomGallery groups={project.architecture.imageGroups} />
+            </FadeUp>
+          )}
         </div>
       </Container>
     </section>

@@ -16,8 +16,14 @@ const gridFor = (layout: ZoomImageGroup["layout"]) => {
     case "quad":   return "grid grid-cols-2 md:grid-cols-4 gap-3";
   }
 };
-const containerFor = (layout: ZoomImageGroup["layout"]) =>
-  layout === "single" ? "max-w-xs mx-auto" : "max-w-2xl mx-auto";
+const containerFor = (layout: ZoomImageGroup["layout"]) => {
+  switch (layout) {
+    case "single": return "max-w-[180px] mx-auto";
+    case "pair":   return "max-w-md mx-auto";
+    case "trio":   return "max-w-lg mx-auto";
+    case "quad":   return "max-w-2xl mx-auto";
+  }
+};
 
 export function ImageZoomGallery({ groups }: { groups: ZoomImageGroup[] }) {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
