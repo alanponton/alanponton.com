@@ -127,7 +127,7 @@ export function RotatingCardImage({ images, color, title, hovered, transparent =
 }
 
 // First 7 projects for the bento grid
-const featuredProjects = allProjects.slice(0, 6);
+const featuredProjects = allProjects.slice(0, 7);
 
 // Desktop 12-col bento layout
 const gridLayout = [
@@ -137,6 +137,7 @@ const gridLayout = [
   { colStart: 4, colSpan: 3, rowSpan: 1 },  // Trip Buddy
   { colStart: 7, colSpan: 3, rowSpan: 1 },  // FollowThisModel
   { colStart: 10, colSpan: 3, rowSpan: 1 }, // Push Coach
+  { colStart: 1, colSpan: 12, rowSpan: 1 }, // AWS Infrastructure — full-width banner
 ];
 
 function ProjectCardInner({
