@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, Link, useLocation } from "wouter";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Github, ChevronDown, ChevronUp, Search } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { TechPill } from "@/components/ui/tech-pill";
 import { CountUpStat } from "@/components/ui/count-up-stat";
@@ -104,13 +104,13 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
               transition={{ duration: 0.5 }}
               className="mb-10"
             >
-              <Link
+              <a
                 href="/#projects"
                 className="inline-flex items-center gap-2 text-text-secondary hover:text-text-primary text-sm transition-colors group"
               >
                 <ArrowLeft size={14} className="transition-transform group-hover:-translate-x-1" />
                 All Projects
-              </Link>
+              </a>
             </motion.div>
 
             {/* Category */}
@@ -407,12 +407,17 @@ function DecisionsSection({ project }: { project: (typeof projects)[0] }) {
 
 function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const [scale, setScale] = useState(1);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const drag = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
+  const pinch = useRef<{ dist: number; scale: number } | null>(null);
+
+  const resetZoom = () => { setScale(1); setOffset({ x: 0, y: 0 }); };
+  const close = () => { setLightbox(null); resetZoom(); };
 
   useEffect(() => {
     if (!lightbox) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setLightbox(null);
-    };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     return () => {
@@ -426,14 +431,51 @@ function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
   const gridFor = (layout: "single" | "pair" | "trio" | "quad") => {
     switch (layout) {
       case "single": return "grid grid-cols-1";
-      case "pair": return "grid grid-cols-2 gap-3";
-      case "trio": return "grid grid-cols-3 gap-2 md:gap-3";
-      case "quad": return "grid grid-cols-2 md:grid-cols-4 gap-3";
+      case "pair":   return "grid grid-cols-2 gap-3";
+      case "trio":   return "grid grid-cols-2 sm:grid-cols-3 gap-3";
+      case "quad":   return "grid grid-cols-2 md:grid-cols-4 gap-3";
     }
   };
-
   const containerFor = (layout: "single" | "pair" | "trio" | "quad") =>
-    layout === "single" ? "max-w-md mx-auto" : "max-w-2xl mx-auto";
+    layout === "single" ? "max-w-xs mx-auto" : "max-w-2xl mx-auto";
+
+  const clampScale = (s: number) => Math.min(5, Math.max(1, s));
+  const onWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    setScale((s) => {
+      const next = clampScale(s - e.deltaY * 0.0015 * s);
+      if (next === 1) setOffset({ x: 0, y: 0 });
+      return next;
+    });
+  };
+  const onPointerDown = (e: React.PointerEvent) => {
+    if (scale === 1) return;
+    drag.current = { x: e.clientX, y: e.clientY, ox: offset.x, oy: offset.y };
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (!drag.current) return;
+    setOffset({
+      x: drag.current.ox + (e.clientX - drag.current.x),
+      y: drag.current.oy + (e.clientY - drag.current.y),
+    });
+  };
+  const onPointerUp = () => { drag.current = null; };
+  const onTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      pinch.current = { dist: Math.hypot(dx, dy), scale };
+    }
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 2 && pinch.current) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const d = Math.hypot(dx, dy);
+      setScale(clampScale(pinch.current.scale * (d / pinch.current.dist)));
+    }
+  };
+  const onTouchEnd = () => { pinch.current = null; if (scale === 1) setOffset({ x: 0, y: 0 }); };
 
   return (
     <>
@@ -451,27 +493,20 @@ function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
                 <FadeUp key={v.label} delay={i * 0.1}>
                   <div className="p-6 md:p-8 rounded-xl bg-background border border-border shadow-[0_1px_3px_rgba(0,0,0,0.06)] dark:shadow-none">
                     <div className="flex flex-col gap-3">
-                      <span
-                        className="text-xs uppercase tracking-widest font-mono font-medium"
-                        style={{ color: project.color }}
-                      >
+                      <span className="text-xs uppercase tracking-widest font-mono font-medium" style={{ color: project.color }}>
                         {v.label}
                       </span>
                       <h3 className="font-heading font-bold text-lg md:text-xl text-text-primary">{v.headline}</h3>
                       <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">{v.body}</p>
                       <div>
-                        <span className="text-xs uppercase tracking-widest text-text-secondary font-mono">
-                          Learning
-                        </span>
-                        <p className="text-sm leading-relaxed mt-1" style={{ color: project.color }}>
-                          {v.learning}
-                        </p>
+                        <span className="text-xs uppercase tracking-widest text-text-secondary font-mono">Learning</span>
+                        <p className="text-sm leading-relaxed mt-1" style={{ color: project.color }}>{v.learning}</p>
                       </div>
                     </div>
                     {v.imageGroups && v.imageGroups.length > 0 && (
-                      <div className="flex flex-col gap-6 mt-6">
+                      <div className="flex flex-col gap-8 mt-8">
                         {v.imageGroups.map((group, gi) => (
-                          <div key={gi} className={`flex flex-col gap-2 ${containerFor(group.layout)}`}>
+                          <div key={gi} className={`flex flex-col gap-3 ${containerFor(group.layout)}`}>
                             {group.caption && (
                               <span className="text-[10px] uppercase tracking-widest text-text-secondary font-mono text-center">
                                 {group.caption}
@@ -479,20 +514,22 @@ function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
                             )}
                             <div className={gridFor(group.layout)}>
                               {group.images.map((img, ii) => (
-                                <button
-                                  key={ii}
-                                  type="button"
-                                  onClick={() => setLightbox({ src: img.src, alt: img.alt })}
-                                  className="block w-full overflow-hidden rounded border border-border bg-foreground/5 hover:opacity-90 transition cursor-zoom-in"
-                                  aria-label={`Expand: ${img.alt}`}
-                                >
-                                  <img
-                                    src={img.src}
-                                    alt={img.alt}
-                                    className="w-full h-auto block"
-                                    loading="lazy"
-                                  />
-                                </button>
+                                <figure key={ii} className="flex flex-col gap-1.5">
+                                  <button
+                                    type="button"
+                                    onClick={() => { setLightbox({ src: img.src, alt: img.alt }); resetZoom(); }}
+                                    className="group relative block w-full overflow-hidden rounded-lg border border-border bg-foreground/5 hover:border-text-secondary/40 transition cursor-zoom-in"
+                                    aria-label={`Zoom: ${img.alt}`}
+                                  >
+                                    <img src={img.src} alt={img.alt} className="w-full h-auto block" loading="lazy" />
+                                    <span className="absolute bottom-1.5 right-1.5 flex items-center gap-1 rounded-full bg-black/55 backdrop-blur px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-white opacity-0 group-hover:opacity-100 transition">
+                                      <Search className="w-2.5 h-2.5" /> Zoom
+                                    </span>
+                                  </button>
+                                  <figcaption className="text-[11px] leading-snug text-text-secondary text-center">
+                                    {img.alt}
+                                  </figcaption>
+                                </figure>
                               ))}
                             </div>
                           </div>
@@ -509,21 +546,42 @@ function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
 
       {lightbox && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4 cursor-zoom-out"
-          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center select-none"
+          onClick={close}
           role="dialog"
           aria-modal="true"
           aria-label={lightbox.alt}
         >
-          <img
-            src={lightbox.src}
-            alt={lightbox.alt}
-            className="max-w-full max-h-full object-contain"
+          <div
+            className="relative flex-1 w-full flex items-center justify-center overflow-hidden touch-none"
             onClick={(e) => e.stopPropagation()}
-          />
+            onWheel={onWheel}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerLeave={onPointerUp}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            onDoubleClick={() => (scale === 1 ? setScale(2.5) : resetZoom())}
+            style={{ cursor: scale > 1 ? "grab" : "zoom-in" }}
+          >
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              draggable={false}
+              className="max-w-[95vw] max-h-[85vh] object-contain transition-transform duration-75"
+              style={{ transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})` }}
+            />
+          </div>
+          <div className="shrink-0 pb-4 pt-2 flex items-center gap-4 text-white/70 text-xs font-mono" onClick={(e) => e.stopPropagation()}>
+            <span>{lightbox.alt}</span>
+            <span className="hidden sm:inline">· scroll or double-click to zoom</span>
+            <span className="sm:hidden">· pinch to zoom</span>
+          </div>
           <button
             type="button"
-            onClick={() => setLightbox(null)}
+            onClick={close}
             className="absolute top-4 right-4 text-white text-2xl hover:opacity-80 w-10 h-10 flex items-center justify-center rounded-full bg-black/40"
             aria-label="Close"
           >
