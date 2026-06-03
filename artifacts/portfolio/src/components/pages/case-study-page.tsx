@@ -130,7 +130,7 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.18 }}
-              className="font-heading font-bold text-5xl md:text-7xl text-text-primary leading-none tracking-tight mb-5"
+              className="font-heading font-bold text-4xl md:text-7xl text-text-primary leading-none tracking-tight mb-5 break-words"
             >
               {project.title}
             </motion.h1>
