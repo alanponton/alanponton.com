@@ -571,31 +571,52 @@ export const projects: ProjectData[] = [
     ],
     tech: ["React", "TypeScript", "Supabase", "Claude API", "Stripe"],
     stats: [
-      { value: "540+", label: "Community Members" },
-      { value: "8-Step", label: "Model Onboarding" },
-      { value: "3", label: "Revenue Tiers" },
+      { value: "10-Step", label: "Creator Onboarding" },
+      { value: "3", label: "Message Types" },
+      { value: "Claude", label: "Persona Engine" },
     ],
     hero: {
-      headline: "Authentic creator connections at scale — no ghostwriting, no burnout.",
+      headline: "Authentic creator connections at scale: no ghostwriting, no burnout.",
       role: "Solo Developer & Designer",
       timeline: "3 months",
-      status: "Live",
+      status: "Built, pre-launch",
     },
     problem: {
       headline: "Creators can't be everywhere at once. Their fans expect them to be.",
-      body: "The creator economy has a fundamental scaling problem. As an audience grows, the expectation of personal connection doesn't diminish — it intensifies. But a creator has the same 24 hours as everyone else. The math doesn't work.\n\nThe existing solutions are either low-quality (automated responses that feel robotic and damage the creator-fan relationship) or high-cost (hiring a team of ghostwriters who pretend to be the creator, which is a brand and trust risk).\n\nFor models and content creators specifically, authentic connection is their core product. The moment fans feel like they're talking to an intern instead of the creator they follow, the relationship — and the revenue — evaporates.",
+      body: "The creator economy has a fundamental scaling problem. As an audience grows, the expectation of personal connection doesn't diminish. It intensifies. But a creator has the same 24 hours as everyone else. The math doesn't work.\n\nThe existing solutions are either low-quality (automated responses that feel robotic and damage the creator-fan relationship) or high-cost (hiring a team of ghostwriters who pretend to be the creator, which is a brand and trust risk).\n\nFor models and content creators specifically, authentic connection is their core product. The moment fans feel like they're talking to an intern instead of the creator they follow, the relationship, and the revenue, evaporates.",
       userStory:
-        "One model creator on the platform told me she used to spend 4 hours a day responding to fan messages, which was cutting into her actual content creation. After FollowThisModel, her AI persona handles the volume of conversations and she reviews transcripts weekly to keep her persona sharp. Her fan engagement scores went up because the AI is always available.",
+        "The scaling problem is the whole reason the product exists. A creator's audience grows, but their hours don't. I built the platform around that math: an authentic-feeling presence that absorbs the conversational volume a creator can't personally sustain.",
     },
     solution: {
-      headline: "An AI persona trained to sound like you — not a chatbot, a presence.",
-      body: "FollowThisModel creates AI personas trained directly on the creator's personality — their way of speaking, their humor, their interests, their boundaries. The onboarding process is an 8-step deep-dive that captures enough signal to build a genuinely authentic-feeling presence.\n\nFans pay for access with tokens. Different message types — regular chat, voice notes, exclusive content — cost different amounts, creating a tiered experience that rewards deeper engagement. Creators receive Stripe payouts automatically, with no transaction friction on either side.\n\nClaude is the AI backbone because of its superior instruction-following and persona consistency. A persona built on Claude stays in character more reliably than alternatives — which is the entire point.",
+      headline: "An AI persona trained to sound like you: not a chatbot, a presence.",
+      body: "FollowThisModel creates AI personas trained directly on the creator's personality: their way of speaking, their humor, their interests, their boundaries. The onboarding process is a 10-step deep-dive that captures enough signal to build a genuinely authentic-feeling presence.\n\nFans pay for access with tokens. Regular chat, voice notes, and exclusive content each cost different amounts, creating a tiered experience that rewards deeper engagement. Creators receive Stripe payouts automatically, with no transaction friction on either side.\n\nClaude is the AI backbone because of its superior instruction-following and persona consistency. A persona built on Claude stays in character more reliably than alternatives, which is the entire point.",
       valueProposition:
-        "Your personality, available 24/7, at scale — so you can be everywhere your fans expect you to be without sacrificing the authenticity that made them follow you.",
+        "Your personality, available 24/7, at scale: so you can be everywhere your fans expect you to be without sacrificing the authenticity that made them follow you.",
+      imageGroups: [
+        {
+          layout: "trio",
+          caption: "The three pillars: an in-character persona, the token economy, and creator onboarding",
+          images: [
+            { src: "/projects/follow-this-model/webapp-images/mobile-chat1a-dark-v1.png", alt: "Fan chatting with a creator's AI persona", theme: "dark" },
+            { src: "/projects/follow-this-model/webapp-images/mobile-tokens-dark-v1.png", alt: "Token wallet gating access to conversations", theme: "dark" },
+            { src: "/projects/follow-this-model/webapp-images/mobile-model-ai-twin-10-steps-dark-v1.png", alt: "Creator's guided ten-step AI twin onboarding", theme: "dark" },
+          ],
+        },
+      ],
     },
     architecture: {
       description:
         "The platform runs on a React frontend with Supabase handling auth, user data, token balances, and conversation storage. Claude API powers all persona conversations with custom system prompts built from the onboarding data. Stripe handles token purchases and creator payouts with webhook integration for real-time balance updates.",
+      imageGroups: [
+        {
+          layout: "pair",
+          caption: "The operational backbone: Google auth and the admin dashboard",
+          images: [
+            { src: "/projects/follow-this-model/webapp-images/mobile-google-login-dark-v1.png", alt: "Passwordless Google sign-in", theme: "dark" },
+            { src: "/projects/follow-this-model/webapp-images/mobile-admin-dash-dark-v1.png", alt: "Admin dashboard tracking creators and revenue", theme: "dark" },
+          ],
+        },
+      ],
       techStack: [
         { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
         { category: "Backend", items: ["Supabase", "PostgreSQL", "Edge Functions"] },
@@ -608,29 +629,32 @@ export const projects: ProjectData[] = [
         title: "Claude over GPT for persona work",
         decision: "Use Anthropic's Claude API instead of OpenAI for all persona conversations.",
         why: "After testing both, Claude demonstrated significantly better persona consistency and instruction adherence. For a product where staying in character is the core feature, this was not a close decision.",
-        result: "Creators report that their AI personas feel genuinely like them, not like a generic chatbot wearing their name. The persona integrity is what justifies the premium token pricing.",
+        result:
+          "The persona stays in character across long conversations, which is the entire premium the product is built to sell.",
       },
       {
-        title: "8-step onboarding instead of a quick form",
-        decision: "Make creator onboarding a structured 8-step conversation rather than a profile form.",
-        why: "A form captures surface-level data. To build a persona that actually sounds like the creator, we need voice, humor, opinions, boundaries, and conversational patterns — things that only emerge in conversation.",
-        result: "Creators complete the full 8-step process 91% of the time, which is unusually high for long onboarding flows. The output quality of the personas correlates directly with onboarding completion.",
+        title: "10-step onboarding instead of a quick form",
+        decision: "Make creator onboarding a structured 10-step conversation rather than a profile form.",
+        why: "A form captures surface-level data. To build a persona that actually sounds like the creator, we need voice, humor, opinions, boundaries, and conversational patterns, all things that only emerge in conversation.",
+        result:
+          "The depth of capture is what separates a persona that sounds like the creator from a generic chatbot wearing their name.",
       },
       {
         title: "Token-based payments over subscriptions",
         decision: "Use a token micropayment model instead of monthly subscriptions.",
-        why: "Subscriptions work when the value is predictable. Fan engagement with creators is spiky — high around content drops, lower between them. Tokens let fans pay for exactly the value they consume.",
-        result: "Average fan spend is higher under the token model than equivalent subscription tiers. The pay-per-interaction model also reduces churn from fans who would cancel subscriptions during low-engagement periods.",
+        why: "Subscriptions work when the value is predictable. Fan engagement with creators is spiky: high around content drops, lower between them. Tokens let fans pay for exactly the value they consume.",
+        result:
+          "Pay-per-interaction matches how fan engagement actually behaves, spiky around drops and quiet between, without locking fans into subscriptions they would cancel.",
       },
     ],
     results: [
-      { value: "540+", label: "Community Members", description: "Active fans across all personas" },
-      { value: "8", label: "Onboarding Steps", description: "Deep persona capture process" },
-      { value: "3", label: "Revenue Tiers", description: "Token pack sizes for different fan budgets" },
-      { value: "91%", label: "Onboarding Completion", description: "Creators who finish all 8 steps" },
+      { value: "10", label: "Onboarding Steps", description: "Structured persona-capture conversation" },
+      { value: "3", label: "Message Types", description: "Text chat, voice notes, exclusive content" },
+      { value: "Claude", label: "Persona Engine", description: "Chosen over GPT for in-character consistency" },
+      { value: "Stripe", label: "Connect Payouts", description: "Automated creator payouts built in" },
     ],
     features: [
-      "8-step conversational creator onboarding for deep persona capture",
+      "10-step conversational creator onboarding for deep persona capture",
       "AI personas trained on individual creator personality, voice, and interests",
       "Token micropayment system for fan-to-persona conversations",
       "Multiple message types: text chat, voice notes, exclusive content",
@@ -644,24 +668,15 @@ export const projects: ProjectData[] = [
         label: "Fan-side",
         headline: "The Member Experience",
         body: "The front door for members. Landing, discovery, and conversations with creators' AI twins. A token economy gates access so chat remains a deliberate purchase, not a feed.",
-        learning: "The token model changed the product's character. Because chat costs something, conversations felt more intentional — members who spent tokens sent fewer, higher-quality messages, which improved the quality signal fed back to creators.",
+        learning: "The token model shapes the product's character by design. Because chat costs something, each message is a deliberate choice rather than idle scrolling. The intent was a higher-quality signal flowing back to creators, not an endless feed.",
         imageGroups: [
           {
-            layout: "quad",
-            caption: "Landing, browse, discover, chat",
+            layout: "trio",
+            caption: "Landing, browse, discover",
             images: [
               { src: "/projects/follow-this-model/webapp-images/mobile-landing-dark-v1.png", alt: "Landing page, dark mode", theme: "dark" },
               { src: "/projects/follow-this-model/webapp-images/mobile-browse-dark-v1.png", alt: "Browse creators, dark mode", theme: "dark" },
               { src: "/projects/follow-this-model/webapp-images/mobile-discover-dark-v1.png", alt: "Discover page, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-chat1a-dark-v1.png", alt: "Chat with AI twin, dark mode", theme: "dark" },
-            ],
-          },
-          {
-            layout: "pair",
-            caption: "Messages and token wallet",
-            images: [
-              { src: "/projects/follow-this-model/webapp-images/mobile-messages-dark-v1.png", alt: "Messages inbox, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-tokens-dark-v1.png", alt: "Token wallet, dark mode", theme: "dark" },
             ],
           },
         ],
@@ -670,16 +685,14 @@ export const projects: ProjectData[] = [
         label: "Creator-side",
         headline: "The Creator Studio",
         body: "Creators generate their own AI twin through a guided ten-step onboarding. The twin learns voice, tone, and conversation patterns from material the creator approves. Profiles surface to members through the browse view.",
-        learning: "The ten-step onboarding has a 91% completion rate, which is unusually high. The friction is the feature: creators who complete it produce twins that pass the 'sounds like me' test. The ones who skip steps don't, and they know it immediately.",
+        learning: "The ten-step onboarding is built so the friction is the feature. The depth of capture is what produces a twin that passes the 'sounds like me' test. A shorter form would be easier to finish and would produce a weaker persona.",
         imageGroups: [
           {
-            layout: "quad",
-            caption: "Twin generation, ten-step onboarding, and profile views",
+            layout: "pair",
+            caption: "Twin generation and the published creator profile",
             images: [
               { src: "/projects/follow-this-model/webapp-images/mobile-generate-ai-twin-persona-dark-v1.png", alt: "Generate AI twin persona, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-model-ai-twin-10-steps-dark-v1.png", alt: "Ten-step AI twin onboarding, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-model-profile1-dark-v1.png", alt: "Creator profile view 1, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-model-profile2-dark-v1.png", alt: "Creator profile view 2, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-model-profile1-dark-v1.png", alt: "Creator profile view, dark mode", theme: "dark" },
             ],
           },
         ],
@@ -691,11 +704,10 @@ export const projects: ProjectData[] = [
         learning: "The simplest decision with the highest leverage was Google sign-in. Eliminating password friction removed the entire 'forgot my password' support surface before the product launched.",
         imageGroups: [
           {
-            layout: "pair",
-            caption: "Auth and admin dashboard",
+            layout: "single",
+            caption: "Messages inbox",
             images: [
-              { src: "/projects/follow-this-model/webapp-images/mobile-google-login-dark-v1.png", alt: "Google sign-in, dark mode", theme: "dark" },
-              { src: "/projects/follow-this-model/webapp-images/mobile-admin-dash-dark-v1.png", alt: "Admin dashboard, dark mode", theme: "dark" },
+              { src: "/projects/follow-this-model/webapp-images/mobile-messages-dark-v1.png", alt: "Messages inbox, dark mode", theme: "dark" },
             ],
           },
         ],
