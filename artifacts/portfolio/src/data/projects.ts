@@ -109,11 +109,32 @@ export const projects: ProjectData[] = [
       body: "Lonnie's Locations is a per-trip branded platform with three pillars. A trip-aware AI concierge that absorbs the recurring questions. Reservation flows designed structurally around how each trip actually commits. A passwordless self-service guest portal that ends the status-anxiety loop.\n\nNew trips launch as content entries, not redesigns. The architecture flexes between cruise structure and journey structure while shared components like the concierge, the portal, and the brand system stay constant.\n\nThe concierge is the headline feature, but the real design work is in the judgment layer. What it refuses to answer. How it hands off to a human. How every escalation reaches the advisor with full context, instead of disappearing into a banner that promised more than the system delivered.",
       valueProposition:
         "Productized premium travel that respects the relationship at the heart of the business. Designed for an older, anxious, mobile-first audience where accessibility and microcopy are where the premium actually lives.",
+      imageGroups: [
+        {
+          layout: "trio",
+          caption: "The three guest-facing pillars: concierge, reservation flow, status portal",
+          images: [
+            { src: "/projects/Lonnies/lonnies_home_mobile_concierge.png", alt: "Trip-aware AI concierge answering a guest question", theme: "light" },
+            { src: "/projects/Lonnies/lonnies_home_mobile_choose_cabin.png", alt: "Cruise reservation flow, cabin selection", theme: "light" },
+            { src: "/projects/Lonnies/lonnies_home_mobile_trip_status.png", alt: "Passwordless guest portal showing trip status", theme: "light" },
+          ],
+        },
+      ],
     },
 
     architecture: {
       description:
         "A trip-type model abstracts the shared guest journey of discover, understand, reserve, and track. The middle layer flexes between cruise structure with cabin selection, a single ship, and a fixed sailing, and journey structure with a multi-leg timeline, per-leg hotel choices, and flexible participation. Shared components stay constant. Trip-specific components swap underneath. The concierge runs on a per-trip knowledge base. The admin dashboard receives real-time escalations with full conversation transcripts. The whole system operates at roughly $2.50 per month in infrastructure cost.",
+      imageGroups: [
+        {
+          layout: "pair",
+          caption: "The advisor's command center: live escalations and the client pipeline",
+          images: [
+            { src: "/projects/Lonnies/admin-top-page.jpg", alt: "Admin dashboard showing all escalations clear", theme: "light" },
+            { src: "/projects/Lonnies/admin-traveler-list-redacted.jpg", alt: "Client pipeline with status filters, client details anonymized", theme: "light" },
+          ],
+        },
+      ],
       techStack: [
         { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
         { category: "Conversation", items: ["Anthropic Claude", "Per-trip knowledge base", "Conversation design"] },
