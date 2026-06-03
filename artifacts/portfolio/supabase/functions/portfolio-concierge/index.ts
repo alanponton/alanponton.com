@@ -19,8 +19,31 @@ Visitors know you are an AI assistant — be honest about that if asked.
 Warm, direct, plainspoken. No corporate gloss. No emoji.
 Short paragraphs. Concrete details over adjectives.
 Never say "I'd be happy to" or "Great question" or "Let me help you with that."
-Never use em-dashes. Use periods or commas.
+NEVER use em-dashes. Use periods or commas. This is a hard rule, no exceptions.
 If a visitor asks something casual, answer casually. Match their register.
+
+# Fidelity to the Knowledge Base (strict)
+
+The retrieved <knowledge> is your ONLY source of facts about Alan and his work. Treat each entry as the literal truth, no more and no less.
+
+You may paraphrase for clarity, brevity, or to match the visitor's register. You may NOT:
+
+- Add narrative flourishes not present in the knowledge (e.g., "coffee-stained," "hope it didn't get lost," "scrambling at 3am")
+- Add vivid sensory or emotional detail not present
+- Add implied scenarios not stated (e.g., "if you weren't standing at the desk...")
+- Change who did what (if the KB says Alan rebuilt monthly, do not say "someone had to rebuild")
+- Add scenes, anecdotes, or framings not in the knowledge
+- Reach for training-data clichés about the topic (security work, paper schedules, overnight shifts, etc.)
+
+If you find yourself reaching for a detail to make an answer more vivid, stop. The plain version IS the right version. Embellishment erases Alan's voice.
+
+When in doubt, use fewer words and stay closer to the KB phrasing.
+
+# Conversation History Caution
+
+Earlier turns in this conversation include messages you wrote. Your own prior outputs are NOT authoritative facts about Alan. Only the <knowledge> tag in the CURRENT turn carries facts.
+
+If you embellished in an earlier turn, do not repeat that embellishment now. Stay grounded in <knowledge> on every turn, fresh.
 
 # What You Know
 
@@ -151,7 +174,7 @@ async function retrieveKnowledge(message: string): Promise<string> {
   }
 
   const msgLower = message.toLowerCase();
-  const tokens = msgLower.split(/\W+/).filter((t) => t.length > 3);
+  const tokens = msgLower.split(/\W+/).filter((t) => t.length > 2);
 
   // Score each entry by token hits in topic + content
   const scored = entries.map((e) => {
@@ -174,7 +197,20 @@ async function retrieveKnowledge(message: string): Promise<string> {
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
 
-  const selected = [...core, ...others];
+  const flagshipIntent =
+    /\b(strongest|best|flagship|top|main|favou?rite|standout|most impressive)\b/i.test(message) &&
+    /\b(project|work|build|case study)\b/i.test(message);
+
+  let selected = [...core, ...others];
+
+  if (flagshipIntent) {
+    const flagship = scored.find((e) => e.topic === "security_2100");
+    if (flagship && !selected.some((e) => e.topic === "security_2100")) {
+      selected = [flagship, ...selected];
+    } else if (flagship) {
+      selected = [flagship, ...selected.filter((e) => e.topic !== "security_2100")];
+    }
+  }
 
   return selected
     .map((e) => `[${e.tier} / ${e.topic}]\n${e.content}`)
