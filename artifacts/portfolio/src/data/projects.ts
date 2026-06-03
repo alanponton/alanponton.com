@@ -398,7 +398,7 @@ export const projects: ProjectData[] = [
     ],
     tech: ["React", "TypeScript", "Supabase", "OpenAI", "n8n"],
     stats: [
-      { value: "205+", label: "Active Users" },
+      { value: "16", label: "MBTI Types" },
       { value: "6", label: "AI Coaches" },
       { value: "256", label: "Match Combinations" },
     ],
@@ -726,9 +726,9 @@ export const projects: ProjectData[] = [
     ],
     tech: ["React", "TypeScript", "Supabase", "Claude API", "Twilio"],
     stats: [
-      { value: "99.7%", label: "Cost Reduction" },
+      { value: "SMS", label: "No App Needed" },
       { value: "6", label: "Auto Workflows" },
-      { value: "94%", label: "Profit Margin" },
+      { value: "Daily", label: "Task Cadence" },
     ],
     hero: {
       headline: "The accountability coach that lives in your texts — not in another app you'll forget to open.",
