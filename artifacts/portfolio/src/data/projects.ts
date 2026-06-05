@@ -813,7 +813,7 @@ export const projects: ProjectData[] = [
     stats: [
       { value: "~50%", label: "Monthly Cost Cut" },
       { value: "30+", label: "Workflows Migrated" },
-      { value: "100%", label: "Uptime, Auto-Restart" },
+      { value: "8+ days", label: "Continuous Uptime" },
     ],
     hero: {
       headline: "From a monthly cloud bill to self-hosted AWS infrastructure, secured and running.",
@@ -826,12 +826,30 @@ export const projects: ProjectData[] = [
       body: "An automation server ran on a paid cloud subscription. The cost climbed as workflows grew, and the setup taught me nothing about the infrastructure underneath. I wanted hands-on AWS experience toward a Solutions Architect path, and a cheaper, fully owned home for the same workloads. The catch: I had no prior AWS infrastructure experience. Provisioning, networking, security groups, and Linux administration were all new.",
       userStory:
         "Every guide made it look like one click. The reality was IAM users, MFA, CIDR notation, security group rules, and a Linux box I had to secure myself. The learning was the point.",
+      imageGroups: [
+        {
+          layout: "single",
+          caption: "The automation workflows that were running on a paid cloud subscription.",
+          images: [
+            { src: "/projects/aws/aws-n8n-workflows.png", alt: "n8n workflows list running on the migrated instance" },
+          ],
+        },
+      ],
     },
     solution: {
       headline: "A secured EC2 instance running a containerized server, locked down where it counts and open only where it must be.",
       body: "I provisioned an EC2 t3.micro on Ubuntu, created a dedicated IAM user with MFA, and locked the root account away. I designed a security group on the least-privilege principle: SSH restricted to my own IP via /32 CIDR, application ports open only because an external service needs them. n8n runs in Docker with a persistent volume and restart-on-boot, so a reboot never loses state. An Elastic IP gives a stable address for webhooks across stop/start cycles.",
       valueProposition:
         "Least-privilege access where exposure is risk; deliberate openness only where an external caller genuinely requires it.",
+      imageGroups: [
+        {
+          layout: "single",
+          caption: "A self-provisioned EC2 instance on Ubuntu, the new home for the stack.",
+          images: [
+            { src: "/projects/aws/aws-ec2-instance.png", alt: "EC2 t3.micro running, 3/3 status checks passed" },
+          ],
+        },
+      ],
     },
     architecture: {
       description:
@@ -841,6 +859,15 @@ export const projects: ProjectData[] = [
         { category: "Security", items: ["IAM + MFA", "Security Groups", "CIDR /32"] },
         { category: "Runtime", items: ["Docker", "n8n"] },
         { category: "Network", items: ["Elastic IP", "EBS persistent volume"] },
+      ],
+      imageGroups: [
+        {
+          layout: "single",
+          caption: "n8n containerized with Docker, running with a persistent volume.",
+          images: [
+            { src: "/projects/aws/aws-docker-ps.png", alt: "docker ps showing the n8n container up and port mapped" },
+          ],
+        },
       ],
     },
     decisions: [
@@ -861,7 +888,7 @@ export const projects: ProjectData[] = [
       { value: "~50%", label: "Cost Reduction", description: "From a paid cloud subscription to roughly ten dollars a month" },
       { value: "$0", label: "First-Year Cost", description: "AWS free tier covers twelve months" },
       { value: "30+", label: "Workflows Migrated", description: "Moved from cloud to self-hosted with full feature parity" },
-      { value: "100%", label: "Uptime", description: "Auto-restart on boot, persistent Docker volume" },
+      { value: "8+ days", label: "Continuous Uptime", description: "Auto-restart on boot, persistent Docker volume" },
     ],
     features: [
       "EC2 t3.micro provisioned on Ubuntu 24.04 with a dedicated IAM user and MFA",
@@ -879,12 +906,10 @@ export const projects: ProjectData[] = [
         learning: "Provisioning a server is the easy part. The real work is the security posture and verifying every layer actually does what you think it does.",
         imageGroups: [
           {
-            layout: "trio",
-            caption: "Inbound rules, running container, migrated workflows",
+            layout: "single",
+            caption: "Security group locked to a single IP, part of the hardening pass.",
             images: [
               { src: "/projects/aws/aws-security-group.png", alt: "Security group inbound rules, SSH locked to a single IP" },
-              { src: "/projects/aws/aws-docker-ps.png", alt: "docker ps showing the n8n container up and port mapped" },
-              { src: "/projects/aws/aws-n8n-workflows.png", alt: "n8n workflows list running on the migrated instance" },
             ],
           },
         ],

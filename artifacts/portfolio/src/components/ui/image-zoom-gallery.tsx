@@ -18,14 +18,14 @@ const gridFor = (layout: ZoomImageGroup["layout"]) => {
 };
 const containerFor = (layout: ZoomImageGroup["layout"]) => {
   switch (layout) {
-    case "single": return "max-w-[180px] mx-auto";
+    case "single": return "max-w-3xl mx-auto";
     case "pair":   return "max-w-md mx-auto";
     case "trio":   return "max-w-lg mx-auto";
     case "quad":   return "max-w-2xl mx-auto";
   }
 };
 
-export function ImageZoomGallery({ groups }: { groups: ZoomImageGroup[] }) {
+export function ImageZoomGallery({ groups, color }: { groups: ZoomImageGroup[]; color?: string }) {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -90,7 +90,13 @@ export function ImageZoomGallery({ groups }: { groups: ZoomImageGroup[] }) {
     <>
       <div className="flex flex-col gap-8">
         {groups.map((group, gi) => (
-          <div key={gi} className={`flex flex-col gap-3 ${containerFor(group.layout)}`}>
+          <div key={gi} className={`flex flex-col gap-3 ${containerFor(group.layout)}${group.layout === "single" && color ? " relative" : ""}`}>
+            {group.layout === "single" && color && (
+              <div
+                className="absolute -inset-8 pointer-events-none -z-10"
+                style={{ background: `radial-gradient(ellipse 80% 60% at 50% 30%, ${color}0d 0%, transparent 70%)` }}
+              />
+            )}
             {group.caption && (
               <span className="text-[10px] uppercase tracking-widest text-text-secondary font-mono text-center">
                 {group.caption}

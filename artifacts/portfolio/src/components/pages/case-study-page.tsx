@@ -267,7 +267,7 @@ function ProblemSection({ project }: { project: (typeof projects)[0] }) {
           )}
             {project.problem.imageGroups && project.problem.imageGroups.length > 0 && (
               <FadeUp delay={0.3} className="mt-12">
-                <ImageZoomGallery groups={project.problem.imageGroups} />
+                <ImageZoomGallery groups={project.problem.imageGroups} color={project.color} />
               </FadeUp>
             )}
         </div>
@@ -294,7 +294,7 @@ function SolutionSection({ project }: { project: (typeof projects)[0] }) {
           </FadeUp>
           {project.solution.imageGroups && project.solution.imageGroups.length > 0 && (
             <FadeUp delay={0.15} className="mt-12">
-              <ImageZoomGallery groups={project.solution.imageGroups} />
+              <ImageZoomGallery groups={project.solution.imageGroups} color={project.color} />
             </FadeUp>
           )}
           <FadeUp delay={0.2} className="mt-12">
@@ -363,7 +363,7 @@ function ArchitectureSection({ project }: { project: (typeof projects)[0] }) {
           </div>
           {project.architecture.imageGroups && project.architecture.imageGroups.length > 0 && (
             <FadeUp delay={0.2} className="mt-12">
-              <ImageZoomGallery groups={project.architecture.imageGroups} />
+              <ImageZoomGallery groups={project.architecture.imageGroups} color={project.color} />
             </FadeUp>
           )}
         </div>
@@ -451,7 +451,7 @@ function VersionHistorySection({ project }: { project: (typeof projects)[0] }) {
                   </div>
                   {v.imageGroups && v.imageGroups.length > 0 && (
                     <div className="mt-8">
-                      <ImageZoomGallery groups={v.imageGroups} />
+                      <ImageZoomGallery groups={v.imageGroups} color={project.color} />
                     </div>
                   )}
                 </div>
