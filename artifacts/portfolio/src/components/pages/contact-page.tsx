@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Linkedin, MapPin, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowRight, Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 // ── Shared animation helper ──────────────────────────────────────────────────
@@ -67,7 +67,7 @@ function validateFields(data: FormData): FormErrors {
   return errors;
 }
 
-type SubmitState = "idle" | "loading" | "success";
+type SubmitState = "idle" | "loading" | "success" | "error";
 
 // ── Shared input styles ──────────────────────────────────────────────────────
 
@@ -104,23 +104,38 @@ export function ContactPage() {
 
     setSubmitState("loading");
 
-    // TODO: Wire up Supabase — insert into contact_submissions table
-    console.log("Contact form submission:", {
-      name: formData.name,
-      email: formData.email,
-      projectType: formData.projectType,
-      budget: formData.budget,
-      message: formData.message,
-    });
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "59ed2c3c-b05e-4802-bfe8-814cac8df9e4",
+          subject: `Portfolio contact from ${formData.name}`,
+          from_name: "alanponton.com",
+          name: formData.name,
+          email: formData.email,
+          project_type: formData.projectType || "Not specified",
+          budget: formData.budget || "Not specified",
+          message: formData.message,
+        }),
+      });
+      const json = await res.json();
 
-    await new Promise((res) => setTimeout(res, 900));
-
-    setSubmitState("success");
-    setTimeout(() => {
-      setSubmitState("idle");
-      setFormData(initialFormData);
-      setErrors({});
-    }, 3000);
+      if (json.success) {
+        setSubmitState("success");
+        setTimeout(() => {
+          setSubmitState("idle");
+          setFormData(initialFormData);
+          setErrors({});
+        }, 3000);
+      } else {
+        setSubmitState("error");
+        setTimeout(() => setSubmitState("idle"), 4000);
+      }
+    } catch {
+      setSubmitState("error");
+      setTimeout(() => setSubmitState("idle"), 4000);
+    }
   }
 
   return (
@@ -338,6 +353,12 @@ export function ContactPage() {
                   <>
                     <CheckCircle2 size={16} />
                     Message sent!
+                  </>
+                )}
+                {submitState === "error" && (
+                  <>
+                    <XCircle size={16} />
+                    Send failed. Try again
                   </>
                 )}
               </motion.button>
