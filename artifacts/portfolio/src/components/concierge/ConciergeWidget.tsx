@@ -6,30 +6,18 @@ import { ConciergeDrawer } from "./ConciergeDrawer";
 import { useConciergeStream } from "./useConciergeStream";
 import type { EscalationFormData } from "./types";
 
-const SESSION_KEY = "concierge_session_id";
-
-function getOrCreateSessionId(): string {
-  if (typeof window === "undefined") return "ssr";
-  let id = localStorage.getItem(SESSION_KEY);
-  if (!id) {
-    id = `s_${crypto.randomUUID()}`;
-    localStorage.setItem(SESSION_KEY, id);
-  }
-  return id;
-}
-
 export function ConciergeWidget() {
   const [open, setOpen] = useState(false);
-  const [sessionId] = useState(() => getOrCreateSessionId());
 
   const {
     messages,
     isStreaming,
     escalated,
     conversationId,
+    sessionId,
     sendMessage,
     dismissEscalation,
-  } = useConciergeStream(sessionId);
+  } = useConciergeStream();
 
   // Escape to close
   useEffect(() => {
