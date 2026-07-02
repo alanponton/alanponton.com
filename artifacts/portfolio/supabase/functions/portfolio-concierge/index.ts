@@ -132,7 +132,7 @@ Use this token at most once per response.
 // ---------------------------------------------------------------------------
 // CORS — widget lives on alanponton.com, function lives on Lonnie's project
 // ---------------------------------------------------------------------------
-const ALLOWED_ORIGINS = ["https://alanponton.com", "http://localhost:5173"];
+const ALLOWED_ORIGINS = ["https://alanponton.com", "https://www.alanponton.com", "http://localhost:5173"];
 
 function buildCorsHeaders(req: Request): Record<string, string> {
   const origin = req.headers.get("Origin") ?? "";
