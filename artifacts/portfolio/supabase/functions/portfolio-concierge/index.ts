@@ -158,6 +158,7 @@ const supabase = createClient(
 const ANTHROPIC_API_KEY = Deno.env.get("ANTHROPIC_API_KEY")!;
 const MODEL = "claude-sonnet-4-5";
 const MAX_MESSAGES_PER_SESSION = 40; // soft cap, prevents runaway sessions
+const MAX_REQUESTS_PER_IP_PER_DAY = 60;
 
 // ---------------------------------------------------------------------------
 // Knowledge retrieval — keyword match on topic + tier weighting (v1, no vectors)
@@ -283,6 +284,51 @@ async function sessionMessageCount(conversationId: string): Promise<number> {
 }
 
 // ---------------------------------------------------------------------------
+// IP rate limiting. Hash the IP so we never store a raw address, bucket the
+// count per UTC day, and fail open so our own infra hiccup never blocks a
+// real visitor.
+// ---------------------------------------------------------------------------
+async function hashIp(ip: string): Promise<string> {
+  const bytes = new TextEncoder().encode(ip);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  const hex = Array.from(new Uint8Array(digest))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hex.slice(0, 16);
+}
+
+// Returns a 429 Response when the caller is over the daily IP cap, else null.
+async function checkIpRateLimit(req: Request): Promise<Response | null> {
+  const rawIp =
+    req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const hash = await hashIp(rawIp);
+  const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD, UTC
+  const key = `ip:${hash}:${today}`;
+
+  const { data, error } = await supabase.rpc("increment_rate_limit", {
+    p_key: key,
+  });
+
+  // Fail open. Never block a visitor because our own rate-limit call hiccuped.
+  if (error) {
+    console.error("rate limit rpc error", error);
+    return null;
+  }
+
+  if (typeof data === "number" && data > MAX_REQUESTS_PER_IP_PER_DAY) {
+    return new Response(
+      JSON.stringify({
+        error: "ip_limit",
+        message: "Daily limit reached. Please come back tomorrow.",
+      }),
+      { status: 429, headers: { ...buildCorsHeaders(req), "Content-Type": "application/json" } },
+    );
+  }
+
+  return null;
+}
+
+// ---------------------------------------------------------------------------
 // Main handler
 // ---------------------------------------------------------------------------
 Deno.serve(async (req) => {
@@ -299,6 +345,10 @@ Deno.serve(async (req) => {
         { status: 400, headers: { ...buildCorsHeaders(req), "Content-Type": "application/json" } },
       );
     }
+
+    // Per-IP daily cap. Runs before any real work so abuse costs us nothing.
+    const ipLimited = await checkIpRateLimit(req);
+    if (ipLimited) return ipLimited;
 
     const convId = await ensureConversation(session_id, conversation_id);
 

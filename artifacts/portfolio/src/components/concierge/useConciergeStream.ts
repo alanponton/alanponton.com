@@ -16,6 +16,10 @@ interface StreamState {
   error: string | null;
 }
 
+type RunResult =
+  | { kind: "ok" }
+  | { kind: "rate_limit"; error: string; message: string };
+
 export function useConciergeStream() {
   const [state, setState] = useState<StreamState>({
     messages: [],
@@ -61,9 +65,9 @@ export function useConciergeStream() {
         ),
       }));
 
-    // One fetch + stream cycle. Returns the HTTP status. A 429 short-circuits
-    // before streaming so the caller can rotate the session and retry once.
-    const runOnce = async (): Promise<number> => {
+    // One fetch + stream cycle. On a 429 it reads the server error code so the
+    // caller can tell an ip_limit (do not retry) from a session_limit (rotate).
+    const runOnce = async (): Promise<RunResult> => {
       const res = await fetch(FUNCTION_URL, {
         method: "POST",
         headers: {
@@ -77,7 +81,20 @@ export function useConciergeStream() {
         }),
       });
 
-      if (res.status === 429) return 429;
+      if (res.status === 429) {
+        // Read the server code. ip_limit is enforced per IP across sessions, so
+        // the caller must not rotate and retry. session_limit is per session.
+        let error = "";
+        let message = "";
+        try {
+          const body = await res.json();
+          error = typeof body?.error === "string" ? body.error : "";
+          message = typeof body?.message === "string" ? body.message : "";
+        } catch {
+          // ignore parse failure, treat as an unspecified rate limit
+        }
+        return { kind: "rate_limit", error, message };
+      }
 
       if (!res.ok || !res.body) {
         throw new Error(`HTTP ${res.status}`);
@@ -137,25 +154,33 @@ export function useConciergeStream() {
         }
       }
 
-      return res.status;
+      return { kind: "ok" };
     };
 
     try {
-      const status = await runOnce();
+      const result = await runOnce();
 
-      // Rate limited. Rotate to a fresh session and retry the same message once.
-      if (status === 429) {
-        sessionIdRef.current = rotateSessionId();
-        conversationIdRef.current = null;
-        setState((s) => ({ ...s, conversationId: null }));
+      if (result.kind === "rate_limit") {
+        if (result.error === "ip_limit") {
+          // Enforced per IP across sessions. Rotating would just hit it again,
+          // so show the server message and stop.
+          setAssistantError(
+            result.message || "Daily limit reached. Please come back tomorrow.",
+          );
+        } else {
+          // session_limit. Rotate to a fresh session and retry the message once.
+          sessionIdRef.current = rotateSessionId();
+          conversationIdRef.current = null;
+          setState((s) => ({ ...s, conversationId: null }));
 
-        try {
-          const retryStatus = await runOnce();
-          if (retryStatus === 429) {
+          try {
+            const retry = await runOnce();
+            if (retry.kind === "rate_limit") {
+              setAssistantError("This chat is taking a break. Please try again shortly.");
+            }
+          } catch {
             setAssistantError("This chat is taking a break. Please try again shortly.");
           }
-        } catch {
-          setAssistantError("This chat is taking a break. Please try again shortly.");
         }
       }
     } catch {
