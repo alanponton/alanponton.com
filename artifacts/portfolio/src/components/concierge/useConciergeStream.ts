@@ -48,6 +48,7 @@ export function useConciergeStream(sessionId: string) {
         error: null,
       }));
 
+      let httpStatus: number | null = null; // TEMP DEBUG
       try {
         const res = await fetch(FUNCTION_URL, {
           method: "POST",
@@ -63,7 +64,8 @@ export function useConciergeStream(sessionId: string) {
         });
 
         if (!res.ok || !res.body) {
-          throw new Error(`HTTP ${res.status}`);
+          httpStatus = res.status; // TEMP DEBUG
+          throw new Error(`HTTP ${res.status}${!res.body ? " (no body)" : ""}`);
         }
 
         const reader = res.body.getReader();
@@ -120,13 +122,16 @@ export function useConciergeStream(sessionId: string) {
           }
         }
       } catch (err) {
+        // TEMP DEBUG — surface real error detail for mobile debugging (remove after)
+        const e = err as Error;
+        const debugMsg = `Debug: ${e?.name ?? "Error"}: ${e?.message ?? String(err)}${httpStatus !== null ? ` (HTTP ${httpStatus})` : ""}`;
         setState((s) => ({
           ...s,
           isStreaming: false,
           error: String(err),
           messages: s.messages.map((m) =>
             m.id === assistantMsg.id
-              ? { ...m, content: "Something went wrong. Try again in a moment.", streaming: false }
+              ? { ...m, content: debugMsg, streaming: false }
               : m,
           ),
         }));
