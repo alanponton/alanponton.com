@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Download, CheckCircle2, Clock, Github } from "lucide-react";
+import { Download, CheckCircle2, Github } from "lucide-react";
 import { Link } from "wouter";
 import { Container } from "@/components/ui/container";
 import { projects } from "@/data/projects";
@@ -9,7 +9,7 @@ import { projects } from "@/data/projects";
 
 const resumeSummaries: Record<string, string> = {
   "metroplex-match":
-    "AI-powered dating platform with 6 specialized coaches guiding DFW singles to real compatibility. 205+ users.",
+    "AI-powered dating platform with 6 specialized coaches guiding DFW singles to real compatibility. Built, pre-launch.",
   "trip-buddy":
     "AI travel companion that plans the trip, keeps family updated in real-time, and provides a travel agent dashboard.",
   "follow-this-model":
@@ -141,20 +141,13 @@ const completedCerts = [
   {
     title: "Google UX Design Professional Certificate",
     issuer: "Coursera",
-    year: "2022",
+    year: "2023",
   },
   {
-    title: "Meta Frontend Developer Professional Certificate",
+    title: "Meta Front-End Developer Professional Certificate",
     issuer: "Coursera",
     year: "2024",
   },
-];
-
-const inProgressCerts = [
-  "IBM AI Engineering Professional Certificate",
-  "Microsoft AI-900 Azure AI Fundamentals",
-  "AWS Solutions Architect",
-  "AWS Machine Learning Specialty",
 ];
 
 // ── Page ─────────────────────────────────────────────────────────────────────
@@ -310,24 +303,13 @@ export function ResumePage() {
           {/* ── Education & Certifications ───────────────────────────────── */}
           <FadeUp>
             <SectionLabel>Education &amp; Certifications</SectionLabel>
-            <div className="flex flex-col gap-2 mb-3">
+            <div className="flex flex-col gap-2">
               {completedCerts.map((cert) => (
                 <div key={cert.title} className="flex items-start gap-2.5 text-sm">
                   <CheckCircle2 size={15} className="text-[#22C55E] flex-none mt-0.5" />
                   <p>
                     <span className="font-medium text-text-primary">{cert.title}</span>
                     <span className="text-text-secondary"> — {cert.issuer}, {cert.year}</span>
-                  </p>
-                </div>
-              ))}
-            </div>
-            <div className="flex flex-col gap-2">
-              {inProgressCerts.map((cert) => (
-                <div key={cert} className="flex items-start gap-2.5 text-sm">
-                  <Clock size={15} className="text-[#F97316] flex-none mt-0.5" />
-                  <p>
-                    <span className="text-text-secondary">{cert}</span>
-                    <span className="font-mono text-xs text-text-secondary/50"> — in progress</span>
                   </p>
                 </div>
               ))}

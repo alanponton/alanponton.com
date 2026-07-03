@@ -202,9 +202,9 @@ function HowItWorksSection() {
 
 const results = [
   {
-    title: "A matchmaking platform with 205+ users",
+    title: "A matchmaking platform built for real compatibility",
     description:
-      "Built an AI-powered dating platform for the Dallas–Fort Worth area with 6 specialized coaching features that guide singles to real compatibility. Grew to over 205 active users.",
+      "Built an AI-powered dating platform for the Dallas–Fort Worth area with 6 specialized coaching features that guide singles to real compatibility, not just swiping. Built, pre-launch.",
   },
   {
     title: "A security team's manual process — automated",

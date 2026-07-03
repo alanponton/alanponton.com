@@ -158,7 +158,7 @@ export function AboutTeaser() {
             >
               I went from a UX design certificate to shipping 9 production apps in under a year
               — most of them solo, all of them powered by AI-augmented development. I build
-              things that work for real people: a dating platform with 205+ users, a travel
+              things that work for real people: an AI-matched dating platform, a travel
               companion my family actually used, and an SMS coach that texts you daily.
             </motion.p>
 
