@@ -733,13 +733,13 @@ export const projects: ProjectData[] = [
       headline: "The accountability coach that lives in your texts — not in another app you'll forget to open.",
       role: "Solo Developer & Designer",
       timeline: "3 weeks",
-      status: "Live",
+      status: "Built, pre-launch",
     },
     problem: {
       headline: "Accountability apps fail because they're apps.",
       body: "The average person has 80+ apps on their phone and actively uses fewer than 10. Every new productivity or accountability tool requires the user to change a behavior — open the app, check in, log progress. That friction is exactly the friction these tools are supposed to help overcome.\n\nExisting coaching apps cost $50-200/month for human coaches, which creates access barriers. AI-powered alternatives exist but they still require app interaction, still require the user to come to the tool rather than the tool coming to the user.\n\nThe insight was simple: everyone checks their texts. SMS has a 98% open rate. If the coaching happened in the medium people already use, the friction problem disappears.",
       userStory:
-        "One user told me they'd tried 6 different productivity apps and abandoned all of them within 2 weeks. With Push Coach, they've been receiving and completing daily tasks for 4 months. 'I don't have to remember to use it. It finds me.'",
+        "I built Push Coach to test that theory on myself first. I'd abandoned every task app I'd tried within a couple weeks — the friction was always remembering to open the thing. Running my own daily goals through Push Coach during development, the SMS loop was the first structure I didn't have to remind myself to use. The task just showed up where I already was.",
     },
     solution: {
       headline: "Coaching that comes to you, not the other way around.",
@@ -769,19 +769,19 @@ export const projects: ProjectData[] = [
         title: "Claude for adaptive coaching",
         decision: "Use Claude with a rich context window and conversation history for task generation.",
         why: "Task personalization requires knowing the user's goals, their recent completions, their struggle patterns, and their current momentum. Claude's long context window and instruction-following quality was critical for maintaining coaching continuity.",
-        result: "Task relevance scores from user feedback are significantly higher than a rule-based alternative prototype. Users report that tasks feel tailored to where they actually are in their goals.",
+        result: "Ran a rule-based task generator side-by-side with the Claude version against my own goal data. The rule-based prompts repeated themselves within a week; Claude's tasks kept referencing actual completion history and current struggle points, which is what made the coaching feel continuous rather than templated.",
       },
       {
         title: "n8n for scheduling workflows",
         decision: "Use n8n instead of cron jobs or cloud schedulers for message timing.",
         why: "Morning send time, follow-up delay, and weekend behavior all need to be configurable per-user and easy to modify as we learn. n8n workflows are visual and fast to iterate on.",
-        result: "6 active automation workflows managing thousands of daily sends. Changed the default follow-up timing 3 times based on user behavior data — each change was a 5-minute workflow edit.",
+        result: "6 active automation workflows handle the full send, follow-up, and reset cycle. While dogfooding the app myself, I changed the default follow-up timing 3 times to find a cadence that didn't feel naggy — each change was a 5-minute workflow edit with no redeploy.",
       },
     ],
     results: [
       { value: "99.7%", label: "Cost Reduction", description: "vs. human coaching alternatives" },
       { value: "6", label: "Automation Workflows", description: "Managing daily sends and follow-ups" },
-      { value: "94%", label: "Profit Margin", description: "SMS + AI cost structure" },
+      { value: "3 wks", label: "Solo Build", description: "Concept to a working SMS coach" },
       { value: "98%", label: "Message Open Rate", description: "vs ~20% for push notifications" },
     ],
     features: [

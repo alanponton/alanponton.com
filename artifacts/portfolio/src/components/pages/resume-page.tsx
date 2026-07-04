@@ -234,7 +234,7 @@ export function ResumePage() {
           <FadeUp className="mb-10">
             <SectionLabel>Summary</SectionLabel>
             <p className="text-text-secondary text-base leading-relaxed">
-              Product-minded UX designer who owns the full arc: research, information architecture, interaction and visual design, and the production build. I design for real users under real constraints, ship, and iterate. Two end-to-end case studies carry the story. One is a productized travel platform built under severe constraint. The other is a security operations tool taken through three documented versions. Google UX Design and Meta Front-End certified. AI-augmented development is my force multiplier. It lets one designer carry an idea from research to a live, maintained product.
+              Product-minded UX designer who owns the full arc from problem framing through interaction and visual design, prototyping, and detailed specifications, then ships the production build. I design commerce and product experiences under real constraints, partner with engineering from inception through implementation in agile, and defend design decisions with best-practice reasoning and business rationale. Because I build and deploy what I design, my interface and interaction work is grounded in what actually ships. Moderated and unmoderated usability testing and formal quantitative research are an area I am actively growing. Google UX Design and Meta Front-End certified.
             </p>
           </FadeUp>
 
