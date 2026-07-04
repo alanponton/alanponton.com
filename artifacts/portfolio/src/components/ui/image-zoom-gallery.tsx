@@ -111,7 +111,12 @@ export function ImageZoomGallery({ groups, color }: { groups: ZoomImageGroup[]; 
                     className="group relative block w-full overflow-hidden rounded-lg border border-border bg-foreground/5 hover:border-text-secondary/40 transition cursor-zoom-in"
                     aria-label={`Zoom: ${img.alt}`}
                   >
-                    <img src={img.src} alt={img.alt} className="w-full h-auto block" loading="lazy" />
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className={group.layout === "single" ? "w-auto h-auto max-h-[600px] mx-auto block" : "w-full h-auto block"}
+                      loading="lazy"
+                    />
                     <span className="absolute bottom-1.5 right-1.5 flex items-center gap-1 rounded-full bg-black/55 backdrop-blur px-2 py-0.5 text-[9px] font-mono uppercase tracking-wider text-white opacity-0 group-hover:opacity-100 transition">
                       <Search className="w-2.5 h-2.5" /> Zoom
                     </span>
