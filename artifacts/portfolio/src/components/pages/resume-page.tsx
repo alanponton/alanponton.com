@@ -105,14 +105,14 @@ const experience = [
     company: "Independent",
     period: "2025–Present",
     description:
-      "Designing and shipping production software end-to-end — research, IA, interaction and visual design, and the build. Owned the full arc on two flagship case studies: Lonnie's Locations (productized group-travel platform with AI concierge, guest portal, real-time admin escalation) and 2100 Security (three documented versions, including a self-correction reversing my own work in users' favor). 9+ shipped products. AI-augmented development as force multiplier.",
+      "Designing and shipping production software end-to-end: research, IA, interaction and visual design, and the build. Owned the full arc on two flagship case studies: Lonnie's Locations (productized group-travel platform with AI concierge, guest portal, real-time admin escalation) and 2100 Security (three documented versions, including a self-correction reversing my own work in users' favor). 9+ shipped products. AI-augmented development as force multiplier.",
   },
   {
     role: "Security Operations Lead",
-    company: "Guard Texas — 2100 Security",
+    company: "Guard Texas, 2100 Security",
     period: "2019–Present",
     description:
-      "Leading security operations for a 24/7 team at a 33-floor high-rise while simultaneously building production software. Developed and deployed 2100Security.com — an AI-powered scheduling and communication platform approved for company-wide use.",
+      "Leading security operations for a 24/7 team at a 33-floor high-rise while simultaneously building production software. Developed and deployed 2100Security.com, a scheduling and communication platform in nightly production use at two Guard Texas locations.",
   },
   {
     role: "UX Design Consultant",
@@ -133,7 +133,7 @@ const experience = [
     company: "Experian / Direct Tech Marketing",
     period: "1998–2003",
     description:
-      "Processed and transformed large-scale client data files for direct marketing campaigns using JCL, SQL, and proprietary tools. Served major clients like Land's End on a 12-person production team — appending, segmenting, and optimizing customer databases.",
+      "Processed and transformed large-scale client data files for direct marketing campaigns using JCL, SQL, and proprietary tools. Served major clients like Land's End on a 12-person production team, appending, segmenting, and optimizing customer databases.",
   },
 ];
 
@@ -309,7 +309,7 @@ export function ResumePage() {
                   <CheckCircle2 size={15} className="text-[#22C55E] flex-none mt-0.5" />
                   <p>
                     <span className="font-medium text-text-primary">{cert.title}</span>
-                    <span className="text-text-secondary"> — {cert.issuer}, {cert.year}</span>
+                    <span className="text-text-secondary">, {cert.issuer}, {cert.year}</span>
                   </p>
                 </div>
               ))}

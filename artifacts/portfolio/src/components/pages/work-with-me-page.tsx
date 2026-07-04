@@ -66,7 +66,7 @@ function HeroSection() {
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.25 }}
           className="text-text-secondary text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto"
         >
-          You don't need to understand the technology — you just need it to work. I build custom
+          You don't need to understand the technology. You just need it to work. I build custom
           apps, automations, and AI-powered tools tailored to how your business actually operates.
           You tell me the problem. I build the solution.
         </motion.p>
@@ -96,25 +96,25 @@ const services = [
     Icon: Zap,
     title: "Automate the busywork",
     description:
-      "If your team is doing the same task over and over, I can build a system that handles it automatically. Scheduling, notifications, data entry, follow-ups — the repetitive stuff disappears.",
+      "If your team is doing the same task over and over, I can build a system that handles it automatically. Scheduling, notifications, data entry, follow-ups: the repetitive stuff disappears.",
   },
   {
     Icon: Layout,
     title: "A custom app for your team",
     description:
-      "Need a tool that does exactly what your business needs and nothing it doesn't? I build clean, simple apps your team will actually use — no bloated software, no learning curve.",
+      "Need a tool that does exactly what your business needs and nothing it doesn't? I build clean, simple apps your team will actually use. No bloated software, no learning curve.",
   },
   {
     Icon: Bot,
     title: "AI that works for you",
     description:
-      "An AI assistant that knows your business, answers your customers, or coaches your team. Not a gimmick — a real tool that saves time and makes people's jobs easier.",
+      "An AI assistant that knows your business, answers your customers, or coaches your team. Not a gimmick, a real tool that saves time and makes people's jobs easier.",
   },
   {
     Icon: TrendingUp,
     title: "A platform your customers love",
     description:
-      "Whether it's a client portal, a booking system, or a community platform — I build the kind of experience that makes people want to come back.",
+      "Whether it's a client portal, a booking system, or a community platform, I build the kind of experience that makes people want to come back.",
   },
 ];
 
@@ -159,7 +159,7 @@ const steps = [
   {
     number: "2",
     title: "I build",
-    body: "I design and build your solution — keeping you in the loop with real progress, not vague updates. You'll see it take shape.",
+    body: "I design and build your solution, keeping you in the loop with real progress, not vague updates. You'll see it take shape.",
   },
   {
     number: "3",
@@ -207,14 +207,14 @@ const results = [
       "Built an AI-powered dating platform for the Dallas–Fort Worth area with 6 specialized coaching features that guide singles to real compatibility, not just swiping. Built, pre-launch.",
   },
   {
-    title: "A security team's manual process — automated",
+    title: "A security team's manual process, automated",
     description:
-      "A 24/7 security team at a 33-floor high-rise was running on paper schedules and group texts. Built them a custom operations platform. Now approved for company-wide use.",
+      "A 24/7 security team at a 33-floor high-rise was running on paper schedules and group texts. Built them a custom operations platform. Now in nightly use at two locations.",
   },
   {
     title: "A personal AI coach that texts you every morning",
     description:
-      "Built an AI accountability coach that sends a personalized task every morning and follows up if you don't respond. No app to download — it works through text messages.",
+      "Built an AI accountability coach that sends a personalized task every morning and follows up if you don't respond. No app to download. It works through text messages.",
   },
 ];
 
@@ -297,7 +297,7 @@ function CTASection() {
     <section className="py-24 bg-surface">
       <Container>
         <div className="max-w-3xl mx-auto" ref={ref}>
-          {/* Animated gradient border — same pattern as homepage contact CTA */}
+          {/* Animated gradient border, same pattern as homepage contact CTA */}
           <div className="relative rounded-2xl p-px overflow-hidden">
             <motion.div
               className="absolute w-[300%] h-[300%] -left-full -top-full"
@@ -334,7 +334,7 @@ function CTASection() {
                 transition={{ duration: 0.6, delay: 0.25 }}
                 className="text-text-secondary text-base md:text-lg leading-relaxed mb-10 max-w-lg mx-auto"
               >
-                Tell me what you're working on. Even if you're not sure what you need yet — that's
+                Tell me what you're working on. Even if you're not sure what you need yet, that's
                 fine. Let's figure it out together.
               </motion.p>
 
