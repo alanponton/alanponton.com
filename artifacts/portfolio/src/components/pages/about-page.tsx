@@ -206,7 +206,7 @@ const timelineEntries = [
       "Managed enterprise infrastructure with security clearance. Eleven years of keeping critical government systems running and secure.",
   },
   {
-    period: "2021–2022",
+    period: "2021–2023",
     role: "UX Design Pivot",
     org: "Google UX Design Certificate",
     description:
@@ -502,7 +502,7 @@ const completedCerts = [
   {
     title: "Google UX Design Professional Certificate",
     issuer: "Coursera",
-    year: "2022",
+    year: "2023",
   },
   {
     title: "Meta Frontend Developer Professional Certificate",
