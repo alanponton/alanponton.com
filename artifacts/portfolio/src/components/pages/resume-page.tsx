@@ -19,7 +19,7 @@ const resumeSummaries: Record<string, string> = {
   "2100-security":
     "Operations platform for a 24/7 security team at a 33-floor high-rise. Replaced manual scheduling and modernized comms.",
   "sophia-ai":
-    "Voice AI assistant with long-term memory and real-time web awareness. Achieved 94% token cost reduction and 70% latency improvement through systematic optimization.",
+    "Reusable voice AI assistant platform with calendar, email, and contacts integration, powering 3+ products at 95% lower cost than commercial AI assistant platforms.",
 };
 
 // ── Animation helper ─────────────────────────────────────────────────────────
