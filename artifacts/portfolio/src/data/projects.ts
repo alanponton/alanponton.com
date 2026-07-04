@@ -387,6 +387,116 @@ export const projects: ProjectData[] = [
     ],
   },
   {
+    slug: "rose",
+    title: "ROSE",
+    description:
+      "A white-label AI front-desk agent for small businesses. Answers questions, takes bookings, and captures leads around the clock. Live at poweredbyrose.com, pre-revenue.",
+    category: "AI Platform",
+    color: "#8B2942",
+    gallery: [
+      { src: "/projects/rose/rose-landing.png", caption: "Landing page", inCard: true },
+      { src: "/projects/rose/rose-booking-chat.png", caption: "Booking conversation", inCard: true },
+      { src: "/projects/rose/rose-leads-dashboard.png", caption: "Leads dashboard", inCard: true },
+    ],
+    tech: ["Next.js", "TypeScript", "Anthropic Claude", "Supabase", "Vercel", "Cloudflare Turnstile"],
+    stats: [
+      { value: "60 sec", label: "Setup Wizard" },
+      { value: "2", label: "Gate Abuse Door" },
+      { value: "24/7", label: "Lead Capture" },
+    ],
+    hero: {
+      headline: "An AI front desk that answers, books, and captures leads for small businesses, day and night.",
+      role: "UX Designer and Full-Stack Developer (solo)",
+      timeline: "2025 to Present",
+      status: "Live in production, pre-revenue",
+      liveUrl: "https://poweredbyrose.com",
+    },
+    problem: {
+      headline: "Small businesses lose customers the moment nobody answers.",
+      body: "Small businesses miss after-hours customers because there is no one at the front desk once the doors close or the phone stops ringing. Hiring dedicated front-desk coverage does not scale for a small operation, the cost and staffing burden grow faster than the business can absorb. Every unanswered question is a lost booking, a lead that goes to whichever competitor happens to pick up.",
+      imageGroups: [
+        {
+          layout: "single",
+          caption: "A booking conversation handled without anyone at the desk",
+          images: [
+            { src: "/projects/rose/rose-booking-chat.png", alt: "Rose handling a booking conversation" },
+          ],
+        },
+      ],
+    },
+    solution: {
+      headline: "A branded Rose, built in sixty seconds, that never stops answering.",
+      body: "ROSE replaces the front desk with conversational AI intake. A five-question setup wizard builds a fully branded Rose agent in sixty seconds, ready to answer questions, take bookings, and capture leads the moment a business goes live. A leads dashboard captures every request with status tracking, so nothing sits unanswered in a missed-call log or an unread form.",
+      valueProposition:
+        "A five-question setup that gives any small business a front desk that never closes.",
+      imageGroups: [
+        {
+          layout: "trio",
+          caption: "Build Your Rose in 60 Seconds",
+          images: [
+            { src: "/projects/rose/rose-wizard-business-type.png", alt: "Setup wizard, business type step" },
+            { src: "/projects/rose/rose-wizard-handles.png", alt: "Setup wizard, handles step" },
+            { src: "/projects/rose/rose-wizard-meet.png", alt: "Setup wizard, meet your Rose step" },
+          ],
+        },
+      ],
+    },
+    architecture: {
+      description:
+        "Next.js 14 runs serverless on Vercel. Anthropic Claude handles the conversation with tool and function calling, so the agent takes structured actions (booking a slot, logging a lead) while staying in natural voice rather than free text. Supabase persists leads, bookings, and business configuration. The owner gets an email notification on every captured lead. Cloudflare Turnstile plus request-rate limiting sit in front of the public agent endpoint as the abuse front door.",
+      techStack: [
+        { category: "Frontend", items: ["Next.js 14", "TypeScript"] },
+        { category: "Backend", items: ["Vercel Serverless Functions", "Supabase"] },
+        { category: "AI Layer", items: ["Anthropic Claude", "Tool and Function Calling"] },
+        { category: "Security", items: ["Cloudflare Turnstile", "Request Rate Limiting"] },
+      ],
+      imageGroups: [
+        {
+          layout: "single",
+          caption: "Every captured lead lands here with status tracking",
+          images: [
+            { src: "/projects/rose/rose-leads-dashboard.png", alt: "Leads dashboard with status tracking" },
+          ],
+        },
+      ],
+    },
+    decisions: [
+      {
+        title: "Tool calling over free-text parsing",
+        decision: "Use Claude's tool and function calling so Rose takes structured actions instead of parsing free text after the fact.",
+        why: "Bookings and lead details need to land as structured data, not be inferred from a transcript after the conversation already ended.",
+        result: "Bookings persist as structured data while Rose stays conversational. Every captured request lands in the leads dashboard with structured fields, not a block of raw chat text.",
+      },
+      {
+        title: "Two-gate abuse front door",
+        decision: "Put Cloudflare Turnstile and request-rate limiting in front of a public, unauthenticated agent endpoint.",
+        why: "A public agent endpoint with no authentication is an open invitation for bot traffic and cost-driving spam requests.",
+        result: "The bot challenge plus rate limiting protects the endpoint without degrading the experience for a legitimate small business visitor working through the wizard or chatting with Rose.",
+      },
+      {
+        title: "Honest pre-revenue framing",
+        decision: "Present ROSE as deployed and developer-verified end to end, with no user or revenue claims until they are real.",
+        why: "A live deployment with a working, self-tested flow is a true claim. A user count or revenue number that has not happened yet is not, no matter how close it might be.",
+        result: "The case study states what is true right now: live in production, pre-revenue, verified end to end through the developer's own use.",
+      },
+    ],
+    results: [
+      { value: "Live", label: "In Production", description: "Deployed at poweredbyrose.com" },
+      { value: "60 sec", label: "Setup Wizard", description: "Five questions to a fully branded Rose agent" },
+      { value: "2-Gate", label: "Abuse Protection", description: "Cloudflare Turnstile plus rate limiting on a public endpoint" },
+      { value: "Solo", label: "Build", description: "Designed and built end to end by one person" },
+    ],
+    features: [
+      "White-label AI front-desk agent answering questions around the clock",
+      "Five-question setup wizard builds a fully branded Rose agent in under a minute",
+      "Conversational booking intake with structured data capture via Claude tool calling",
+      "Leads dashboard with status tracking for every captured request",
+      "Owner email notification on every captured lead",
+      "Cloudflare Turnstile plus request-rate limiting protecting the public agent endpoint",
+      "Supabase persistence for leads, bookings, and business configuration",
+    ],
+  },
+  {
     slug: "metroplex-match",
     title: "MetroPlex Match",
     description:
