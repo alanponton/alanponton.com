@@ -196,7 +196,7 @@ const timelineEntries = [
     role: "Application Developer",
     org: "Experian / Direct Tech Marketing",
     description:
-      "Processed and transformed large-scale client data files for direct marketing campaigns using JCL, SQL, and proprietary tools. Served major clients like Land's End — appending, segmenting, and optimizing customer databases on a 12-person production team.",
+      "Processed and transformed large-scale client data files for direct marketing campaigns using JCL, SQL, and proprietary tools. Served major clients like Land's End: appending, segmenting, and optimizing customer databases on a 12-person production team.",
   },
   {
     period: "2005–2019",
@@ -231,7 +231,7 @@ const timelineEntries = [
     role: "UX / Product Designer & AI-Augmented Developer",
     org: "Independent",
     description:
-      "Designing and shipping production software end-to-end — research, IA, interaction and visual design, and the build. Owned the full arc on two flagship case studies: Lonnie's Locations and 2100 Security. 9+ shipped products. AI-augmented development as force multiplier.",
+      "Designing and shipping production software end-to-end: research, IA, interaction and visual design, and the build. Owned the full arc on two flagship case studies: Lonnie's Locations and 2100 Security. 9+ shipped products. AI-augmented development as force multiplier.",
   },
 ];
 
@@ -260,9 +260,9 @@ function TimelineEntry({
       }}
       className={`relative pl-10 ${isLast ? "pb-0" : "pb-12"}`}
     >
-      {/* Dot — centered on the timeline line (line is at left: 5px, dot is w-2.5=10px → -left-0) */}
+      {/* Dot, centered on the timeline line (line is at left: 5px, dot is w-2.5=10px → -left-0) */}
       <div className="absolute left-0 top-0.5 w-[22px] h-[22px] flex items-center justify-center">
-        {/* Pulse ring — only animates when in view */}
+        {/* Pulse ring, only animates when in view */}
         {isInView && (
           <motion.div
             className="absolute inset-0 rounded-full"
@@ -657,7 +657,7 @@ function CTASection() {
                 transition={{ duration: 0.6, delay: 0.35 }}
                 className="text-text-secondary text-base md:text-lg leading-relaxed mb-10 max-w-lg mx-auto"
               >
-                Whether you're hiring, collaborating, or have a project in mind — I'd love to
+                Whether you're hiring, collaborating, or have a project in mind, I'd love to
                 hear from you.
               </motion.p>
 
