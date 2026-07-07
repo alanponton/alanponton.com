@@ -200,10 +200,10 @@ const timelineEntries = [
   },
   {
     period: "2005–2019",
-    role: "Network Administrator",
+    role: "IT Specialist 3 (Network Administration)",
     org: "State of New Jersey",
     description:
-      "Managed enterprise infrastructure with security clearance. Eleven years of keeping critical government systems running and secure.",
+      "Managed enterprise infrastructure with security clearance. Fourteen years of keeping critical government systems running and secure.",
   },
   {
     period: "2021–2023",
@@ -518,7 +518,7 @@ const professionalExp = [
     period: "1998–2003",
   },
   {
-    role: "Network Administrator",
+    role: "IT Specialist 3 (Network Administration)",
     org: "State of New Jersey",
     period: "2005–2019 · Security Clearance",
   },

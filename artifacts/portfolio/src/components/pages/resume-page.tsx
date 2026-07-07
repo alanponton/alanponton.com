@@ -122,7 +122,7 @@ const experience = [
       "Managing live client websites with ongoing optimization. Applied user-centered design methodology to AI interface development. Client relationships provided the foundation for AI agent testing and deployment.",
   },
   {
-    role: "Network Administrator",
+    role: "IT Specialist 3 (Network Administration)",
     company: "State of New Jersey",
     period: "2005–2019",
     description:

@@ -47,7 +47,7 @@ What it taught me: the most dangerous design failure isn't the one that tests ba
 
 ## Q5 — Why UX After Network Admin (~90 sec)
 
-I spent fourteen years as a Network Admin for the State of New Jersey, and before that I was an Application Developer at Experian. I've always built things. The honest answer is that infrastructure work taught me what good systems look like, but it never let me design the part users actually touch.
+I spent fourteen years in IT for the State of New Jersey, finishing as an IT Specialist 3 doing network administration, and before that I was an Application Developer at Experian. I've always built things. The honest answer is that infrastructure work taught me what good systems look like, but it never let me design the part users actually touch.
 
 The pivot started during the pandemic. I had time and I had questions I couldn't answer from the back end. Why do some interfaces feel calm and trustworthy and others feel chaotic, even when the underlying systems are identical? That's a design question, not an engineering one.
 
