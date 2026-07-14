@@ -71,131 +71,6 @@ export interface ProjectData {
 
 export const projects: ProjectData[] = [
   {
-    slug: "lonnies-locations",
-    title: "Lonnie's Locations",
-    description:
-      "A productized group-travel platform for an independent advisor. Per-trip branded experiences, AI concierge, and self-service guest portal.",
-    category: "Client Project",
-    color: "#D4A574",
-    gallery: [
-      { src: "/projects/Lonnies/lonnies_home_mobile_trip_card.png", caption: "Trip card — Sunny Celebration", inCard: true },
-      { src: "/projects/Lonnies/lonnies_home_mobile.png", caption: "Homepage hero", inCard: true },
-      { src: "/projects/Lonnies/lonnies_home_mobile_concierge.png", caption: "AI concierge", inCard: true },
-    ],
-    tech: ["React", "TypeScript", "Tailwind CSS", "Anthropic Claude", "Supabase", "Cloudflare"],
-
-    stats: [
-      { value: "3", label: "Live Trips" },
-      { value: "30+", label: "Guests Served" },
-      { value: "$2.50/mo", label: "Infrastructure Cost" },
-      { value: "0", label: "Promise-Breaking UI" },
-    ],
-
-    hero: {
-      headline: "Premium group travel, productized, without losing the high-touch.",
-      role: "UX Designer & Full-Stack Developer (solo)",
-      timeline: "Dec 2025 to present",
-      status: "Live in production",
-      liveUrl: "https://lonnieslocations.com",
-    },
-
-    problem: {
-      headline: "A thriving high-touch travel business with zero digital infrastructure.",
-      body: "An independent travel advisor was running 30 plus person group trips out of Chicago, and her business was built entirely on direct relationships. The success was crushing her. One anxious guest could send four messages a week, all in the same five categories. Passports. Vaccinations. Packing. Motion sickness. Payment timing. Multiply that by thirty guests across three concurrent trips, and the math stopped working.\n\nThe structural problem was harder than the volume. Every trip was different. A Royal Caribbean family cruise, a Caribbean milestone voyage, and a month-long East Africa journey share almost nothing. They have different booking shapes, different commitment levels, different anxieties. But they had to feel like one coherent premium brand, or the productized promise collapsed.",
-    },
-
-    solution: {
-      headline: "A productized platform that absorbs the repetitive work and lets the relationship work scale.",
-      body: "Lonnie's Locations is a per-trip branded platform with three pillars. A trip-aware AI concierge that absorbs the recurring questions. Reservation flows designed structurally around how each trip actually commits. A passwordless self-service guest portal that ends the status-anxiety loop.\n\nNew trips launch as content entries, not redesigns. The architecture flexes between cruise structure and journey structure while shared components like the concierge, the portal, and the brand system stay constant.\n\nThe concierge is the headline feature, but the real design work is in the judgment layer. What it refuses to answer. How it hands off to a human. How every escalation reaches the advisor with full context, instead of disappearing into a banner that promised more than the system delivered.",
-      valueProposition:
-        "Productized premium travel that respects the relationship at the heart of the business. Designed for an older, anxious, mobile-first audience where accessibility and microcopy are where the premium actually lives.",
-      imageGroups: [
-        {
-          layout: "trio",
-          caption: "The three guest-facing pillars: concierge, reservation flow, status portal",
-          images: [
-            { src: "/projects/Lonnies/lonnies_home_mobile_concierge.png", alt: "Trip-aware AI concierge answering a guest question", theme: "light" },
-            { src: "/projects/Lonnies/lonnies_home_mobile_choose_cabin.png", alt: "Cruise reservation flow, cabin selection", theme: "light" },
-            { src: "/projects/Lonnies/lonnies_home_mobile_trip_status.png", alt: "Passwordless guest portal showing trip status", theme: "light" },
-          ],
-        },
-      ],
-    },
-
-    architecture: {
-      description:
-        "A trip-type model abstracts the shared guest journey of discover, understand, reserve, and track. The middle layer flexes between cruise structure with cabin selection, a single ship, and a fixed sailing, and journey structure with a multi-leg timeline, per-leg hotel choices, and flexible participation. Shared components stay constant. Trip-specific components swap underneath. The concierge runs on a per-trip knowledge base. The admin dashboard receives real-time escalations with full conversation transcripts. The whole system operates at roughly $2.50 per month in infrastructure cost.",
-      imageGroups: [
-        {
-          layout: "pair",
-          caption: "The advisor's command center: live escalations and the client pipeline",
-          images: [
-            { src: "/projects/Lonnies/admin-top-page.jpg", alt: "Admin dashboard showing all escalations clear", theme: "light" },
-            { src: "/projects/Lonnies/admin-traveler-list-redacted.jpg", alt: "Client pipeline with status filters, client details anonymized", theme: "light" },
-          ],
-        },
-      ],
-      techStack: [
-        { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
-        { category: "Conversation", items: ["Anthropic Claude", "Per-trip knowledge base", "Conversation design"] },
-        { category: "Backend", items: ["Supabase", "PostgreSQL", "Magic-link authentication"] },
-        { category: "Infrastructure", items: ["Cloudflare Pages", "$2.50 per month"] },
-      ],
-    },
-
-    decisions: [
-      {
-        title: "Identifying the escalation banner as a trust-integrity defect",
-        decision:
-          "Rebuild the AI concierge's human-handoff into a real closed loop with a live admin dashboard, urgency-coded alerts, audible chime, and full transcript context.",
-        why:
-          "When the agent hit something it shouldn't answer, the interface promised the guest that Lonnie had been notified and would reach out personally. The system was not keeping that promise. Nothing actually notified her. A UI lie is a trust defect, not a polish item. Designing for trust meant making the banner literally true.",
-        result:
-          "Escalations now reach the advisor with color-coded urgency. Medical questions show red. Payment questions show gold. Cancellations show orange. She gets a transcript so she has context before she reaches out, and the agent proactively captures the guest's best contact method. The banner became a real promise the system keeps.",
-      },
-      {
-        title: "Reversing my own designer-imposition failure mid-build",
-        decision:
-          "Archive the elevated aspirational itinerary I had designed for a client's birthday trip and make her actual chosen plans canonical.",
-        why:
-          "I had swapped her real plans, club nights and a specific beach-club birthday dinner, for a high-end safari. I did it on instinct that a premium trip should feel a certain way. On review I recognized the pattern. I had designed for an aspirational persona instead of the actual user. The fix was not a tweak. It was reversing my own work and making one principle govern the rest of the build. The experience must reflect who the client actually is, not who I assume a premium traveler should be.",
-        result:
-          "A design discipline that carried through the rest of the project. No aspirational overrides. No assumptions about what a premium traveler should want. The case study for what UX research is actually for. Catching designer bias before it ships.",
-      },
-      {
-        title: "Treating the concierge as conversation design first, engineering second",
-        decision:
-          "Build the concierge around what it should refuse to answer, not just what it can answer. Honest boundaries on pricing, medical, refund, and group-conflict questions. Trip-aware persona. Suggested-question chips for the blank-prompt problem.",
-        why:
-          "A travel concierge that bluffs a price quote or guesses at a medical question damages the relationship it is supposed to protect. The premium experience comes from a concierge that knows when to hand off. The product is the judgment, not the omniscience. What the assistant says, what it refuses, and how it hands off is the design. The model wiring is the easy part.",
-        result:
-          "A concierge guests trust because it acknowledges its limits, escalates real judgment calls to a human, and surfaces the highest-anxiety topics like passport, packing, and payments up front through data-driven suggested questions per trip. A 25,000 character knowledge base derived from the advisor's real inbox grounds it in actual guest questions, not hypothetical ones.",
-      },
-    ],
-
-    results: [
-      { value: "3", label: "Live Trips", description: "Cruise, voyage, multi-country journey" },
-      { value: "30+", label: "Guests Served", description: "Confirmed group cruise plus ongoing trips" },
-      { value: "$2.50/mo", label: "Infrastructure Cost", description: "vs. $200–400/yr commercial alternatives" },
-      { value: "0", label: "Promise-Breaking UI", description: "Every banner the system shows is one the system keeps" },
-    ],
-
-    features: [
-      "AI travel concierge with trip-aware persona and a 25,000 character per-trip knowledge base",
-      "Real-time admin dashboard with urgency-coded escalation alerts and full transcript context",
-      "Structurally distinct reservation flows. Cruise modal versus journey multi-leg selector.",
-      "Passwordless magic-link guest portal with status microcopy that reads as reassurance",
-      "\"Important to Know\" disclosure pattern with required acknowledgment for trip-blocking realities",
-      "Accessibility-first premium aesthetic with dual-layer text shadows, reduced-motion honor, and mobile-first layout",
-      "Editorial personalization layer with per-trip theme, hero line, narrative, and concierge prompts",
-      "Custom branded social-preview cards designed around the trip date as the hero element",
-      "Streaming concierge responses for perceived performance",
-      "Suggested-question chips surfacing the highest-anxiety topics first",
-      "Honest refusal boundaries on pricing, medical, refund, and group-conflict questions",
-      "Productized model where new trips launch as content entries, not redesigns",
-    ],
-  },
-  {
     slug: "2100-security",
     title: "2100 Security",
     description:
@@ -384,6 +259,131 @@ export const projects: ProjectData[] = [
       "Dark-by-default, high-contrast, mobile-first, zero horizontal scroll",
       "Employee-ID authentication with locked guard switcher and logout",
       "Safari/iOS compatibility hardening across all interactive features",
+    ],
+  },
+  {
+    slug: "lonnies-locations",
+    title: "Lonnie's Locations",
+    description:
+      "A productized group-travel platform for an independent advisor. Per-trip branded experiences, AI concierge, and self-service guest portal.",
+    category: "Client Project",
+    color: "#D4A574",
+    gallery: [
+      { src: "/projects/Lonnies/lonnies_home_mobile_trip_card.png", caption: "Trip card — Sunny Celebration", inCard: true },
+      { src: "/projects/Lonnies/lonnies_home_mobile.png", caption: "Homepage hero", inCard: true },
+      { src: "/projects/Lonnies/lonnies_home_mobile_concierge.png", caption: "AI concierge", inCard: true },
+    ],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Anthropic Claude", "Supabase", "Cloudflare"],
+
+    stats: [
+      { value: "3", label: "Live Trips" },
+      { value: "30+", label: "Guests Served" },
+      { value: "$2.50/mo", label: "Infrastructure Cost" },
+      { value: "0", label: "Promise-Breaking UI" },
+    ],
+
+    hero: {
+      headline: "Premium group travel, productized, without losing the high-touch.",
+      role: "UX Designer & Full-Stack Developer (solo)",
+      timeline: "Dec 2025 to present",
+      status: "Live in production",
+      liveUrl: "https://lonnieslocations.com",
+    },
+
+    problem: {
+      headline: "A thriving high-touch travel business with zero digital infrastructure.",
+      body: "An independent travel advisor was running 30 plus person group trips out of Chicago, and her business was built entirely on direct relationships. The success was crushing her. One anxious guest could send four messages a week, all in the same five categories. Passports. Vaccinations. Packing. Motion sickness. Payment timing. Multiply that by thirty guests across three concurrent trips, and the math stopped working.\n\nThe structural problem was harder than the volume. Every trip was different. A Royal Caribbean family cruise, a Caribbean milestone voyage, and a month-long East Africa journey share almost nothing. They have different booking shapes, different commitment levels, different anxieties. But they had to feel like one coherent premium brand, or the productized promise collapsed.",
+    },
+
+    solution: {
+      headline: "A productized platform that absorbs the repetitive work and lets the relationship work scale.",
+      body: "Lonnie's Locations is a per-trip branded platform with three pillars. A trip-aware AI concierge that absorbs the recurring questions. Reservation flows designed structurally around how each trip actually commits. A passwordless self-service guest portal that ends the status-anxiety loop.\n\nNew trips launch as content entries, not redesigns. The architecture flexes between cruise structure and journey structure while shared components like the concierge, the portal, and the brand system stay constant.\n\nThe concierge is the headline feature, but the real design work is in the judgment layer. What it refuses to answer. How it hands off to a human. How every escalation reaches the advisor with full context, instead of disappearing into a banner that promised more than the system delivered.",
+      valueProposition:
+        "Productized premium travel that respects the relationship at the heart of the business. Designed for an older, anxious, mobile-first audience where accessibility and microcopy are where the premium actually lives.",
+      imageGroups: [
+        {
+          layout: "trio",
+          caption: "The three guest-facing pillars: concierge, reservation flow, status portal",
+          images: [
+            { src: "/projects/Lonnies/lonnies_home_mobile_concierge.png", alt: "Trip-aware AI concierge answering a guest question", theme: "light" },
+            { src: "/projects/Lonnies/lonnies_home_mobile_choose_cabin.png", alt: "Cruise reservation flow, cabin selection", theme: "light" },
+            { src: "/projects/Lonnies/lonnies_home_mobile_trip_status.png", alt: "Passwordless guest portal showing trip status", theme: "light" },
+          ],
+        },
+      ],
+    },
+
+    architecture: {
+      description:
+        "A trip-type model abstracts the shared guest journey of discover, understand, reserve, and track. The middle layer flexes between cruise structure with cabin selection, a single ship, and a fixed sailing, and journey structure with a multi-leg timeline, per-leg hotel choices, and flexible participation. Shared components stay constant. Trip-specific components swap underneath. The concierge runs on a per-trip knowledge base. The admin dashboard receives real-time escalations with full conversation transcripts. The whole system operates at roughly $2.50 per month in infrastructure cost.",
+      imageGroups: [
+        {
+          layout: "pair",
+          caption: "The advisor's command center: live escalations and the client pipeline",
+          images: [
+            { src: "/projects/Lonnies/admin-top-page.jpg", alt: "Admin dashboard showing all escalations clear", theme: "light" },
+            { src: "/projects/Lonnies/admin-traveler-list-redacted.jpg", alt: "Client pipeline with status filters, client details anonymized", theme: "light" },
+          ],
+        },
+      ],
+      techStack: [
+        { category: "Frontend", items: ["React", "TypeScript", "Tailwind CSS"] },
+        { category: "Conversation", items: ["Anthropic Claude", "Per-trip knowledge base", "Conversation design"] },
+        { category: "Backend", items: ["Supabase", "PostgreSQL", "Magic-link authentication"] },
+        { category: "Infrastructure", items: ["Cloudflare Pages", "$2.50 per month"] },
+      ],
+    },
+
+    decisions: [
+      {
+        title: "Identifying the escalation banner as a trust-integrity defect",
+        decision:
+          "Rebuild the AI concierge's human-handoff into a real closed loop with a live admin dashboard, urgency-coded alerts, audible chime, and full transcript context.",
+        why:
+          "When the agent hit something it shouldn't answer, the interface promised the guest that Lonnie had been notified and would reach out personally. The system was not keeping that promise. Nothing actually notified her. A UI lie is a trust defect, not a polish item. Designing for trust meant making the banner literally true.",
+        result:
+          "Escalations now reach the advisor with color-coded urgency. Medical questions show red. Payment questions show gold. Cancellations show orange. She gets a transcript so she has context before she reaches out, and the agent proactively captures the guest's best contact method. The banner became a real promise the system keeps.",
+      },
+      {
+        title: "Reversing my own designer-imposition failure mid-build",
+        decision:
+          "Archive the elevated aspirational itinerary I had designed for a client's birthday trip and make her actual chosen plans canonical.",
+        why:
+          "I had swapped her real plans, club nights and a specific beach-club birthday dinner, for a high-end safari. I did it on instinct that a premium trip should feel a certain way. On review I recognized the pattern. I had designed for an aspirational persona instead of the actual user. The fix was not a tweak. It was reversing my own work and making one principle govern the rest of the build. The experience must reflect who the client actually is, not who I assume a premium traveler should be.",
+        result:
+          "A design discipline that carried through the rest of the project. No aspirational overrides. No assumptions about what a premium traveler should want. The case study for what UX research is actually for. Catching designer bias before it ships.",
+      },
+      {
+        title: "Treating the concierge as conversation design first, engineering second",
+        decision:
+          "Build the concierge around what it should refuse to answer, not just what it can answer. Honest boundaries on pricing, medical, refund, and group-conflict questions. Trip-aware persona. Suggested-question chips for the blank-prompt problem.",
+        why:
+          "A travel concierge that bluffs a price quote or guesses at a medical question damages the relationship it is supposed to protect. The premium experience comes from a concierge that knows when to hand off. The product is the judgment, not the omniscience. What the assistant says, what it refuses, and how it hands off is the design. The model wiring is the easy part.",
+        result:
+          "A concierge guests trust because it acknowledges its limits, escalates real judgment calls to a human, and surfaces the highest-anxiety topics like passport, packing, and payments up front through data-driven suggested questions per trip. A 25,000 character knowledge base derived from the advisor's real inbox grounds it in actual guest questions, not hypothetical ones.",
+      },
+    ],
+
+    results: [
+      { value: "3", label: "Live Trips", description: "Cruise, voyage, multi-country journey" },
+      { value: "30+", label: "Guests Served", description: "Confirmed group cruise plus ongoing trips" },
+      { value: "$2.50/mo", label: "Infrastructure Cost", description: "vs. $200–400/yr commercial alternatives" },
+      { value: "0", label: "Promise-Breaking UI", description: "Every banner the system shows is one the system keeps" },
+    ],
+
+    features: [
+      "AI travel concierge with trip-aware persona and a 25,000 character per-trip knowledge base",
+      "Real-time admin dashboard with urgency-coded escalation alerts and full transcript context",
+      "Structurally distinct reservation flows. Cruise modal versus journey multi-leg selector.",
+      "Passwordless magic-link guest portal with status microcopy that reads as reassurance",
+      "\"Important to Know\" disclosure pattern with required acknowledgment for trip-blocking realities",
+      "Accessibility-first premium aesthetic with dual-layer text shadows, reduced-motion honor, and mobile-first layout",
+      "Editorial personalization layer with per-trip theme, hero line, narrative, and concierge prompts",
+      "Custom branded social-preview cards designed around the trip date as the hero element",
+      "Streaming concierge responses for perceived performance",
+      "Suggested-question chips surfacing the highest-anxiety topics first",
+      "Honest refusal boundaries on pricing, medical, refund, and group-conflict questions",
+      "Productized model where new trips launch as content entries, not redesigns",
     ],
   },
   {
