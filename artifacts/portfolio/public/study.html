@@ -382,6 +382,11 @@
     <span class="anchor">Right problem → right person → real pain → honest trade-off → shipped answer → proof</span>
   </div></details>
 
+  <details><summary>The template board (tap image to zoom)</summary><div class="a">
+    <p>Your actual FigJam board with the coaching notes. Tap to open, tap again to zoom, drag or pinch to pan.</p>
+    <img id="wbthumb" src="/whiteboard-template.png" alt="Whiteboard challenge FigJam template, six columns" style="width:100%; border:1px solid var(--line); border-radius:10px; cursor:zoom-in;" onclick="openLb()">
+  </div></details>
+
   <details><summary>The three fouls</summary><div class="a">
     <p><b>Google foul:</b> researching the real app mid-challenge. <b>Hedge foul:</b> bolting a rejected idea onto the chosen one. <b>Familiar-screen foul:</b> sketching the pain point in Frame 5 instead of the solution.</p>
   </div></details>
@@ -462,6 +467,27 @@
 </main>
 
 <footer>Private drill deck. Light lock, not a vault: keep anything truly sensitive out of this page.</footer>
+
+<div id="lb" role="dialog" aria-label="Template zoom view">
+  <button id="lbclose" onclick="closeLb()" aria-label="Close">✕</button>
+  <div id="lbscroll"><img id="lbimg" src="/whiteboard-template.png" alt="Whiteboard template, zoomed" onclick="toggleZoom(event)"></div>
+</div>
+<style>
+  #lb{display:none; position:fixed; inset:0; background:rgba(10,12,16,.97); z-index:200;}
+  #lb.open{display:block;}
+  #lbscroll{position:absolute; inset:0; overflow:auto; -webkit-overflow-scrolling:touch; display:flex;}
+  #lbimg{margin:auto; max-width:96vw; max-height:92vh; cursor:zoom-in; touch-action:pinch-zoom; border-radius:8px;}
+  #lbimg.zoomed{max-width:none; max-height:none; width:220vw; cursor:zoom-out; margin:0;}
+  #lbclose{position:fixed; top:14px; right:14px; z-index:201; width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--text); font-size:18px; cursor:pointer;}
+  #lbclose:focus-visible{outline:2px solid var(--accent);}
+</style>
+<script>
+  const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+  function openLb(){ lb.classList.add('open'); lbimg.classList.remove('zoomed'); document.body.style.overflow='hidden'; }
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  function toggleZoom(e){ lbimg.classList.toggle('zoomed'); if(lbimg.classList.contains('zoomed')){ const r=e.target.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height; requestAnimationFrame(()=>{ const s=document.getElementById('lbscroll'); s.scrollLeft=(s.scrollWidth-s.clientWidth)*x; s.scrollTop=(s.scrollHeight-s.clientHeight)*y; }); } }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
+</script>
 
 <script>
 (function(){
