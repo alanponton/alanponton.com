@@ -17,8 +17,6 @@
   html{scroll-behavior:smooth; scroll-padding-top:118px;}
   body{background:var(--bg); color:var(--text); font:16px/1.6 "Inter",system-ui,sans-serif; -webkit-font-smoothing:antialiased;}
   ::selection{background:var(--accent-dim); color:#fff;}
-
-  /* ---------- GATE ---------- */
   #gate{position:fixed; inset:0; background:var(--bg); z-index:99; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:28px;}
   #gate h1{font:700 22px "Space Grotesk"; letter-spacing:.14em; text-transform:uppercase; color:var(--muted);}
   #dots{display:flex; gap:14px;}
@@ -31,8 +29,6 @@
   #gate .shake{animation:sh .3s;}
   @keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
   #gate p{color:var(--muted); font-size:13px;}
-
-  /* ---------- HEADER + NAV ---------- */
   header{padding:34px 20px 14px; max-width:960px; margin:0 auto;}
   header h1{font:700 26px "Space Grotesk"; letter-spacing:.02em;}
   header h1 span{color:var(--accent);}
@@ -40,8 +36,6 @@
   nav{position:sticky; top:0; background:rgba(14,17,22,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); z-index:10; padding:10px 14px; display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch;}
   nav a{flex:0 0 auto; padding:9px 14px; border-radius:999px; border:1px solid var(--line); color:var(--muted); text-decoration:none; font:500 13px "IBM Plex Mono"; white-space:nowrap;}
   nav a:hover, nav a:focus-visible{color:var(--text); border-color:var(--accent); outline:none;}
-
-  /* ---------- SECTIONS ---------- */
   main{max-width:960px; margin:0 auto; padding:10px 20px 90px;}
   section{padding-top:34px;}
   .grouphead{display:flex; align-items:baseline; gap:12px; border-bottom:2px solid var(--accent); padding-bottom:8px; margin-bottom:16px;}
@@ -54,7 +48,7 @@
   details[open] summary::before{content:"–";}
   summary:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
   .a{padding:2px 18px 16px 40px; color:var(--text);}
-  .a p{margin-bottom:10px;}
+  .a p{margin-bottom:12px;}
   .a em{color:var(--muted); font-style:normal;}
   .anchor{display:inline-block; background:var(--surface2); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:8px; padding:8px 12px; font:500 13px "IBM Plex Mono"; color:var(--accent); margin-top:4px;}
   .guard{border-left:3px solid var(--warn); background:var(--surface2); border-radius:8px; padding:10px 14px; font-size:14px; margin:10px 0;}
@@ -94,6 +88,7 @@
   <a href="#c2100">2100 Constraints</a>
   <a href="#rose">ROSE & Evolution</a>
   <a href="#whiteboard">Whiteboard</a>
+  <a href="#panel">Panel Gaps</a>
   <a href="#stages">Stages 3–6</a>
   <a href="#anchors">Anchor Deck</a>
 </nav>
@@ -106,60 +101,79 @@
   <div class="grouphead"><h2>Recruiter Call</h2><span class="tag">Stage 1 · 30–45 min · Teams or phone</span></div>
 
   <details><summary>Tell me about yourself (90 sec)</summary><div class="a">
-    <p>Thanks for the opportunity. I've been looking forward to this because American's digital products reach millions of travelers, and that's the scale I want to design for. In one sentence, I'm a designer who ships: I design in Figma and build the production code myself, so nothing gets lost between design intent and what users actually touch. I bring about twenty years of technical experience, fourteen of them in enterprise IT for the State of New Jersey, where I moved from help desk to IT Specialist 3, essentially the network administrator role, and led my department's side of an email migration for a 6,600-employee agency. My recent work includes 2100 Security, a scheduling app five officers use nightly on their phones, and Lonnie's Locations, a group travel platform live in production with real guests. Bring me on, and you get someone who solves real problems for real users and wants a long-term career doing it here.</p>
+    <p>Thanks for the opportunity. I've looked forward to this because American's apps and websites reach millions of travelers, and that's the scale I want to design for.</p>
+    <p>In one sentence: I'm a designer who ships. I design the screens in Figma, then I build the real product myself, so what users get is exactly what I designed.</p>
+    <p>I bring about twenty years of technical experience. Fourteen of those were in IT for the State of New Jersey, where I worked my way up from help desk to IT Specialist 3, running the network side, and helped lead an email migration for a 6,600-person agency.</p>
+    <p>My recent work includes 2100 Security, a scheduling app that five security guards use on their phones every night, and Lonnie's Locations, a travel site that's live and serving real guests.</p>
+    <p>Bring me on, and you get someone who solves real problems for real people, and wants to build a long career doing it here.</p>
     <span class="anchor">Scale → Ships → New Jersey → Two products → Long-term</span>
   </div></details>
 
   <details><summary>Why American Airlines?</summary><div class="a">
-    <p>Three honest reasons. I'm local, so headquarters is home turf, no relocation, no hesitation. The scale: your digital products touch millions of travelers, and I want my decisions living at that scale. And I've applied to American before, going back a few years. I've wanted to be here a while. The difference now is my portfolio finally matches the ambition.</p>
+    <p>Three honest reasons. First, I'm local: your headquarters is home turf, so no relocation, no hesitation.</p>
+    <p>Second, the scale. Your apps touch millions of travelers, and I want my work to matter at that scale.</p>
+    <p>Third, I've applied to American before, going back a few years. I've wanted to be here a while. The difference now is my work finally matches the ambition.</p>
     <span class="anchor">Local → Scale → Wanted this a while</span>
   </div></details>
 
   <details><summary>Walk me through your resume</summary><div class="a">
-    <p>I started at Experian in the late nineties as an application developer in their direct-marketing arm, translating PM requirements into working code, SQL, JCL, and proprietary list-processing tools, filtering millions of records down to qualified targets. So I've been turning PM intent into shipped work since the nineties. Then fourteen years with the State of New Jersey as an IT Specialist 3 in network administration: full Active Directory admin for a 6,600-employee agency, and I led our side of a statewide email migration. In 2019 I moved to Texas and took a security operations lead role, and that's actually where my design career started. My team's scheduling tools were broken, so I asked management if I could build something better. That became 2100 Security. Along the way I completed the Google UX Design and Meta Front-End Developer certificates, and I've been doing independent UX and website consulting, including Lonnie's Locations, live with real guests. This role is the natural next step: bringing that design-and-ship discipline in-house.</p>
-    <span class="anchor">Experian, PM intent into code → New Jersey → Texas and 2100 → Certs, consulting, next step</span>
+    <p>Sure. I started at Experian in the late nineties, writing code for their direct-mail business. Product managers would tell us what a campaign needed, and my job was turning that request into working code that filtered millions of records down to the right list. So I've been turning what the business asks for into something real since the nineties.</p>
+    <p>Then fourteen years with the State of New Jersey as an IT Specialist 3 in network administration. I managed access and accounts for a 6,600-person agency and helped lead a statewide email migration.</p>
+    <p>In 2019 I moved to Texas and took a security operations lead role, and that's where my design career actually started. My team's scheduling tools were broken, so I asked management if I could build something better. That became 2100 Security, an app my guards use every night.</p>
+    <p>Along the way I earned the Google UX Design and Meta Front-End certificates and started doing independent design and website work, including Lonnie's Locations, live with real guests. This role is the natural next step: doing that same design-and-ship work inside a team.</p>
+    <span class="anchor">Experian, business intent into code → New Jersey → Texas and 2100 → Certs, consulting, next step</span>
   </div></details>
 
   <details><summary>Landmine: "Your resume says Network Administrator"</summary><div class="a">
-    <p>Right, let me be precise. My official civil service title was IT Specialist 3, in network administration. Same role, but background checks verify titles, so I've since standardized the official one everywhere.</p>
+    <p>Right, let me be precise. My official civil service title was IT Specialist 3, in network administration.</p>
+    <p>Same role, but background checks verify titles, so I've since standardized the official one everywhere.</p>
   </div></details>
 
   <details><summary>Landmine: "This would be your first formal UX title"</summary><div class="a">
-    <p>It would, and that's why my portfolio looks the way it does. I've been doing the work for years, so everything in it is shipped and in production, not concepts. I wanted the work to prove the title before I held it.</p>
+    <p>It would, and that's why my portfolio looks the way it does. Everything in it is real and running, not just ideas on paper.</p>
+    <p>I wanted the work to prove the title before I held it.</p>
   </div></details>
 
   <details><summary>Landmine: "The posting lists Axure, Sketch, Zeplin, Flinto"</summary><div class="a">
-    <p>My design tool is Figma, and my prototypes are working React code, which is higher fidelity than any prototyping tool. I haven't used those day to day, but fourteen years of enterprise IT taught me to pick up tools fast. Tools change; the design thinking transfers.</p>
+    <p>My design tool is Figma, and my prototypes are real working code, which is closer to the finished product than any prototyping tool.</p>
+    <p>I haven't used those specific tools day to day, but I pick up tools fast, fourteen years in IT will do that. Tools change. The thinking behind the design is what carries over.</p>
   </div></details>
 
-  <details><summary>Landmine: "What about formal usability testing and research methods?"</summary><div class="a">
-    <p>That's a genuine growth area, and one reason this team appeals to me. My research so far has been direct: watching my own users in real conditions and reversing my designs when they failed. What I want next is the formal side, moderated testing and structured research, inside a team like yours.</p>
+  <details><summary>Landmine: "What about formal usability testing and research?"</summary><div class="a">
+    <p>That's a real growth area for me, and one reason this team appeals to me.</p>
+    <p>So far my research has been direct: I watch my own users while they use my product, and when something fails them, I change it.</p>
+    <p>What I want next is the formal side, structured testing and research, inside a team that does it well.</p>
   </div></details>
 
   <details><summary>Landmine: "You've been working security"</summary><div class="a">
-    <p>I lead overnight security operations for a Dallas high-rise, and it became the best design lab I could ask for. My own team became my first product's users. 2100 Security exists because I lived the scheduling problem every night. Not many designers get to eat their own cooking that literally.</p>
+    <p>I lead the overnight security team at a Dallas high-rise, and it turned out to be the best design school I could ask for.</p>
+    <p>My own team became my first users. 2100 Security exists because I lived the scheduling problem every night.</p>
+    <p>Not many designers get to test their work on themselves, every shift.</p>
   </div></details>
 
   <details><summary>Greatest strengths</summary><div class="a">
-    <p>Three things. First, I ship: I don't hand off designs and hope, I build the production code myself, so what users get is what I designed. Second, I design from inside the problem: 2100 Security works because I ran that overnight schedule myself. Third, iteration without ego: my flagship has three documented versions because I kept correcting my own work in the users' favor.</p>
-    <span class="anchor">Ship → inside the problem → iteration without ego</span>
+    <p>Three things. First, I ship: I don't hand my designs to someone and hope. I build them myself, so users get exactly what I designed.</p>
+    <p>Second, I design from inside the problem: my scheduling app works because I worked those same overnight shifts.</p>
+    <p>Third, I fix my own work without ego: my main app has three versions because I kept correcting it in the users' favor.</p>
+    <span class="anchor">Ship → inside the problem → fix my own work without ego</span>
   </div></details>
 
   <details><summary>Greatest weakness</summary><div class="a">
-    <p>Formal research tooling. My feedback loops so far have been direct, nightly, in-person sessions with my users, but I haven't run moderated or unmoderated studies with proper testing tools. It's listed as a growing area on my resume, and it's the first skill I'd want to sharpen inside a team that does research at scale.</p>
-    <span class="anchor">Research tooling → direct loops so far → first skill to sharpen here</span>
+    <p>Formal research tools. My feedback so far has been face to face: I watch my users, every night, and adjust.</p>
+    <p>What I haven't done is run formal studies with proper research tools. It's listed as a growth area on my resume, and it's the first skill I'd want to build inside a team that does research at scale.</p>
+    <span class="anchor">Research tools → face-to-face feedback so far → first skill to build here</span>
   </div></details>
 
   <details><summary>Salary expectations</summary><div class="a">
-    <p><em>Deflect first:</em> Happy to talk numbers. First, can you tell me whether the team is evaluating me at the Product Designer or Senior Product Designer level? The posting covers both, and that changes the conversation.</p>
-    <p><em>If pressed:</em> Based on my research for this role in DFW, I'm targeting my researched range, and I'm flexible for the right team. Fit matters more to me than the top of the band.</p>
-    <p><em>If they won't share the level:</em> I trust American benchmarks these roles fairly, and I'm confident we'd land somewhere that works for both of us. I'd rather not anchor to the wrong level before we know which one I'm up for.</p>
-    <div class="guard"><b>Homework:</b> have the researched DFW range memorized before any call. Never negotiate on the screen.</div>
+    <p><em>Deflect first:</em> Happy to talk numbers. First, can you tell me whether the team is looking at me for the Product Designer or Senior Product Designer level? The posting covers both, and that changes the conversation.</p>
+    <p><em>If pressed:</em> Based on my research for this role in DFW, I'm targeting between 95 and 115 depending on the level, and I'm flexible for the right team. Fit matters more to me than the top of the range.</p>
+    <p><em>If they won't share the level:</em> I trust American prices these roles fairly, and I'm confident we'd land somewhere that works for both of us. I'd rather not tie myself to the wrong level before we know which one I'm up for.</p>
+    <div class="guard"><b>Backup data:</b> AA Product Designer in Dallas runs roughly 95 to 110; Senior roughly 110 to 125. Never negotiate on the screen.</div>
   </div></details>
 
   <details><summary>Logistics + your three questions</summary><div class="a">
-    <p>Local to DFW, no relocation. Available full-time, standard notice. Fully authorized, no sponsorship.</p>
-    <p><em>Ask:</em> 1) Is this targeted at Product Designer or Senior level, or candidate-dependent? 2) Product or Design Operations, which side is this req for? 3) What does the rest of the process look like, design exercise, portfolio presentation, timeline?</p>
+    <p>Local to DFW, no relocation. Available full-time, standard notice. Fully authorized to work in the US, no sponsorship.</p>
+    <p><em>Ask:</em> 1) Is this opening for the Product Designer or Senior level, or does it depend on the candidate? 2) The posting says the role can sit in Product or Design Operations, which side is this one? 3) What does the rest of the process look like, a design exercise, a portfolio presentation, and what's the timeline?</p>
     <p><em>Close:</em> I appreciate the time today. I'm excited about this one, and my full portfolio is live at alanponton.com whenever the team wants a closer look.</p>
   </div></details>
 </section>
@@ -169,60 +183,80 @@
   <div class="grouphead"><h2>Behavioral STAR</h2><span class="tag">Under 90 sec each</span></div>
 
   <details><summary>A time you got something wrong (primary)</summary><div class="a">
-    <p>Version one of 2100 Security looked great. Dark landing page, glowing accents, real security-tech polish, and I was proud of it. Then my officers told me they couldn't read it on a long overnight shift. I'd designed for the user in my head instead of a tired person at 4 a.m. in a dark stairwell. So in version two I stripped my own work back: clean palette, high contrast, readability over aesthetics. The lesson stuck: my taste is not the user's eyesight.</p>
+    <p>Version one of 2100 Security looked great. Dark screens, glowing accents, that high-tech security look, and I was proud of it. Then my guards told me they couldn't read it during a long overnight shift.</p>
+    <p>I had designed for the user in my head instead of a tired person at 4 a.m. in a dark stairwell. So in version two I stripped my own work back: cleaner colors, stronger contrast, readability over looks.</p>
+    <p>The lesson stuck: my taste is not the user's eyesight.</p>
   </div></details>
 
   <details><summary>Catching a serious mistake (backup)</summary><div class="a">
-    <p>In version two of 2100, guard names and floor assignments updated separately, and mid-build I caught that they could drift apart, meaning an officer sent to the wrong post. On a security schedule that's not cosmetic. I'd architected it wrong, so I rebuilt the data so floors travel with the guard and can't decouple. Now I validate multi-constraint systems one change at a time: change one thing, verify, then the next.</p>
+    <p>In version two of 2100, guard names and floor assignments were stored separately, and mid-build I caught that they could drift apart. That means a guard could get sent to the wrong post, and on a security schedule that's not a small bug.</p>
+    <p>I had built it wrong, so I rebuilt it: the floors now travel with the guard and can't come apart.</p>
+    <p>Since then I test systems like that one change at a time. Change one thing, check it, then the next.</p>
   </div></details>
 
   <details><summary>Handling pushback</summary><div class="a">
-    <p>I defend design decisions with rationale, never preference. When my security manager said he couldn't read the schedule on shift, I didn't defend the design, I added dark mode, because his constraint was real. When I believe the design is right, I cite the best practice, the research, or the requirement behind it. If I can't cite a reason, I shouldn't be defending it.</p>
+    <p>I defend design decisions with reasons, never with taste. When my manager said he couldn't read the schedule on shift, I didn't argue, I added dark mode, because his problem was real.</p>
+    <p>When I believe the design is right, I point to the reason behind it: the best practice, the feedback, or the requirement.</p>
+    <p>If I can't name a reason, I shouldn't be defending it.</p>
   </div></details>
 
-  <details><summary>Disagreeing with a manager (NJ, big-org story)</summary><div class="a">
-    <p>During our GroupWise-to-Exchange migration at the state, management requested an authorized email investigation. The standard method was logging into the user's PC directly. The user had already been migrated, and I knew Exchange gave us a cleaner, seamless way, no touching the machine. My supervisor didn't have confidence it would work. Instead of arguing, I set up a call between my supervisor, myself, and the DHS technician who'd trained me on the migration. The tech performed the new method live on the call, confirmed I had full access to do this for every user in our system, and followed up with an email to our management team. It became our standard method. What I learned: when your word isn't enough, don't argue harder, borrow credibility. A live demonstration ended a debate words never would have. Make it easy for the skeptic to say yes.</p>
+  <details><summary>Disagreeing with a manager (NJ, big-company story)</summary><div class="a">
+    <p>During our email migration at the state, management requested an approved email investigation. The old way was logging into the person's computer directly. But that account had already moved to the new system, and I knew a cleaner way that didn't touch their machine at all.</p>
+    <p>My supervisor didn't believe it would work. Instead of arguing, I set up a call with him, me, and the state technician who had trained me on the migration. The tech ran the new method live on that call, confirmed I had access to do it for anyone in our system, and emailed our management to back it up.</p>
+    <p>It became our standard way. What I learned: when your word isn't enough, don't argue harder, borrow credibility. A live demonstration ended a debate that words never would have.</p>
     <span class="anchor">New way → supervisor doubted → live demo call → borrow credibility, don't argue</span>
   </div></details>
 </section>
 
 <!-- ================= AI ================= -->
 <section id="ai">
-  <div class="grouphead"><h2>AI Questions</h2><span class="tag">Three stories + judgment map</span></div>
+  <div class="grouphead"><h2>AI Questions</h2><span class="tag">Three stories + judgment answers</span></div>
 
   <details><summary>Story 1: When AI got it wrong (flagship)</summary><div class="a">
-    <p>My portfolio has an AI concierge I built, trained on a knowledge base about my projects. During QA I asked it about one of my projects, and the answer sounded great, and was fabricated. It invented user numbers I never gave it and borrowed the tech stack from a different project's entry. I traced the pattern: the model was filling gaps by bleeding context between knowledge base entries. So I engineered the fix at the system level: each project's entry is its own island, no borrowing across them, and if the answer isn't in the entry, it says "I don't have that detail" and offers to connect the visitor to me. The fabrication stopped, and it changed how I QA any AI system: I don't test whether answers sound right, I test whether they trace to source.</p>
-    <span class="anchor">Concierge → invented details → island rule → trace to source</span>
+    <p>My portfolio has an AI assistant I built. It answers visitor questions using a knowledge base I wrote about my projects. While testing it, I asked about one of my projects, and the answer sounded great, and was made up. It invented numbers I never gave it and mixed in details from a different project.</p>
+    <p>I traced the pattern: the AI was filling gaps by borrowing from other entries. So I fixed it at the system level. Each project's information is now its own island, no borrowing, and if the answer isn't there, the assistant says "I don't have that detail" and offers to connect the visitor with me.</p>
+    <p>The made-up answers stopped, and it changed how I test any AI. I don't check whether an answer sounds right. I check whether it can be traced back to the source.</p>
+    <span class="anchor">Assistant → made-up details → island rule → trace to source</span>
   </div></details>
 
   <details><summary>Story 2: When AI misreported its own work</summary><div class="a">
-    <p>I had my AI coding assistant wire thirteen image files to a data file and asked it to cross-check every filename. It told me it had cross-checked, all thirteen matched. Something felt off, so I ran the check myself in the shell. They didn't all match; the AI claimed a verification it never performed. Broken images never reached production, and I took a permanent rule: AI can do the work, but verification is mine. When correctness matters, the shell is the only ground truth. Same discipline as code review.</p>
-    <span class="anchor">Thirteen files → "all matched" → ran it myself → verification is mine</span>
+    <p>I asked my AI coding assistant to connect thirteen image files to a data file, and to double-check that every filename matched. It told me it checked, and that all thirteen matched.</p>
+    <p>Something felt off, so I checked it myself, directly in the files. They didn't all match. The AI claimed it did a check it never did.</p>
+    <p>Broken images never reached the live site, and I took away a permanent rule: AI can do the work, but checking it is my job. Confidence isn't proof.</p>
+    <span class="anchor">Thirteen files → "all matched" → checked it myself → checking is my job</span>
   </div></details>
 
   <details><summary>Story 3: When AI was spot-on</summary><div class="a">
-    <p>The same concierge shows the other side. Solo, seven React components, a streaming protocol, and an edge function is weeks of work. With AI-augmented development I shipped the working end-to-end version in about a three-hour session, and my role stayed where it belongs: I made every architecture call, set the refusal boundaries and voice rules, reviewed every line, and caught two real bugs in testing before they shipped. AI compresses execution time. The decisions, the standards, and the accountability stay with me.</p>
-    <span class="anchor">Whole feature → three hours → every line reviewed → decisions stay mine</span>
+    <p>The same assistant shows the other side. Building it alone would normally take me weeks: seven components, live streaming answers, a server function.</p>
+    <p>With AI helping me code, the working version was live in about three hours. My role stayed where it belongs: I made every design and structure decision, set the rules for what it can and can't say, read every line, and caught two real bugs before launch.</p>
+    <p>AI makes me faster. The decisions and the responsibility stay with me.</p>
+    <span class="anchor">Whole feature → three hours → every line read → decisions stay mine</span>
   </div></details>
 
   <details><summary>"If AI does the work, why do we need you?"</summary><div class="a">
-    <p>Because AI has no stake in the outcome. It'll confidently ship the wrong thing, I've caught it doing exactly that. What I bring is the part AI can't do: knowing which problem is worth solving, what the user at 4 a.m. in a stairwell actually needs, and when the impressive-looking answer is wrong. AI compresses my execution time. It doesn't know my users, and it doesn't carry accountability. I do.</p>
+    <p>Because AI doesn't care if it's wrong. It will confidently build the wrong thing, I've caught it doing exactly that.</p>
+    <p>What I bring is the part AI can't: knowing which problem matters, what a tired guard at 4 a.m. actually needs, and when the impressive answer is wrong.</p>
+    <p>AI makes me faster. It doesn't know my users, and it doesn't take responsibility. I do.</p>
   </div></details>
 
   <details><summary>"Could you work without AI?"</summary><div class="a">
-    <p>Yes. I'm an intermediate coder who reads, modifies, and debugs; AI makes me faster, it's not a crutch. My design work is Figma, and design thinking doesn't need a tool at all. I'd feel the speed difference, honestly, but the quality bar wouldn't move, because the standards were never AI's to begin with.</p>
+    <p>Yes. I can read, write, and fix code myself; AI just makes me faster. And design thinking doesn't need any tool at all.</p>
+    <p>I'd feel the speed difference, honestly. But the quality wouldn't drop, because the standards were never AI's. They're mine.</p>
   </div></details>
 
   <details><summary>"How do you use AI in design, not just code?"</summary><div class="a">
-    <p>Carefully, and never for decisions. I'll use it to pressure-test a flow by arguing against my own design, to draft interface copy variations I then edit, and to summarize my own notes. What I don't do is ask it what users want. That answer only comes from users.</p>
+    <p>Carefully, and never for decisions. I'll use it to argue against my own design and see if it holds, to draft versions of screen text that I then edit, and to organize my notes.</p>
+    <p>What I never do is ask it what users want. That answer only comes from users.</p>
   </div></details>
 
   <details><summary>"Have you designed FOR AI?"</summary><div class="a">
-    <p>Yes, my portfolio concierge is a designed AI experience, not just a feature. The interesting design problems were trust problems: what it refuses to discuss, how it admits "I don't have that detail" instead of guessing, and when it escalates to a human through a contact form. Designing the boundaries mattered more than designing the chat bubble. I think that's true of most AI products.</p>
+    <p>Yes. My portfolio assistant is a designed AI experience, not just a feature.</p>
+    <p>The hard design problems were trust problems: what it refuses to talk about, how it says "I don't have that detail" instead of guessing, and when it hands the visitor to a real person, me.</p>
+    <p>Designing the limits mattered more than designing the chat window. I think that's true for most AI products.</p>
   </div></details>
 
   <details><summary>Canonical AI lines</summary><div class="a">
-    <p class="chips"><span class="anchor">AI accelerates my execution; it doesn't make my decisions.</span> <span class="anchor">I ship only what I understand.</span> <span class="anchor">I test whether it traces to source.</span></p>
+    <p class="chips"><span class="anchor">AI makes me faster; it doesn't make my decisions.</span> <span class="anchor">I ship only what I understand.</span> <span class="anchor">I check that it traces to the source.</span></p>
   </div></details>
 </section>
 
@@ -231,59 +265,86 @@
   <div class="grouphead"><h2>Portfolio & Process</h2><span class="tag">Stage 2 · hiring manager round</span></div>
 
   <details><summary>2100 walkthrough, Beat 1: Problem (45 sec)</summary><div class="a">
-    <p>2100 Security is a progressive web app for the five-person overnight team I work on at a 33-floor Dallas high-rise. The old system was a free-tier site with no SSL, so every officer got a browser security warning, a security team whose own tool looked insecure. It was static, so I rebuilt the schedule by hand monthly, and on a phone it took pinch-zoom and horizontal scrolling to read an assignment. I lived this problem every night, which is exactly why I could design for it.</p>
+    <p>2100 Security is a web app for the five-person overnight security team I work on at a 33-floor Dallas high-rise. The old system was a free website with no security certificate, so every guard got a browser warning just opening it. A security team whose own tool looked unsafe.</p>
+    <p>The site couldn't update itself, so I rebuilt the schedule by hand every month. And on a phone, you had to pinch, zoom, and scroll sideways just to read your assignment.</p>
+    <p>I lived this problem every night, which is exactly why I could design for it.</p>
   </div></details>
 
   <details><summary>Beat 2: Users and constraints (60 sec)</summary><div class="a">
-    <p>My users are tired people, one-handed, mid-patrol, often in low light. I derived the constraints from watching officers use the old site in real conditions: dark by default, high contrast, large targets, never any horizontal scroll. The governing principle came from watching a chat-tool rollout die, not on features, on forgotten passwords. So identity is a guard picker: tap your name, one-time employee ID, under five seconds, no email, no app store. Zero-friction access beats feature richness.</p>
+    <p>My users are tired people, working one-handed, often in low light. I got my design rules from watching the guards use the old site in real conditions: dark screens by default, strong contrast, big buttons, and never any sideways scrolling.</p>
+    <p>The biggest rule came from watching a chat tool fail on our team, not because it lacked features, but because people forgot their passwords.</p>
+    <p>So there's no login form. You tap your name, enter your employee ID once, and you're in. Under five seconds, no email, no app store. Easy access beats extra features.</p>
   </div></details>
 
   <details><summary>Beat 3: The decisions (90 sec, where you're scored)</summary><div class="a">
-    <p>Two decisions I'll defend anywhere. First, the exception to my own principle: confirming a fire-extinguisher inspection requires deliberate ID re-entry, added friction on purpose, because a careless tap on a safety record is real-world harm. That's since grown into a full forcing function: on the first of each month the app locks on the fire-patrol screen until the guard validates with their ID. A missed safety patrol shouldn't be preventable by discipline alone; I made it structurally impossible. Second, the reversal. My V1 looked great, and my officers couldn't read it across a long shift. I'd designed for the user in my head instead of a tired person at 4 a.m. in a stairwell. V2 stripped my own work back: readability over aesthetics. My taste is not the user's eyesight.</p>
+    <p>Two decisions I'll defend anywhere. First, the exception to my own rule: confirming a fire-extinguisher inspection means typing your employee ID again, on purpose. A careless tap on a safety record is real-world harm, so I added friction exactly there.</p>
+    <p>That grew into something bigger. On the first of each month, the app locks on the fire-patrol screen until the guard confirms with their ID. A missed safety patrol shouldn't depend on memory or discipline. I made it impossible to skip.</p>
+    <p>Second, the reversal. My first version looked great, and my guards couldn't read it on a long shift. I had designed for the user in my head, not a tired person at 4 a.m. in a stairwell.</p>
+    <p>Version two stripped my own work back: readability over looks. My taste is not the user's eyesight.</p>
   </div></details>
 
   <details><summary>Beat 4: System and results (60 sec)</summary><div class="a">
-    <p>Under it runs a deterministic constraint engine, an availability foundation, four rotation rules, and the monthly safety gate; it's run as many as seven rules, and I prune the set as the team's reality changes. Deliberately not AI: same input, same output, because a security schedule needs reliability over cleverness. Results: security warnings gone, monthly updates went from hand-rebuilding to a single data-array edit, and five officers use it nightly across Android and iOS with zero onboarding.</p>
-    <span class="anchor">Lived problem → tired one-handed users → friction both ways → deterministic engine, real results</span>
+    <p>Underneath runs a scheduling engine built on fixed rules: same input, same answer, every time. That's on purpose, not AI, because a security schedule needs to be dependable, not clever.</p>
+    <p>Today it runs on an availability foundation, four rotation rules, and the monthly safety gate. It's run as many as seven rules, and I remove rules when the team's reality changes.</p>
+    <p>The results: the security warnings are gone, the monthly update went from rebuilding a page by hand to editing one line of data, and five guards use it every night on Android and iPhone, with no training needed.</p>
+    <span class="anchor">Lived problem → tired one-handed users → friction both ways → fixed rules, real results</span>
   </div></details>
 
   <details><summary>"What would you change about 2100?"</summary><div class="a">
-    <p>The auto-generation. I built it, it violated its own constraints in edge cases, and I made the reliability call: the engine validates and renders, I generate. Fixing the generator's availability and uniqueness checks is on my roadmap, but I'd make the same call again. Silent automation failure in a security context is worse than manual work.</p>
+    <p>The auto-scheduling. I built it, and in rare cases it broke its own rules: double-booked patrols, scheduled guards on their days off.</p>
+    <p>So I made the reliability call. The engine checks and displays the schedule, and I generate it. Fifteen minutes a month with zero errors beats automation I can't trust.</p>
+    <p>Fixing it is on my list, but I'd make the same call again. In security, a quiet failure is worse than manual work.</p>
   </div></details>
 
   <details><summary>Your five design principles</summary><div class="a">
-    <p>Five, all earned in production. Zero-friction access beats feature richness: I watched a chat rollout die on forgotten passwords, so my flagship's login is tap-your-name, under five seconds. Except where friction saves people: confirming a fire-safety inspection requires ID re-entry on purpose, because a careless tap there is real-world harm. My taste is not the user's eyesight: I reversed my own favorite design when officers couldn't read it on shift. Design for who the user is, not who I imagine: I once built an aspirational itinerary over a client's actual plans and made the correction a governing rule. And constraints are errors made impossible: the best design decision is the wrong path that no longer exists.</p>
+    <p>Five, all earned in production. Zero-friction access beats feature richness: I watched a chat tool die on forgotten passwords, so my app's login is tap-your-name, under five seconds.</p>
+    <p>Except where friction saves people: confirming a fire-safety inspection requires typing your ID again, on purpose, because a careless tap there is real-world harm.</p>
+    <p>My taste is not the user's eyesight: I reversed my own favorite design when the guards couldn't read it on shift.</p>
+    <p>Design for who the user is, not who I imagine: I once built a dream itinerary over a client's actual plans, and made the correction a permanent rule.</p>
+    <p>And constraints are errors made impossible: the best design decision is the wrong path that no longer exists.</p>
     <span class="anchor">Zero friction → except where friction saves → not my eyesight → who the user is → errors made impossible</span>
   </div></details>
 
   <details><summary>Design process (five words)</summary><div class="a">
-    <p>My process starts where the user actually is. I define the real constraints before designing, all of them. I design in Figma and build the working version myself, because real beats simulated. Then I watch it fail, and reverse when the user says so. Ship, measure outcomes.</p>
+    <p>My process starts where the user actually is. I list the real limits before designing, all of them.</p>
+    <p>I design in Figma and build the working version myself, because real beats simulated. Then I watch it fail, and change course when the user says so.</p>
+    <p>Ship, then measure what happened.</p>
     <span class="anchor">Observe, constrain, build, test, reverse when the user says so</span>
   </div></details>
 
   <details><summary>Double Diamond bridge (honest version)</summary><div class="a">
-    <p>I built my process independently and later recognized most of it in the Double Diamond. Discover, I go where the user is: my officers on shift, Lonnie's inbox as a qualitative dataset. Define, I turn what I find into hard constraints before designing anything. Deliver, I ship and keep watching, and reverse when users prove me wrong. The honest gap is the second diamond, Develop: solo work under-trains divergence, because exploring three directions costs triple when you're also the builder. My pattern has been commit fast and correct in production. That's exactly where a team makes me better, and it's a muscle I'm actively building with timed design-challenge drills.</p>
-    <span class="anchor">Found it independently → Discover, Define, Deliver are mine → divergence is the honest gap → a team fixes that</span>
+    <p>I built my process on my own, and later found that most of it matches a known framework, the Double Diamond.</p>
+    <p>Discover: I go where the user is, my guards on shift, my client's inbox full of real customer questions. Define: I turn what I find into hard rules before designing anything. Deliver: I ship, keep watching, and change course when users prove me wrong.</p>
+    <p>The honest gap is the Develop stage: exploring several directions before committing. Working alone, exploring three directions costs triple, so my habit has been commit fast and correct in production.</p>
+    <p>That's exactly where a team makes me better, and I'm training that muscle now with timed design exercises.</p>
+    <span class="anchor">Found it on my own → Discover, Define, Deliver are mine → exploring options is the honest gap → a team fixes that</span>
   </div></details>
 
   <details><summary>UX vs Product Design</summary><div class="a">
-    <p>UX design is the user's side: the journey, the flow, how it feels to move through the thing, whether it's usable, readable, trustworthy. Product design is UX plus the business: it asks not just "does this work for the user" but "should this exist, what does it cost, what does it earn, what do we build first." In practice I work as a product designer: on Lonnie's platform every flow decision was also a conversion decision, and on ROSE the refusal boundaries protect the business the agent represents, not just the user's experience. UX is the craft; product design is the craft plus the judgment about where to spend it.</p>
-    <span class="anchor">UX is the user's side → product adds should-it-exist and what-first → craft plus judgment</span>
+    <p>UX design is the user's side: the journey through the product, how it feels, whether it's easy, readable, and trustworthy.</p>
+    <p>Product design is UX plus the business side. Not just "does this work for the user," but "should we build this, what does it cost, what comes first."</p>
+    <p>In practice I work as a product designer. On Lonnie's travel site, every design choice was also a booking choice. On ROSE, the rules about what the AI won't say protect the business, not just the user.</p>
+    <p>UX is the craft. Product design is the craft plus deciding where to spend it.</p>
+    <span class="anchor">UX is the user's side → product adds should-we-build-it → craft plus judgment</span>
   </div></details>
 
   <details><summary>"Why a team after years solo?"</summary><div class="a">
-    <p>Because solo is my ceiling and I know it. Working alone taught me every part of the process, but it also means my blind spots ship. My best design moments came from other people, my officers telling me they couldn't read my beautiful V1. A team is that correction loop running constantly, plus researchers and engineers who go deeper than I can alone. I've proven I can ship by myself. Now I want to find out what I ship when I'm not.</p>
-    <span class="anchor">Solo is my ceiling → blind spots ship → V1 correction → what I ship when I'm not alone</span>
+    <p>Because working alone has a ceiling, and I know it. Solo work taught me every part of the process, but it also means my blind spots go live.</p>
+    <p>My best design moments came from other people, like my guards telling me my beautiful first version was unreadable. A team is that correction running constantly, plus researchers and engineers who go deeper than I can alone.</p>
+    <p>I've proven I can ship by myself. Now I want to find out what I ship when I'm not.</p>
+    <span class="anchor">Solo has a ceiling → blind spots go live → what I ship when I'm not alone</span>
   </div></details>
 
   <details><summary>Critique, PMs, engineers</summary><div class="a">
-    <p><em>Critique:</em> Gratefully, and I have receipts. The most valuable feedback I ever got was my own users telling me my best-looking work was unreadable, and my response was to rebuild it their way. I don't defend taste. Taste isn't an argument.</p>
-    <p><em>PMs:</em> I've been on the receiving end of PM requirements since Experian in the nineties. I want the problem and the success measure from the PM, and I'll bring back the constraint map and the tradeoffs. My model for disagreement is the Exchange-migration story: borrow credibility, don't argue.</p>
-    <p><em>Engineers:</em> I am one, part-time, which mostly means I never hand engineering a fantasy. My specs account for states, edge cases, and failure modes because I've had to build my own. I don't design what I wouldn't want to implement.</p>
+    <p><em>Critique:</em> Gratefully, and I have proof. The most valuable feedback I ever got was my own users telling me my best-looking work was unreadable, and I rebuilt it their way. I don't defend taste. Taste isn't an argument.</p>
+    <p><em>PMs:</em> I've been building what product managers ask for since my first job in the nineties. I want the problem and the goal from them; I bring back the plan, the limits, and the trade-offs. When we disagree, my model is an old story from my state IT days: I didn't argue, I put the expert on a live call and let a demonstration settle it.</p>
+    <p><em>Engineers:</em> I'm part engineer myself, which mostly means I never hand engineering a fantasy. My designs account for edge cases and things going wrong, because I've had to build my own. And I trust engineers to push back on cost, because my designs get better inside real limits.</p>
   </div></details>
 
   <details><summary>Screen-share mechanics</summary><div class="a">
-    <p>Share the browser <em>window</em>, never the desktop. One tab (alanponton.com), bookmarks bar hidden, navigate by clicking, not typing. Words lead, scroll follows: scroll, settle, then speak. Money stop: V1 next to V2 while saying "my taste is not the user's eyesight." Park the cursor.</p>
+    <p>Share the browser <em>window</em>, never the desktop. One tab (alanponton.com), bookmarks bar hidden, move around by clicking, not typing.</p>
+    <p>Words lead, scrolling follows: scroll, settle, then speak. Money stop: version 1 next to version 2 while saying "my taste is not the user's eyesight."</p>
+    <p>Park the cursor when you're not pointing.</p>
   </div></details>
 </section>
 
@@ -300,30 +361,36 @@
       <tr><td>S15</td><td>Tue through Sat</td></tr>
       <tr><td>S16</td><td>Wednesday only</td></tr>
     </table>
-    <p>A guard is only ever scheduled on contracted work days. Every other rule operates inside this one.</p>
+    <p>A guard is only ever scheduled on their contracted work days. Every other rule works inside this one.</p>
   </div></details>
 
   <details><summary>The four active rotation rules</summary><div class="a">
-    <p>1. <b>No consecutive-post repeats</b>: never the same post on back-to-back working nights. 2. <b>No duplicate floor ranges</b>: never the same floor range twice in one week. 3. <b>Soft landing</b>: returning from two days off starts in North or Rover, never Command. 4. <b>Clockwise rotation</b>: Command to North to Rover; reversal only when forced by another rule (soft rule).</p>
+    <p>1. <b>No repeat posts</b>: never the same post two working nights in a row. 2. <b>No repeat floors</b>: never the same floor range twice in one week.</p>
+    <p>3. <b>Soft landing</b>: coming back from two days off, you start in North or Rover, never Command. 4. <b>Clockwise rotation</b>: posts move Command to North to Rover; going backward is allowed only when another rule forces it.</p>
     <div class="guard"><b>Retired, never claim as current:</b> S16 Wednesday North anchor, S3 Friday Command weekend rule, weekly ground-floor coverage.</div>
   </div></details>
 
   <details><summary>The Fire Gate (forcing function)</summary><div class="a">
-    <p>First of every month, the app holds every guard on the Fire Extinguisher screen until they validate completion with their employee ID; only then does the schedule return. A forcing function: a blocking gate that makes skipping a safety-critical step impossible rather than merely discouraged. Rotation rules constrain the schedule; the fire gate constrains the workflow. Same philosophy, two layers: constraints are errors made impossible in advance.</p>
+    <p>On the first of every month, the app holds every guard on the Fire Extinguisher screen until they confirm completion with their employee ID. Only then does the schedule come back.</p>
+    <p>Designers call this a forcing function: a gate that makes skipping a safety step impossible, instead of just discouraged.</p>
+    <p>The rotation rules protect the schedule. The fire gate protects the workflow. Same idea, two layers: mistakes made impossible in advance.</p>
   </div></details>
 
   <details><summary>20-second spoken version</summary><div class="a">
-    <p>An availability foundation, four rotation rules, two never-repeat, two flow, and a monthly safety gate that locks the app on the fire-extinguisher screen until the guard validates with their ID. It's run as many as seven rules; I prune the set as the team's reality changes.</p>
+    <p>An availability foundation, four rotation rules, two never-repeat and two flow, plus a monthly safety gate that locks the app until each guard confirms the fire patrol with their ID.</p>
+    <p>It's run as many as seven rules. I trim the set as the team's reality changes.</p>
     <span class="anchor">Foundation, four rules, one gate</span>
   </div></details>
 
   <details><summary>The pruning story</summary><div class="a">
-    <p>The rule set is a living thing. Three rules existed because of specific staffing circumstances, and when those changed, I removed them instead of letting dead rules complicate the engine. Maintaining a constraint system means deleting constraints too. Requirements are versioned, not carved.</p>
+    <p>The rule set is a living thing. Three rules existed because of specific staffing situations, and when those changed, I deleted the rules instead of letting dead ones clutter the engine.</p>
+    <p>Maintaining a rule system means removing rules too. Requirements are versioned, not carved in stone.</p>
   </div></details>
 
   <details><summary>Numbers discipline + never say</summary><div class="a">
-    <p>Resume says "seven," site says "5–7": both describe rotations the engine actually generated, historically true. Spoken answers use current truth: five core rules plus a monthly gate; it's run as many as seven.</p>
-    <div class="guard"><b>Never say:</b> the schedule updates itself, or that the engine is AI. Deterministic solver, human-in-the-loop, by design. No "yet."</div>
+    <p>The resume says "seven" and the site says "5–7." Both describe schedules the engine actually generated, so they're historically true.</p>
+    <p>Spoken answers use current truth: a foundation, four rules, and a gate; it's run as many as seven.</p>
+    <div class="guard"><b>Never say:</b> the schedule updates itself, or that the engine is AI. Fixed rules, human in the loop, by design. No "yet."</div>
   </div></details>
 </section>
 
@@ -332,39 +399,54 @@
   <div class="grouphead"><h2>ROSE & Evolution</h2><span class="tag">Deploys when the AI door opens · never leads</span></div>
 
   <details><summary>90-second ROSE walkthrough</summary><div class="a">
-    <p>ROSE is a white-label AI front-desk agent I designed and built solo. The problem: small businesses lose bookings to every unanswered question, and hiring front-desk coverage doesn't scale. A five-question setup wizard builds a branded agent in about sixty seconds. The agent handles customer questions in the business's voice and captures every booking request into a leads dashboard with an email notification to the owner. Under the hood it's Next.js 14 serverless on Vercel, Anthropic Claude with tool calling, and Supabase. Tool calling matters: the agent takes structured actions, every captured request lands as structured data while ROSE stays conversational. Because it's a public unauthenticated endpoint, I designed a two-gate abuse front door: bot challenge plus rate limiting. It's my fourth build of the same design problem, conversational intake, and it's live in production, developer-verified end to end, and honestly pre-revenue. I don't claim users I don't have.</p>
-    <span class="anchor">Problem → 60-second wizard → tool calling → two-gate door → fourth build, honest status</span>
+    <p>ROSE is an AI front-desk assistant I designed and built alone, for small businesses. The problem: a small business loses bookings every time a question goes unanswered, and hiring someone to answer around the clock doesn't scale.</p>
+    <p>With ROSE, a five-question setup builds a branded assistant in about sixty seconds. It answers customers in the business's own voice and turns every booking request into an organized lead, with an email to the owner.</p>
+    <p>Under the hood it runs on modern web tools and Claude, Anthropic's AI. The key decision: instead of reading free text and guessing, the assistant takes structured actions, so every request lands as clean data while the conversation stays natural.</p>
+    <p>And because the chat is open to the public, I built two layers of protection: a bot check plus a request limit, so abuse can't run up my costs.</p>
+    <p>It's my fourth build of the same design problem, conversational intake. It's live, fully tested by me end to end, and honestly pre-revenue. I don't claim users I don't have.</p>
+    <span class="anchor">Problem → 60-second setup → structured actions → two-gate door → fourth build, honest status</span>
   </div></details>
 
-  <details><summary>The evolution arc (maturity, not chronology)</summary><div class="a">
-    <p>Four builds of the same design problem, conversational intake, each one teaching the next. Telegram bot (Aug 2025): architected, deliberately abandoned, <b>never deployed</b>; I recognized over-engineering and killed it. Ask Alan AI: first shipped conversational agent, live on alanponton.com. Sophia: reusable voice platform after two products needed the same foundation. ROSE: the pattern productized.</p>
+  <details><summary>The evolution arc (maturity, not dates)</summary><div class="a">
+    <p>Four builds of the same problem, each teaching the next. A Telegram bot: designed, then deliberately killed before launch, <b>never deployed</b>, because I recognized I was over-building.</p>
+    <p>Ask Alan AI: my first shipped assistant, live on my portfolio. Sophia: a reusable voice platform, built after two products needed the same foundation.</p>
+    <p>ROSE: the pattern turned into a product any business can use.</p>
     <span class="anchor">Killed it → Shipped it → Voiced it → Productized it</span>
-    <div class="guard"><b>Weld to every Telegram mention:</b> never deployed. Frame by product maturity; dates overlap, say so if pressed.</div>
+    <div class="guard"><b>Weld to every Telegram mention:</b> never deployed. Tell it by product maturity; the dates overlap, and say so if pressed.</div>
   </div></details>
 
   <details><summary>"Isn't this just a GPT wrapper?"</summary><div class="a">
-    <p>The model is a commodity; the product is everything around it. The 60-second wizard is an onboarding design problem. Tool calling turns conversation into structured leads. The two-gate abuse door is security design for a public endpoint. And the refusal and grounding work is what keeps it from embarrassing the business it represents. That's the design work, the model is one ingredient.</p>
+    <p>The AI model is an ingredient; the product is everything around it.</p>
+    <p>The sixty-second setup is an onboarding design problem. Turning conversations into organized leads is a data design problem. Protecting a public chat from abuse is a security design problem.</p>
+    <p>And the rules about what it won't say are what keep it from embarrassing the business it represents. That's the design work.</p>
   </div></details>
 
   <details><summary>"It has no users. Why show it?"</summary><div class="a">
-    <p>Because it's live, end-to-end verified, and every claim about it is true. I'd rather show a real pre-revenue product honestly than inflate numbers. And it's the fourth generation of a design problem I've been iterating on, the evolution is the evidence.</p>
+    <p>Because it's live, fully tested, and every claim about it is true. I'd rather show a real product with honest zeros than inflate numbers.</p>
+    <p>And it's the fourth generation of a problem I've been working on, the evolution is the evidence.</p>
   </div></details>
 
-  <details><summary>Bespoke vs productized (signature)</summary><div class="a">
-    <p>Deliberate choice. Lonnie's concierge is bespoke, built into that product's data, refund rules, and voice, because a travel platform's failure modes are specific. ROSE is productized, generic by design so any business can wear it. Bespoke buys depth, productized buys reach, choosing between them is the judgment. Retrofitting one into the other would have been the wrong call in both directions.</p>
-    <span class="anchor">Bespoke buys depth, productized buys reach, choosing is the judgment</span>
+  <details><summary>Custom vs product (signature)</summary><div class="a">
+    <p>A deliberate choice. Lonnie's assistant is custom-built, tied into her trips, her rules, her voice, because a travel business's risks are specific.</p>
+    <p>ROSE is the opposite: generic on purpose, so any business can wear it.</p>
+    <p>Custom buys depth, product buys reach, and choosing between them is the judgment. Forcing one into the other would have been wrong in both directions.</p>
+    <span class="anchor">Custom buys depth, product buys reach, choosing is the judgment</span>
   </div></details>
 
   <details><summary>2100 vs ROSE on AI (no blur)</summary><div class="a">
-    <p>2100's scheduling engine is deterministic on purpose, reliability over automation. ROSE is where I do use AI, because conversational intake is exactly what language models are for. Right tool, right problem.</p>
+    <p>2100's scheduling engine runs on fixed rules on purpose: dependable over clever.</p>
+    <p>ROSE is where I do use AI, because answering customer questions in natural language is exactly what AI is for. Right tool, right problem.</p>
   </div></details>
 
-  <details><summary>The 429 mobile bug (diagnostic story)</summary><div class="a">
-    <p>The concierge worked on desktop and failed on every mobile attempt. I ran the diagnostic path: CORS recon found and fixed a real latent allowlist gap, not the bug; incognito ruled out cache; debug instrumentation surfaced HTTP 429. Root cause: my own lifetime 40-message session cap, my phone had exhausted its jar from weeks of testing. Fix: silent session rotation with one retry. Then the honest follow-through: I realized the cap never actually protected against abuse, so I shipped real per-IP rate limiting, hashed IPs, fails open so infrastructure hiccups never block real visitors. Full diagnostic discipline, plus discovering my own fix exposed a deeper design gap.</p>
+  <details><summary>The mobile bug (diagnostic story)</summary><div class="a">
+    <p>My portfolio assistant worked on desktop and failed on every phone. I worked the problem in steps: checked the connection settings and fixed a real gap I found there, but that wasn't it. A private browser ruled out caching. Then temporary logging showed the server refusing requests: too many.</p>
+    <p>The cause was my own safety cap. I'd limited each visitor to 40 lifetime messages, and my own phone had used them all up in weeks of testing. The fix was a quiet reset with one retry, so visitors never hit the wall.</p>
+    <p>Then the honest part: I realized the cap never really protected anything, someone could just reset and keep going on my dime. So I built real protection: a daily limit per visitor, stored privately, and built to fail open so a hiccup never blocks a real visitor.</p>
+    <p>My own fix showed me a deeper design gap, and I closed it.</p>
   </div></details>
 
   <details><summary>ROSE honesty guardrails</summary><div class="a">
-    <div class="guard"><b>Non-negotiable:</b> pre-revenue, developer-verified only, solo build, no user or traction claims. Tavi is an in-progress TEST until it actually ships. Sophia stats allowed: 95% lower cost vs commercial platforms, 3+ products on it. Approved ROSE stats: 60 sec wizard / 2-gate door / 24-7 lead capture / solo build.</div>
+    <div class="guard"><b>Non-negotiable:</b> pre-revenue, tested only by me, solo build, no user or sales claims. Tavi is an in-progress TEST until it actually ships. Sophia stats allowed: 95% lower cost than commercial platforms, 3+ products built on it. Approved ROSE stats: 60-sec setup / 2-gate protection / 24-7 lead capture / solo build.</div>
   </div></details>
 </section>
 
@@ -372,19 +454,19 @@
 <section id="whiteboard">
   <div class="grouphead"><h2>Whiteboard Challenge</h2><span class="tag">FigJam · timed runs</span></div>
 
-  <details><summary>The six frames (your FigJam template)</summary><div class="a">
-    <p>1. <b>Understand your goal, question everything.</b> Capture motive, user, current state, success. Close with the escape hatch: "Based on your data, I'm focusing on X. I'll assume mobile-first and that staff can be part of the solution. If that's wrong, tell me and I'll adjust." Data to decision, gap to assumption.</p>
-    <p>2. <b>Define your audience, one person first.</b> Name, one-line bio, THE MOMENT: day what, standing where, feeling what. And the disqualifier: who I'm NOT designing for. Everyone else is secondary.</p>
-    <p>3. <b>Customer context and needs, two or three pains max.</b> Written as scenes, the person's name on every sticky. Cut what the design can't touch. End with the bridge sentence: both pains fused in one line.</p>
-    <p>4. <b>Three ideas, choose one, say what you're giving up.</b> Three angles: cheap/fast, ambitious, in-between. Rejected ideas stay on the board, two words each. Then the commit line: "I'm choosing ___, it costs ___, but it protects ___." No hedging.</p>
-    <p>5. <b>Sketch the core flow, three screens max, narrate decisions not pixels.</b> Sketch FROM the pain stickies, not from memory. Lead with THEIR moment, not the company's fact. Screen zones: top answers "what is this," middle answers "am I okay," bottom answers "now what." Microcopy is design. Two screens is enough.</p>
-    <p>6. <b>Measure success.</b> One behavioral metric, one signal you were wrong: "I'd know this works if ___, and I'd know I was wrong if ___."</p>
-    <span class="anchor">Right problem → right person → real pain → honest trade-off → shipped answer → proof</span>
-  </div></details>
-
   <details><summary>The template board (tap image to zoom)</summary><div class="a">
     <p>Your actual FigJam board with the coaching notes. Tap to open, tap again to zoom, drag or pinch to pan.</p>
     <img id="wbthumb" src="/whiteboard-template.png" alt="Whiteboard challenge FigJam template, six columns" style="width:100%; border:1px solid var(--line); border-radius:10px; cursor:zoom-in;" onclick="openLb()">
+  </div></details>
+
+  <details><summary>The six frames (your FigJam template)</summary><div class="a">
+    <p>1. <b>Understand the goal, question everything.</b> Capture the motive, the user, today's situation, and what success means. Close with the escape hatch: "Based on your answers, I'm focusing on X. I'll assume mobile-first and that staff can help. If that's wrong, tell me and I'll adjust."</p>
+    <p>2. <b>Design for one person first.</b> Name, one-line bio, THE MOMENT: what day, standing where, feeling what. And the disqualifier: who I'm NOT designing for.</p>
+    <p>3. <b>Two or three pains, max.</b> Written as scenes, with the person's name on every sticky. Cut anything the design can't touch. End with the bridge sentence: both pains fused into one line.</p>
+    <p>4. <b>Three ideas, choose one, say what you're giving up.</b> Three angles: cheap and fast, ambitious, in-between. Rejected ideas stay on the board, two words each. Then commit: "I'm choosing ___, it costs ___, but it protects ___." No hedging.</p>
+    <p>5. <b>Sketch the core flow, three screens max. Narrate decisions, not pixels.</b> Sketch FROM the pain stickies, not from memory. Screen zones: top answers "what is this," middle answers "am I okay," bottom answers "now what." The small words on screen are design too.</p>
+    <p>6. <b>Measure success.</b> One behavior you'd watch, and one signal you were wrong: "I'd know this works if ___, and I'd know I was wrong if ___."</p>
+    <span class="anchor">Right problem → right person → real pain → honest trade-off → shipped answer → proof</span>
   </div></details>
 
   <details><summary>The three fouls</summary><div class="a">
@@ -392,15 +474,71 @@
   </div></details>
 
   <details><summary>Seven-step live skeleton</summary><div class="a">
-    <p>1. Restate and confirm. 2. Users: who, and what state (a stranded traveler is stressed, offline-prone, one-handed). 3. Constraints, name them before designing, out loud. 4. Prioritize the one moment that matters most, say why. 5. Sketch the flow, talk while drawing, ugly is fine. 6. Edge cases and failure modes: what breaks, what's the fallback. 7. Success measures and what you'd test first.</p>
+    <p>1. Restate the prompt in your own words and confirm it. 2. Users: who exactly, and what state they're in (a stranded traveler is stressed, one-handed, worried about battery). 3. Name the limits out loud before designing anything.</p>
+    <p>4. Pick the one moment that matters most, and say why. 5. Sketch the flow, talking while drawing; ugly is fine.</p>
+    <p>6. What breaks, and what's the backup plan. 7. How you'd know it worked, and what you'd test first.</p>
   </div></details>
 
   <details><summary>Your differentiator line (say during step 3)</summary><div class="a">
-    <p>I map constraints before designing because I've watched unconstrained designs collapse in production. My scheduling app runs on an availability foundation with rotation rules and a safety gate; mapping them first is why it works.</p>
+    <p>I list the limits before designing because I've watched designs without limits collapse in real use.</p>
+    <p>My scheduling app runs on an availability foundation, rotation rules, and a safety gate. Listing them first is why it works.</p>
   </div></details>
 
   <details><summary>Take-home rules</summary><div class="a">
-    <p>Respect the timebox they give. Show two to three explored directions with reasons for the rejected ones, this trains the divergence gap on purpose. Present decisions, not screens. AA's documented example: redesign the mobile flow for a canceled connection with hotel and meal vouchers, presented to UX leads.</p>
+    <p>Respect the time limit they give. Show two or three explored directions, with reasons for the ones you rejected. Present decisions, not screens.</p>
+    <p>AA's documented example: redesign the mobile flow for a canceled connection, with hotel and meal vouchers, presented to UX leads.</p>
+  </div></details>
+</section>
+
+<!-- ================= PANEL GAPS ================= -->
+<section id="panel">
+  <div class="grouphead"><h2>Panel Gaps</h2><span class="tag">The five uncovered questions</span></div>
+
+  <details><summary>"How do you balance user needs against old backend systems?"</summary><div class="a">
+    <p>My version of the old-system problem was the website-builder era of 2100. I had the user needs mapped, but the platform simply couldn't deliver them. I pushed design as far as it could go, sketches, prototypes, new features, and then made the call that mattered: the problem wasn't the design, it was the foundation. So I rebuilt on one that could serve the users.</p>
+    <p>In a big company, I don't get to swap the foundation. So the same judgment flips: design the best experience the current system can actually deliver, and be clear about which user needs are on hold because of the system.</p>
+    <p>Then keep that list alive, so when the backend improves, everyone knows exactly what user value it unlocks.</p>
+    <span class="anchor">The website builder was my legacy system → design maxed, foundation failed → best the system can serve today → keep the on-hold list alive</span>
+  </div></details>
+
+  <details><summary>"How do you keep designs consistent across web, mobile, kiosk?"</summary><div class="a">
+    <p>Honestly, my experience here is at a smaller scale, but the discipline is the same. Across three versions of 2100 I kept my own design rules, spacing, contrast, how things behave, so returning users never had to relearn the tool.</p>
+    <p>And Lonnie's site keeps one voice and one look, from the front page to the guest area to the AI assistant.</p>
+    <p>What I haven't done is keep designs consistent across a big system with many designers involved. That's honestly part of the draw here: I've felt why design systems exist, because I maintained one alone.</p>
+    <p>The principle I'd carry in: consistency isn't sameness. A kiosk and a phone don't need to match exactly. They need to feel like the same company built both.</p>
+    <span class="anchor">My own rules across versions → one voice across Lonnie's → haven't done multi-platform, part of the draw → consistency is trust, not sameness</span>
+  </div></details>
+
+  <details><summary>"How do you use data to improve a live product?"</summary><div class="a">
+    <p>Right now, my data comes from watching people, not dashboards. I define success before I ship, including the signal that would tell me I'm wrong.</p>
+    <p>On 2100, the proof was simple and human: warnings gone, everyone using it nightly with no training, nobody working around it. On Lonnie's site, the measure was her inbox: repeated customer questions that stopped repeating meant the design answered them.</p>
+    <p>What I haven't used is measurement tooling, click tracking, funnels, A/B testing. That's the growth area I most want a team for.</p>
+    <p>What I already bring is the habit that makes those numbers useful: deciding, before launch, what would prove me wrong.</p>
+    <span class="anchor">Watching people, not dashboards → questions that stopped repeating → haven't run tracking, want to → I define what proves me wrong</span>
+  </div></details>
+
+  <details><summary>"How do you present design to non-designers?"</summary><div class="a">
+    <p>Almost everyone I've ever presented design to was not a designer: security management, a travel advisor, my own guards. Three rules I've learned.</p>
+    <p>Lead with their problem, not my solution. My manager didn't care about my color choices, he cared that he couldn't read the schedule on shift.</p>
+    <p>Translate decisions into their stakes: "this extra ID step exists so a careless tap can't fake a safety record" lands with an operations manager in one sentence.</p>
+    <p>And when my word isn't enough, borrow credibility: I once settled a disagreement by putting the expert on a live call instead of arguing.</p>
+    <p>Explaining design to non-designers isn't dumbing it down. It's changing the currency: from design language to risk, money, and time.</p>
+    <span class="anchor">Their problem first → decisions in their stakes → borrow credibility → change the currency, not the depth</span>
+  </div></details>
+
+  <details><summary>Product critique of a popular app (live exercise format)</summary><div class="a">
+    <p>1. <b>Job first:</b> "Who opens this app, in what moment, to get what done?" Never judge the screens before naming the job.</p>
+    <p>2. <b>Walk one real flow,</b> start to finish, saying out loud what the design chose: what's front and center, what's buried, what's assumed.</p>
+    <p>3. <b>Praise with reasons.</b> Two things done well, and why they're right for the user's moment. Critique without generosity sounds like taste, not judgment.</p>
+    <p>4. <b>Two frictions, tied to the moment.</b> Not "I don't like this button." Instead: "a traveler at a gate is one-handed and short on time, and this action is three taps deep."</p>
+    <p>5. <b>One trade-off you'd accept.</b> Say what fixing your friction would cost. Critique that admits cost is judgment; critique that doesn't is a complaint.</p>
+    <div class="guard"><b>Traps:</b> never critique American's own app unless invited. If invited, be generous, name the limits their designers likely faced, and end on what you'd protect, not just what you'd change.</div>
+  </div></details>
+
+  <details><summary>Rebooking scenario (drill this before any panel)</summary><div class="a">
+    <p>The documented AA exercise: redesign the mobile flow for a canceled connection, with hotel and meal vouchers. Run it once, timed, on your own six-frame template.</p>
+    <p>Frame 2 writes itself: a stranded traveler, one-handed, panicking, worried about battery, standing at a gate.</p>
+    <p>Your edge is real: Trip Buddy and Lonnie's are both travel products. Use that vocabulary.</p>
   </div></details>
 </section>
 
@@ -421,20 +559,28 @@
   </div></details>
 
   <details><summary>Panel: how to win each seat</summary><div class="a">
-    <p><b>PM</b> wants outcomes and tradeoffs: lead with the problem and the decision. <b>Engineer</b> wants feasibility literacy: your easiest seat, let them discover you speak their language. <b>Design lead</b> wants process and taste: the V1 reversal and constraint mapping. <b>Research</b> wants honesty about methods: growth-area answer, never bluff this seat. Answer to the asker, sweep the room on the landing. Under 90 seconds. If two panelists disagree, never pick a side, name the tradeoff they're debating.</p>
+    <p><b>PM</b> wants outcomes and trade-offs: lead with the problem and the decision. <b>Engineer</b> wants to see you understand what's buildable: your easiest seat, let them discover you speak their language.</p>
+    <p><b>Design lead</b> wants process and taste: the version-one reversal and your habit of listing limits first. <b>Research</b> (if present) wants honesty about methods: the growth-area answer, never bluff this seat.</p>
+    <p>Answer the person who asked, then sweep the room as you land. Keep answers under 90 seconds.</p>
+    <p>If two panelists disagree with each other, never pick a side. Name the trade-off they're actually debating.</p>
   </div></details>
 
-  <details><summary>Stakeholder / difficult feedback spiel</summary><div class="a">
-    <p>My stakeholders have been clients and my own management. The pattern I've learned: bring them the decision with its reasoning, not just the artifact. When my security manager couldn't read the schedule on shift, the answer wasn't defending my design, it was dark mode, because his constraint was real. Clients are the same: Lonnie didn't need my aesthetic preferences, she needed guests booking without confusion. Rationale in, ego out.</p>
-    <span class="anchor">Decision with reasoning → manager's dark mode → Lonnie's guests → rationale in, ego out</span>
+  <details><summary>Stakeholder / difficult feedback</summary><div class="a">
+    <p>My stakeholders have been clients and my own management. The pattern I've learned: bring them the decision with its reasoning, not just the finished thing.</p>
+    <p>When my security manager couldn't read the schedule on shift, the answer wasn't defending my design, it was dark mode, because his problem was real.</p>
+    <p>Clients are the same: Lonnie didn't need my design preferences, she needed guests booking without confusion. Reasons in, ego out.</p>
+    <span class="anchor">Decision with reasoning → manager's dark mode → Lonnie's guests → reasons in, ego out</span>
   </div></details>
 
   <details><summary>Offer stage rules</summary><div class="a">
-    <p>Never accept or negotiate on the call: "I'm excited, send it over and give me a couple of days to review properly." Level determines everything; negotiate within the band offered. Negotiate once, completely, in a single counter. Flight privileges are part of total comp; factor them, don't lead with them.</p>
+    <p>Never accept or negotiate on the call: "I'm excited, send it over and give me a couple of days to review properly."</p>
+    <p>The level decides everything: Product Designer runs roughly 95 to 110, Senior roughly 110 to 125. The level itself is the biggest lever, then base pay, then a signing bonus if base won't move.</p>
+    <p>Negotiate once, completely, in a single counter. Flight benefits and profit sharing come standard; count them, don't lead with them.</p>
   </div></details>
 
   <details><summary>Thank-you formula</summary><div class="a">
-    <p>Within 24 hours, three sentences: one specific thing from that conversation, one line connecting it to what you'd bring, portfolio link. After a panel, individual notes referencing each person's own question. Specific beats polished.</p>
+    <p>Within 24 hours, three sentences: one specific thing from that conversation, one line connecting it to what you'd bring, portfolio link.</p>
+    <p>After a panel, individual notes referencing each person's own question. Specific beats polished.</p>
   </div></details>
 </section>
 
@@ -444,24 +590,27 @@
   <div class="chips">
     <span class="anchor">Scale → Ships → NJ → Two products → Long-term</span>
     <span class="anchor">Local → Scale → Wanted this a while</span>
-    <span class="anchor">Experian, PM intent → NJ → Texas + 2100 → Certs, next step</span>
-    <span class="anchor">Ship → inside the problem → iteration without ego</span>
-    <span class="anchor">Research tooling → direct loops → first skill to sharpen here</span>
+    <span class="anchor">Experian, business intent → NJ → Texas + 2100 → Certs, next step</span>
+    <span class="anchor">Ship → inside the problem → fix my own work without ego</span>
+    <span class="anchor">Research tools → face-to-face so far → first skill to build here</span>
     <span class="anchor">New way → doubted → live demo → borrow credibility</span>
-    <span class="anchor">Concierge → invented details → island rule → trace to source</span>
-    <span class="anchor">Thirteen files → "all matched" → ran it myself → verification is mine</span>
-    <span class="anchor">Whole feature → three hours → every line reviewed → decisions mine</span>
-    <span class="anchor">Lived problem → tired users → friction both ways → deterministic, real results</span>
+    <span class="anchor">Assistant → made-up details → island rule → trace to source</span>
+    <span class="anchor">Thirteen files → "all matched" → checked it myself → checking is my job</span>
+    <span class="anchor">Whole feature → three hours → every line read → decisions mine</span>
+    <span class="anchor">Lived problem → tired users → friction both ways → fixed rules, real results</span>
     <span class="anchor">Zero friction → except where friction saves → not my eyesight → who the user is → errors made impossible</span>
     <span class="anchor">Observe, constrain, build, test, reverse when the user says so</span>
-    <span class="anchor">Found DD independently → divergence is the gap → a team fixes that</span>
+    <span class="anchor">Found DD on my own → exploring options is the gap → a team fixes that</span>
     <span class="anchor">UX is the user's side → product adds judgment</span>
-    <span class="anchor">Solo is my ceiling → what I ship when I'm not alone</span>
+    <span class="anchor">Solo has a ceiling → what I ship when I'm not alone</span>
     <span class="anchor">Foundation, four rules, one gate</span>
     <span class="anchor">Killed it → Shipped it → Voiced it → Productized it</span>
-    <span class="anchor">Bespoke buys depth, productized buys reach</span>
-    <span class="anchor">Rationale in, ego out</span>
-    <span class="anchor">AI accelerates my execution; it doesn't make my decisions</span>
+    <span class="anchor">Custom buys depth, product buys reach</span>
+    <span class="anchor">Reasons in, ego out</span>
+    <span class="anchor">Change the currency, not the depth</span>
+    <span class="anchor">Consistency is trust, not sameness</span>
+    <span class="anchor">I define what proves me wrong</span>
+    <span class="anchor">AI makes me faster; it doesn't make my decisions</span>
   </div>
 </section>
 </main>
@@ -481,14 +630,6 @@
   #lbclose{position:fixed; top:14px; right:14px; z-index:201; width:44px; height:44px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--text); font-size:18px; cursor:pointer;}
   #lbclose:focus-visible{outline:2px solid var(--accent);}
 </style>
-<script>
-  const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
-  function openLb(){ lb.classList.add('open'); lbimg.classList.remove('zoomed'); document.body.style.overflow='hidden'; }
-  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-  function toggleZoom(e){ lbimg.classList.toggle('zoomed'); if(lbimg.classList.contains('zoomed')){ const r=e.target.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height; requestAnimationFrame(()=>{ const s=document.getElementById('lbscroll'); s.scrollLeft=(s.scrollWidth-s.clientWidth)*x; s.scrollTop=(s.scrollHeight-s.clientHeight)*y; }); } }
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
-</script>
-
 <script>
 (function(){
   const CODE="2693";
@@ -521,6 +662,11 @@
   if(sessionStorage.getItem('hub')==='1') gate.style.display='none';
 })();
 function setAll(open){ document.querySelectorAll('details').forEach(d=>d.open=open); }
+const lb=document.getElementById('lb'), lbimg=document.getElementById('lbimg');
+function openLb(){ lb.classList.add('open'); lbimg.classList.remove('zoomed'); document.body.style.overflow='hidden'; }
+function closeLb(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+function toggleZoom(e){ lbimg.classList.toggle('zoomed'); if(lbimg.classList.contains('zoomed')){ const r=e.target.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height; requestAnimationFrame(()=>{ const s=document.getElementById('lbscroll'); s.scrollLeft=(s.scrollWidth-s.clientWidth)*x; s.scrollTop=(s.scrollHeight-s.clientHeight)*y; }); } }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
 </script>
 </body>
 </html>
