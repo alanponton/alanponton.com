@@ -403,7 +403,7 @@
     <p>With ROSE, a five-question setup builds a branded assistant in about sixty seconds. It answers customers in the business's own voice and turns every booking request into an organized lead, with an email to the owner.</p>
     <p>Under the hood it runs on modern web tools and Claude, Anthropic's AI. The key decision: instead of reading free text and guessing, the assistant takes structured actions, so every request lands as clean data while the conversation stays natural.</p>
     <p>And because the chat is open to the public, I built two layers of protection: a bot check plus a request limit, so abuse can't run up my costs.</p>
-    <p>It's my fourth build of the same design problem, conversational intake. It's live, fully tested by me end to end, and honestly pre-revenue. I don't claim users I don't have.</p>
+    <p>It's my fourth build of the same design problem, conversational intake. It's live, fully tested by me end to end, and now running on its first real business site, a brow studio in Florida whose website I also built. Still honestly pre-revenue: I don't claim money I haven't made.</p>
     <span class="anchor">Problem → 60-second setup → structured actions → two-gate door → fourth build, honest status</span>
   </div></details>
 
@@ -445,8 +445,35 @@
     <p>My own fix showed me a deeper design gap, and I closed it.</p>
   </div></details>
 
+  <details><summary>Under the hood (for the dev in the room)</summary><div class="a">
+    <p>The architecture is deliberately boring in the best way: four managed services, each doing one job.</p>
+    <p>Cloudflare handles DNS and bot protection at the edge. Vercel runs the Next.js app and the API, and serves the widget script from its CDN. Supabase is Postgres plus auth: agent configs, captured leads, with row-level security so every business only sees its own data. And n8n, self-hosted on my own EC2 server, handles the lead notification flow: when the assistant captures a lead, the API fires a webhook toward it.</p>
+    <p>The design decision I'm proudest of is the embed. A client adds one script tag with a public key, and that's the entire integration. The script figures out the API address from its own source URL, so nothing is hardcoded, and the key fetches that business's setup at runtime. One identical file serves every client with completely different branding and knowledge.</p>
+    <p>I also designed the failure modes to degrade instead of break. If the notification layer goes down, leads still save to the database: the owner loses an email, never a customer. And anything trust-sensitive, like the booking link, ships as validated data from the server, not text the AI generates, so the AI can't mangle what matters.</p>
+    <p>I designed and built all of it solo, and verified it end to end in my own testing.</p>
+    <span class="anchor">Four services, one job each → one script tag is the whole integration → degrade, don't break → server owns what matters</span>
+    <div class="guard"><b>Verify before claiming:</b> only say "tested on a real client site" after the Tavi deployment actually ships. Only claim the owner email fires if the n8n webhook is finished and tested. Until then: "the notification layer is built and being wired up" is the honest line, and the degrade story still holds.</div>
+  </div></details>
+
+  <details><summary>Under the hood, room version (start here)</summary><div class="a">
+    <p>The system is four services, each with one job. One stands at the door and checks that visitors are real people, not bots. One runs the app itself.</p>
+    <p>One is the filing cabinet: every business's setup and every captured lead, locked so each business only sees its own. And one is the messenger: when a lead comes in, it emails the owner.</p>
+    <p>The part I'm proudest of is how a business installs it. They paste one line into their website, and that's it: that one line figures out everything else on its own, who the business is, their branding, their information.</p>
+    <p>And I planned for failure. If the messenger goes down, the lead is still saved: the owner loses an email, never a customer. And the important things, like the booking link, are never written by the AI, they're delivered by the system, so the AI can't get them wrong.</p>
+    <p>It's live on its first real business site now. And I'm happy to go as deep on the tech as anyone wants.</p>
+    <span class="anchor">Four services, one job each → doorman, app, filing cabinet, messenger → one line installs it → the AI can't touch what matters</span>
+  </div></details>
+
+  <details><summary>Under the hood, dev depth (when they drill down)</summary><div class="a">
+    <p>Cloudflare handles DNS and bot protection at the edge. Vercel runs the Next.js app and API, and serves the widget script from its CDN.</p>
+    <p>Supabase is Postgres plus auth: agent configs, captured leads, and row-level security so every business only sees its own data. Notifications run through n8n, self-hosted on EC2, fired by a webhook when a lead lands.</p>
+    <p>The embed script derives the API origin from its own source URL, so nothing's hardcoded, and the public key fetches that business's config at runtime. One identical file serves every client.</p>
+    <p>Trust-sensitive output, like the booking link, ships as validated structured data from the server, never model-generated text.</p>
+    <span class="anchor">Cloudflare edge → Vercel app → Supabase with row-level security → n8n webhook → derived origin, one file for all</span>
+  </div></details>
+
   <details><summary>ROSE honesty guardrails</summary><div class="a">
-    <div class="guard"><b>Non-negotiable:</b> pre-revenue, tested only by me, solo build, no user or sales claims. Tavi is an in-progress TEST until it actually ships. Sophia stats allowed: 95% lower cost than commercial platforms, 3+ products built on it. Approved ROSE stats: 60-sec setup / 2-gate protection / 24-7 lead capture / solo build.</div>
+    <div class="guard"><b>Non-negotiable:</b> pre-revenue, solo build, no revenue or paying-customer claims. Live on its first real business site: browsbytavi.com (site also built by Alan), hours verified with the client, owner email notifications working. An independent tester is reviewing the widget; don't cite his findings until they're in. Sophia stats allowed: 95% lower cost than commercial platforms, 3+ products built on it. Approved ROSE stats: 60-sec setup / 2-gate protection / 24-7 lead capture / solo build.</div>
   </div></details>
 </section>
 
