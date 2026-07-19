@@ -87,6 +87,7 @@
   <a href="#portfolio">Portfolio & Process</a>
   <a href="#c2100">2100 Constraints</a>
   <a href="#rose">ROSE & Evolution</a>
+  <a href="#bench">Bench Projects</a>
   <a href="#whiteboard">Whiteboard</a>
   <a href="#panel">Panel Gaps</a>
   <a href="#stages">Stages 3–6</a>
@@ -162,6 +163,15 @@
     <p>Formal research tools. My feedback so far has been face to face: I watch my users, every night, and adjust.</p>
     <p>What I haven't done is run formal studies with proper research tools. It's listed as a growth area on my resume, and it's the first skill I'd want to build inside a team that does research at scale.</p>
     <span class="anchor">Research tools → face-to-face feedback so far → first skill to build here</span>
+  </div></details>
+
+  <details><summary>"Why should we hire you?" (locked, 35–40 sec)</summary><div class="a">
+    <p>You're hiring a designer to ship products that reach millions of travelers, and the biggest risk with any designer is the gap between what gets designed and what actually ships. That gap is what I eliminate.</p>
+    <p>I design in Figma and build the production code myself, so the intent survives all the way to the user. And I don't design from theory: my flagship runs nightly because I worked the shift it serves, and my travel platform serves real guests today.</p>
+    <p>So what you get is a designer whose work is already living in production, with users who correct me and a documented habit of listening when they do. The gap I'm still closing is formal research at scale, and that's exactly what this team gives me room to sharpen.</p>
+    <p>Hire me, and the distance between your roadmap and your shipped product gets shorter.</p>
+    <span class="anchor">The gap I eliminate → design from inside → receipts in production → research gap, team is the fix → roadmap to shipped gets shorter</span>
+    <div class="guard"><b>If strengths was already asked:</b> "I gave you the three things I bring; the reason to hire me specifically is that all three are already proven in production, not promised." The closer also answers "any reason we shouldn't move forward?"</div>
   </div></details>
 
   <details><summary>Salary expectations</summary><div class="a">
@@ -264,10 +274,11 @@
 <section id="portfolio">
   <div class="grouphead"><h2>Portfolio & Process</h2><span class="tag">Stage 2 · hiring manager round</span></div>
 
-  <details><summary>2100 walkthrough, Beat 1: Problem (45 sec)</summary><div class="a">
-    <p>2100 Security is a web app for the five-person overnight security team I work on at a 33-floor Dallas high-rise. The old system was a free website with no security certificate, so every guard got a browser warning just opening it. A security team whose own tool looked unsafe.</p>
-    <p>The site couldn't update itself, so I rebuilt the schedule by hand every month. And on a phone, you had to pinch, zoom, and scroll sideways just to read your assignment.</p>
-    <p>I lived this problem every night, which is exactly why I could design for it.</p>
+  <details><summary>2100 walkthrough, Beat 1: Problem (45 sec, manager gets her props)</summary><div class="a">
+    <p>2100 Security is a web app for the five-person overnight security team I work on at a 33-floor Dallas high-rise. The schedule started as a sticky note taped to the key box, then an Excel sheet you had to zoom in to read on a phone.</p>
+    <p>My security manager saw the problem the same way I did. She approved the first version, a simple website, and when guards kept getting browser security warnings just opening it, she gave me the room to build something real. That backing is why this tool exists; the rest of the story is me earning it.</p>
+    <p>The old site couldn't update itself, so I rebuilt the schedule by hand every month. On a phone you had to pinch, zoom, and scroll sideways just to read your assignment. I lived this problem every night, which is exactly why I could design for it.</p>
+    <div class="guard"><b>Practice rule:</b> her pronoun is she. If it slips mid-run, say the sentence again correctly and keep going. No apology, no restart.</div>
   </div></details>
 
   <details><summary>Beat 2: Users and constraints (60 sec)</summary><div class="a">
@@ -475,6 +486,67 @@
   <details><summary>ROSE honesty guardrails</summary><div class="a">
     <div class="guard"><b>Non-negotiable:</b> pre-revenue, solo build, no revenue or paying-customer claims. Live on its first real business site: browsbytavi.com (site also built by Alan), hours verified with the client, owner email notifications working. An independent tester is reviewing the widget; don't cite his findings until they're in. Sophia stats allowed: 95% lower cost than commercial platforms, 3+ products built on it. Approved ROSE stats: 60-sec setup / 2-gate protection / 24-7 lead capture / solo build.</div>
   </div></details>
+
+  <details><summary>The Sophia bridge (one sentence, memorize it)</summary><div class="a">
+    <p>Sophia is one voice system with two lives: first as the hands-free assistant on my family's cruise site, where real people used her on a real trip, and then rebuilt as the reusable platform that grew into ROSE.</p>
+    <div class="guard"><b>Rule:</b> say it any time both projects come up in the same conversation. Never let the panel do the connecting for you.</div>
+  </div></details>
+</section>
+
+<!-- ================= BENCH PROJECTS ================= -->
+<section id="bench">
+  <div class="grouphead"><h2>Bench Projects</h2><span class="tag">Depth behind the headline · honest zeros</span></div>
+
+  <details><summary>The bench in one sentence (if asked why so many never launched)</summary><div class="a">
+    <p>The shipped ones prove I can finish; the paused ones prove I know when to stop.</p>
+    <p>Every pause has a written reason and a restart trigger, and I would rather show you an honest zero than a made-up number.</p>
+    <span class="anchor">Shipped proves finish → paused proves judgment → honest zero beats made-up number</span>
+    <div class="guard"><b>Today task, before any screenshare:</b> the old Sophia dashboard file has a hardcoded API key on line 151. Scrub it and rotate the key.</div>
+  </div></details>
+
+  <details><summary>Trip Buddy (with Sophia): one breath + status</summary><div class="a">
+    <p><em>One breath:</em> A private website I built for my family's Caribbean cruise. Schedule, packing lists, photos, videos, all in one link. And a voice assistant named Sophia you can just talk to about the trip.</p>
+    <p><em>Honest status:</em> It ran live at travel.alanponton.com during the real cruise in spring 2026. My partner and I used it as admins. Family visitor counts are not verified, and I say that plainly.</p>
+  </div></details>
+
+  <details><summary>Trip Buddy: the three panel answers</summary><div class="a">
+    <p><em>Private data on a shared dashboard?</em> Belt and suspenders. The front end strips out costs, confirmation numbers, and medical notes before the AI ever sees them, and the server strips the same fields a second time on its own. I tested it by asking Sophia for a reservation number as a visitor, and she declined.</p>
+    <p><em>Hardest voice problem?</em> Two things: the mic hearing Sophia's own voice, and dead air. I added guards so the mic stays off while she speaks, plus an instant reply layer so something plays right away, and she says "I'm listening" so people know when to talk.</p>
+    <p><em>Would this scale to paying customers?</em> Not as it stands, and I'd tell you exactly why: security rules are off on most tables, login is a shared passcode, and the audio checks in on a timer instead of a live connection. But the multi-client shape is already in the code, on purpose. The honest next steps are real security, real login, and real-time audio.</p>
+  </div></details>
+
+  <details><summary>FollowThisModel: one breath + status</summary><div class="a">
+    <p><em>One breath:</em> A platform where fans pay to chat with AI versions of real, identity-verified models. The model records her personality once, the AI handles the volume, and she earns a share of every message.</p>
+    <p><em>Honest status:</em> Deployed in test mode. Zero real users, zero revenue, zero live transactions, and I lead with that. Verified: 175 of 175 tests passing, the full payment flow in test mode, and security isolation on every table.</p>
+  </div></details>
+
+  <details><summary>FollowThisModel: the three panel answers</summary><div class="a">
+    <p><em>Your payment system never moved real money. Why trust it?</em> I would never claim it works in production, because it hasn't run there. What I can claim: every token movement is one all-or-nothing database transaction, every credit carries a duplicate-proof key, and payment messages verify their signatures. I label the untested parts as untested, everywhere, including right now.</p>
+    <p><em>Why compute balances from a ledger instead of storing a number?</em> Because a stored number can drift and a ledger cannot lie. Every token movement is a permanent row, so the balance is always just the sum of history, and any dispute is auditable. The cost is a slightly slower read, which was the right trade.</p>
+    <p><em>Hardest bug?</em> Signups silently failing to create a profile, with no error at all. After five wrong guesses I found the database's security layer rejecting the insert during an automated step, silently, by design. My three worst bugs never threw an error, so I now design for silence, not just for crashes.</p>
+  </div></details>
+
+  <details><summary>Push Coach: one breath + status</summary><div class="a">
+    <p><em>One breath:</em> A text-message accountability coach. Every morning it texts you one small task toward your goal, then follows up to ask if you did it. No app to download, you just text back.</p>
+    <p><em>Honest status:</em> Built to a working MVP, then deliberately paused. Zero real users. Text delivery was never verified end to end because it was blocked behind carrier verification, a gate I don't control.</p>
+  </div></details>
+
+  <details><summary>Push Coach: the three panel answers</summary><div class="a">
+    <p><em>Why is it paused?</em> Deliberate prioritization. I hit a verification gate I don't control, with zero paying users waiting on the other side of it. Rather than polish a product nobody asked for yet, I paused it, set a clear restart trigger, and left the system deployed so restarting costs almost nothing.</p>
+    <p><em>How do you know anyone wants this?</em> I don't have usage data, and I won't pretend otherwise. The idea came from personally coaching two people and noticing the follow-up, not the advice, was what they actually used. That's a grounded hypothesis, not a validated one, and validating it is exactly the step that's paused.</p>
+    <p><em>Hardest technical problem?</em> An operational one. My original design checked for messages every minute and burned an entire month of platform quota in two days. I rebuilt every workflow around events instead of constant checking, which cut usage from about 1,600 runs a day to about 4, and it changed how I design automation for good.</p>
+  </div></details>
+
+  <details><summary>MetroPlex Match: one breath + status</summary><div class="a">
+    <p><em>One breath:</em> A dating site for the Dallas area that matches people on compatibility math, not photos. Sixteen lifestyle questions, a weighted score with dealbreaker detection, and a shareable couples quiz as the front door.</p>
+    <p><em>Honest status:</em> Deployed to a test address with seeded test accounts only. No verified real users, and that's exactly what I claim: zero.</p>
+  </div></details>
+
+  <details><summary>MetroPlex Match: the three panel answers</summary><div class="a">
+    <p><em>How many users?</em> None I can verify, and I want to be straight about that. I built the funnel to acquire them, including a couples quiz designed to create two signups per share, but I never ran a real beta. What I can speak to in detail is the build itself.</p>
+    <p><em>Why do the matching math in the database instead of letting the AI judge profiles?</em> Consistency and cost. An AI scoring compatibility gives different answers on different days and can't be audited. My rule was math first, AI second: a versioned function computes the score, and the AI only writes a sentence about a number that already exists.</p>
+    <p><em>Hardest problem, and what would you change?</em> Anonymous users. Letting people take the quiz without an account split the data across two tables and at one point silently dropped ten of sixteen answers. I fixed it by consolidating to one source of truth, and if I started over I'd decide the login boundary on day one.</p>
+  </div></details>
 </section>
 
 <!-- ================= WHITEBOARD ================= -->
@@ -498,6 +570,33 @@
 
   <details><summary>The three fouls</summary><div class="a">
     <p><b>Google foul:</b> researching the real app mid-challenge. <b>Hedge foul:</b> bolting a rejected idea onto the chosen one. <b>Familiar-screen foul:</b> sketching the pain point in Frame 5 instead of the solution.</p>
+  </div></details>
+
+  <details><summary>Timed-run protocol (25 minutes, hard stop)</summary><div class="a">
+    <p>Phone timer face up. Budget: 5 min for Frames 1 and 2, 5 min for Frame 3, 5 min for Frame 4, 7 min for Frame 5, 3 min for Frame 6.</p>
+    <p>The timer protects Frames 4 and 6. That's where candidates die by over-sketching.</p>
+    <p>Talk out loud the whole run: silent whiteboarding scores zero. Record audio, listen back once. Two to three runs a week, new prompt each time.</p>
+  </div></details>
+
+  <details><summary>Run log</summary><div class="a">
+    <table>
+      <tr><th>Run</th><th>Prompt</th><th>Timed</th><th>Score</th><th>Top fix</th></tr>
+      <tr><td>0</td><td>AA: reduce traveler stress during delays</td><td>No</td><td>7/10</td><td>Google foul, hedge, familiar-screen sketch</td></tr>
+      <tr><td>F1-a</td><td>Grocery: less time in store</td><td>No</td><td>B+</td><td>Cut filler questions; ask who is hurting most</td></tr>
+      <tr><td>F1-b</td><td>Bank: young people saving</td><td>No</td><td>B-</td><td>Assumed the motive instead of asking it</td></tr>
+      <tr><td>1</td><td>Gym: stop 90-day cancellations</td><td>No</td><td>8/10</td><td>Early convergence; metrics aimed at business number</td></tr>
+      <tr><td>2</td><td>Pharmacy: prescription abandonment</td><td>25 min</td><td>7/10</td><td>Soft pick sentence; scope breach; business-number metric again</td></tr>
+      <tr><td>3</td><td></td><td>25 min</td><td></td><td></td></tr>
+      <tr><td>4</td><td></td><td>25 min</td><td></td><td></td></tr>
+      <tr><td>5</td><td></td><td>25 min</td><td></td><td></td></tr>
+    </table>
+  </div></details>
+
+  <details><summary>Run 3 drill targets (from Run 2)</summary><div class="a">
+    <p><b>The pick sentence is the most rehearsed nine seconds of the run.</b> "Saves time" is a benefit, not a protection. The bridge sentence hands you the protection word: use it.</p>
+    <p><b>Name the door, don't walk through it.</b> "There's a payment-plan opportunity here, but that's a business decision beyond this design." Never invent a lending product mid-challenge.</p>
+    <p><b>The user is stressed, not shopping.</b> No infomercial voice aimed at an anxious patient.</p>
+    <div class="guard"><b>THE recurring foul, three runs straight:</b> under pressure, metrics drift to the business number. The countable behavior lives inside the flow you drew, never in retention.</div>
   </div></details>
 
   <details><summary>Seven-step live skeleton</summary><div class="a">
@@ -553,12 +652,13 @@
     <span class="anchor">Their problem first → decisions in their stakes → borrow credibility → change the currency, not the depth</span>
   </div></details>
 
-  <details><summary>Product critique of a popular app (live exercise format)</summary><div class="a">
-    <p>1. <b>Job first:</b> "Who opens this app, in what moment, to get what done?" Never judge the screens before naming the job.</p>
-    <p>2. <b>Walk one real flow,</b> start to finish, saying out loud what the design chose: what's front and center, what's buried, what's assumed.</p>
-    <p>3. <b>Praise with reasons.</b> Two things done well, and why they're right for the user's moment. Critique without generosity sounds like taste, not judgment.</p>
-    <p>4. <b>Two frictions, tied to the moment.</b> Not "I don't like this button." Instead: "a traveler at a gate is one-handed and short on time, and this action is three taps deep."</p>
-    <p>5. <b>One trade-off you'd accept.</b> Say what fixing your friction would cost. Critique that admits cost is judgment; critique that doesn't is a complaint.</p>
+  <details><summary>Product critique of a popular app (five beats, practiced format)</summary><div class="a">
+    <p>1. <b>Who is this for.</b> Name the user before touching a screen. 2. <b>What is the core job.</b> The one thing this app must do well for that person.</p>
+    <p>3. <b>Walk key screens,</b> two or three max. What works and why, what fails and why.</p>
+    <p>4. <b>Principle, never preference.</b> "This violates her context, she's one-handed on a train." Never "I don't like this font."</p>
+    <p>5. <b>One change.</b> If you could ship one fix tomorrow, what and why. End on judgment, not a list.</p>
+    <p><em>Scoring rubric is your Five Principles.</em> "My taste is not the user's eyesight" is already a critique sentence. "Zero-friction access" evaluates onboarding. "Constraints are errors made impossible" evaluates forms.</p>
+    <p><em>Drill:</em> any app on your phone, 10 minutes out loud through the five beats, twice per session, different apps. Record, listen back once.</p>
     <div class="guard"><b>Traps:</b> never critique American's own app unless invited. If invited, be generous, name the limits their designers likely faced, and end on what you'd protect, not just what you'd change.</div>
   </div></details>
 
@@ -637,6 +737,9 @@
     <span class="anchor">Change the currency, not the depth</span>
     <span class="anchor">Consistency is trust, not sameness</span>
     <span class="anchor">I define what proves me wrong</span>
+    <span class="anchor">The gap I eliminate → receipts in production → roadmap to shipped gets shorter</span>
+    <span class="anchor">Shipped proves finish → paused proves judgment → honest zero</span>
+    <span class="anchor">Sophia: one voice system, two lives</span>
     <span class="anchor">AI makes me faster; it doesn't make my decisions</span>
   </div>
 </section>
