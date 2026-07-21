@@ -221,7 +221,7 @@
   </div></details>
 
   <details><summary>Handling pushback</summary><div class="a">
-    <p>I defend design decisions with reasons, never with taste. When my manager said he couldn't read the schedule on shift, I didn't argue, I added dark mode, because his problem was real.</p>
+    <p>I defend design decisions with reasons, never with taste. When my manager said she couldn't read the schedule on shift, I didn't argue, I added dark mode, because her problem was real.</p>
     <p>When I believe the design is right, I point to the reason behind it: the best practice, the feedback, or the requirement.</p>
     <p>If I can't name a reason, I shouldn't be defending it.</p>
   </div></details>
@@ -678,6 +678,17 @@
     <div class="guard"><b>Traps:</b> never critique American's own app unless invited. If invited, be generous, name the limits their designers likely faced, and end on what you'd protect, not just what you'd change.</div>
   </div></details>
 
+  <details><summary>"Walk us through a complex user journey. How did you handle conflicting constraints?"</summary><div class="a">
+    <p>The journey I'll walk you through is a security guard's overnight shift in a Dallas high-rise. Before my app, his schedule was a sticky note on the key box, then an Excel sheet he had to zoom into on his phone. My security manager backed a better answer from day one, she approved the first version and gave me room to build the real one.</p>
+    <p>What we landed on is this: the guard taps his name, enters an employee ID, and lands on the one question he actually has, which is what's my post right now. From there, his full rotation, his patrols, and the notes handed down from last shift.</p>
+    <p>The interesting part is that my own design principles conflict inside this journey. My first principle is zero-friction access beats feature richness, so login is stripped to almost nothing, because a tired guard at 4 a.m. abandons anything hard. But my second principle is: except where friction saves people.</p>
+    <p>Once a month he inspects fire extinguishers, and there I deliberately added friction, a second ID confirmation, because a careless tap there creates a safety record that lies. So the same app makes two opposite calls, and both are right, because the constraint isn't in the interface, it's in the stakes.</p>
+    <p>Underneath it all, a rules engine validates every rotation against five to seven scheduling constraints before anything ships, so the conflicts I can't design away get caught before he ever sees them.</p>
+    <div class="guard"><b>The trap it sets:</b> "the rules engine catches the rest" is bait. They ask about it, and you're in the constraint engine, your strongest room, on their invitation.</div>
+    <div class="guard"><b>Foul watch:</b> manager is she, guards are he. Never say "yet" if the engine comes up.</div>
+    <span class="anchor">His whole night &rarr; two principles fight &rarr; almost-nothing login &rarr; friction where records lie &rarr; rules catch the rest</span>
+  </div></details>
+
   <details><summary>Rebooking scenario (drill this before any panel)</summary><div class="a">
     <p>The documented AA exercise: redesign the mobile flow for a canceled connection, with hotel and meal vouchers. Run it once, timed, on your own six-frame template.</p>
     <p>Frame 2 writes itself: a stranded traveler, one-handed, panicking, worried about battery, standing at a gate.</p>
@@ -710,7 +721,7 @@
 
   <details><summary>Stakeholder / difficult feedback</summary><div class="a">
     <p>My stakeholders have been clients and my own management. The pattern I've learned: bring them the decision with its reasoning, not just the finished thing.</p>
-    <p>When my security manager couldn't read the schedule on shift, the answer wasn't defending my design, it was dark mode, because his problem was real.</p>
+    <p>When my security manager couldn't read the schedule on shift, the answer wasn't defending my design, it was dark mode, because her problem was real.</p>
     <p>Clients are the same: Lonnie didn't need my design preferences, she needed guests booking without confusion. Reasons in, ego out.</p>
     <span class="anchor">Decision with reasoning → manager's dark mode → Lonnie's guests → reasons in, ego out</span>
   </div></details>
@@ -757,6 +768,7 @@
     <span class="anchor">Shipped proves finish → paused proves judgment → honest zero</span>
     <span class="anchor">Sophia: one voice system, two lives</span>
     <span class="anchor">AI makes me faster; it doesn't make my decisions</span>
+    <span class="anchor">His whole night &rarr; two principles fight &rarr; friction where records lie &rarr; rules catch the rest</span>
   </div>
 </section>
 </main>
