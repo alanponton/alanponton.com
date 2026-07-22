@@ -153,16 +153,37 @@ function CaseStudyHero({ project }: { project: (typeof projects)[0] }) {
               className="flex flex-wrap gap-3 mb-8"
             >
               {[
-                { label: "Role", value: project.hero.role },
-                { label: "Timeline", value: project.hero.timeline },
-                { label: "Status", value: project.hero.status },
-              ].map(({ label, value }) => (
+                { label: "Role", value: project.hero.role, href: undefined },
+                {
+                  label: "Timeline",
+                  value: project.hero.timeline,
+                  href: project.slug === "2100-security" ? "https://alanpontonap.wixstudio.com/2100patrol" : undefined,
+                },
+                {
+                  label: "Status",
+                  value: project.hero.status,
+                  href: project.slug === "2100-security" ? "https://demo.2100security.com" : undefined,
+                },
+              ].map(({ label, value, href }) => (
                 <div
                   key={label}
                   className="flex items-center gap-2 px-4 py-2 rounded-full text-sm bg-surface border border-border"
                 >
                   <span className="text-text-secondary">{label}</span>
-                  <span className="text-text-primary font-medium">{value}</span>
+                  <span className="text-text-primary font-medium">
+                    {href ? (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "inherit", textDecoration: "none" }}
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      value
+                    )}
+                  </span>
                 </div>
               ))}
             </motion.div>

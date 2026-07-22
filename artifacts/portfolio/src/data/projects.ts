@@ -249,7 +249,7 @@ export const projects: ProjectData[] = [
       { value: "100%", label: "Security Warnings Eliminated", description: "No-SSL Wix to Cloudflare-protected hosting" },
       { value: "1", label: "Data-Array Edit", description: "Replaced monthly hand-rebuilding of the schedule" },
       { value: "5", label: "Officers, Nightly", description: "Across Android and iOS" },
-      { value: "5–7", label: "Simultaneous Constraints", description: "Honored per generated rotation" },
+      { value: "5–7", label: "Simultaneous Constraints", description: "Honored per rotation" },
     ],
     features: [
       "Passwordless guard-picker identity (under five seconds, no email)",

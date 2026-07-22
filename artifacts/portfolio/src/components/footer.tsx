@@ -4,7 +4,16 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-background py-8">
       <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-text-secondary text-sm">© 2026 Alan Ponton</p>
+        <p className="text-text-secondary text-sm">
+          <a
+            href="https://alanpontonap.wixstudio.com/alanponton"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "inherit", textDecoration: "none" }}
+          >
+            © 2026 Alan Ponton
+          </a>
+        </p>
 
         <div className="flex items-center gap-3">
           <a
