@@ -87,6 +87,7 @@
   <a href="#portfolio">Portfolio & Process</a>
   <a href="#c2100">2100 Constraints</a>
   <a href="#rose">ROSE & Evolution</a>
+  <a href="#lonnies">Lonnie's Locations</a>
   <a href="#bench">Bench Projects</a>
   <a href="#whiteboard">Whiteboard</a>
   <a href="#panel">Panel Gaps</a>
@@ -111,10 +112,12 @@
   </div></details>
 
   <details><summary>Why American Airlines?</summary><div class="a">
-    <p>Three honest reasons. First, I'm local: your headquarters is home turf, so no relocation, no hesitation.</p>
-    <p>Second, the scale. Your apps touch millions of travelers, and I want my work to matter at that scale.</p>
-    <p>Third, I've applied to American before, going back a few years. I've wanted to be here a while. The difference now is my work finally matches the ambition.</p>
-    <span class="anchor">Local → Scale → Wanted this a while</span>
+    <p>Honestly, it's the operation. One flight leaving on time is gate agents, ground crew, dispatch, maintenance, and flight crew all hitting their marks in sequence, and American runs thousands of those a day. That coordination genuinely amazes me.</p>
+    <p>And it's not admiration from the outside. I run overnight security operations, and I built my flagship product because the coordination problem on my own shift was broken. Three posts, five guards, rotations, handoffs, notes that have to survive shift change. That's the same species of problem you solve, at a scale I can barely picture.</p>
+    <p>So this isn't a company I picked off a list. It's the industry where the work I already care about, designing tools for the people running an operation, matters most.</p>
+    <span class="anchor">The operation amazes me → not from the outside → same problem, scale I can't picture → not off a list</span>
+    <div class="guard"><b>Delivery:</b> the amazement sentence is only safe because the credential sentence follows it immediately. Never let paragraph one stand alone. Say "amazes me" once, then get to work.</div>
+    <div class="guard"><b>Dropped on purpose:</b> the old local and no-relocation answer. Location reads as convenience, not motivation. If they raise commute or relocation, answer it plainly then, but never lead with it.</div>
   </div></details>
 
   <details><summary>Walk me through your resume</summary><div class="a">
@@ -510,6 +513,89 @@
 </section>
 
 <!-- ================= BENCH PROJECTS ================= -->
+<!-- ================= LONNIE'S ================= -->
+<section id="lonnies">
+  <div class="grouphead"><h2>Lonnie's Locations</h2><span class="tag">Project two &middot; real guests &middot; live in production</span></div>
+
+  <details><summary>The short pitch (open with this)</summary><div class="a">
+    <p>My cousin is an independent travel advisor. She organizes group trips, thirty-plus people, a lot of first-time cruisers. Her business was thriving but everything ran through texts and DMs.</p>
+    <p>There was no single place for a guest to book, see what they signed up for, or get questions answered. And the questions were relentless. One guest was reaching out four times a week asking the same things: passports, packing, payments.</p>
+    <p>I designed and built a platform where every trip gets its own branded experience: booking flow, AI concierge, guest portal. The key design goal was that launching a new trip should be a content entry, not a rebuild. We've proven that across two cruises and a month-long Africa trip.</p>
+    <p>And it's already producing business. A signup through the site became a new group trip she's organizing.</p>
+    <span class="anchor">Her problem &rarr; my solution &rarr; proof it worked &rarr; business generated</span>
+    <div class="guard"><b>Shape:</b> her problem, my solution, proof. Under a minute, then let them pull the thread.</div>
+  </div></details>
+
+  <details><summary>The cousin question (say it first, never let them find it)</summary><div class="a">
+    <p>"She's my cousin, which is how I got the access. It's also why I had real stakes in getting it right."</p>
+    <p>Don't lead with it, don't hide it. The frame stays client project, because that's what it is: real guests, real money, real deadlines.</p>
+    <p>If they probe further: family access is how most designers get a first real client. What matters is that it became a live product with real guests and a documented redesign driven by stakeholder feedback.</p>
+    <div class="guard"><b>Why volunteer it:</b> if they discover it any other way, the omission reads as spin and it contaminates every other claim.</div>
+  </div></details>
+
+  <details><summary>The stats and status</summary><div class="a">
+    <p>Live in production. Three live trips, thirty-plus guests served, roughly $2.50 a month in infrastructure, one designer.</p>
+    <p>December 2025 to present. Solo: UX designer and full-stack developer.</p>
+    <p><em>Confirmed by Lonnie directly, July 2026:</em> a signup through the site became a new group trip she's organizing. She approved every preview and actively requests features, which means she uses it as a business tool, not a gift.</p>
+    <div class="guard"><b>No verbatim quote exists yet.</b> Don't invent one. Text her: "what's been the biggest difference the site made for you?"</div>
+  </div></details>
+
+  <details><summary>"A decision you're proud of" &mdash; the escalation banner</summary><div class="a">
+    <p>When the concierge hits something it shouldn't answer, like medical, payments, or refunds, it shows the guest a banner: Lonnie has been notified, she'll reach out personally. Early on, that was a lie. Nothing notified her. The chat just ended.</p>
+    <p>I flagged that as a UX integrity defect, not a missing feature. The interface was making a promise the system wasn't keeping, to the exact guests who were most anxious.</p>
+    <p>So I built the loop that made it true. Escalations write to a real-time dashboard she actually checks, color-coded by urgency, medical red and payment gold, with an audible chime, a badge count in the browser tab, and the full transcript so she has context before she calls. The agent also asks for the guest's best contact method. Only when all of that worked did the banner stop being a promise and start being a fact.</p>
+    <p>My takeaway: every piece of reassuring microcopy is a contract. If the system can't keep it, the copy is the bug.</p>
+    <span class="anchor">Banner promised &rarr; nothing delivered &rarr; integrity defect, not missing feature &rarr; copy is a contract</span>
+  </div></details>
+
+  <details><summary>"A mistake" &mdash; the Africa birthday trip (deliver slowly)</summary><div class="a">
+    <p>Mid-project, a client booked a month-long Africa trip for her 30th birthday. She'd planned club nights and a specific beach-club birthday dinner. I designed an elevated version, swapped her plans for a high-end safari, because that's what I assumed a premium trip should look like.</p>
+    <p>When I reviewed it, I realized I'd committed a classic designer failure. I designed for an aspirational persona instead of the actual user. She'd deliberately chosen those plans. They were the trip.</p>
+    <p>I archived my version and made hers canonical. It became a principle for the whole project: the experience reflects who the client actually is, not who I assume a premium traveler should be.</p>
+    <span class="anchor">I designed for a persona &rarr; she'd already chosen &rarr; archived mine, hers is canonical</span>
+  </div></details>
+
+  <details><summary>"Working with stakeholders" &mdash; the onboarding pivot</summary><div class="a">
+    <p>Later in the project, Lonnie came to me with a concern. She wanted a real lead process. When I dug into it, she was right in a way the data confirmed. Contact info was being collected at the end of the reservation flow, right before success. So anyone who browsed, got interested, and left never existed to her.</p>
+    <p>Her instinct became a full front-of-funnel redesign. I replaced the form-first entry with conversational onboarding, one question per screen, name, then email, then optional phone, writing the lead the moment it completes. And I trimmed the trip-planning questionnaire from eighteen questions down to five in the same shell.</p>
+    <p>The principle: capture the person before you ask for the commitment. The credit goes to my stakeholder. She felt the business problem before I saw it in the flow.</p>
+    <span class="anchor">She felt it first &rarr; data confirmed it &rarr; capture the person before the commitment</span>
+  </div></details>
+
+  <details><summary>The AI concierge (conversation design, not engineering)</summary><div class="a">
+    <p>The concierge was a conversation design problem before it was an engineering problem. I didn't have a research budget, so I treated her inbox as my dataset. I went through what guests actually asked and built a taxonomy: documents, health requirements, money, packing. That became the knowledge base.</p>
+    <p>Then the design decisions. Suggested-question chips, because first-time users freeze at a blank prompt. Trip-aware voice, so it says "your cruise" on a cruise and knows that trip's specifics.</p>
+    <p>The hardest part was deciding what it shouldn't answer. When a question needs human judgment, it escalates to the advisor with full context, so the guest never hits a dead end.</p>
+    <div class="guard"><b>Hard guardrail:</b> this concierge is bespoke. Never call it ROSE, never say it was retrofitted. Bespoke buys depth, productized buys reach, and choosing between them is the judgment.</div>
+  </div></details>
+
+  <details><summary>Systems thinking &mdash; the IA that flexes</summary><div class="a">
+    <p>The interesting IA problem was that a four-night cruise and a month-long, three-country journey are completely different user journeys. A cruise is pick a cabin, one ship, fixed dates. The Africa trip is join any leg, choose your hotels, deal with two visa systems.</p>
+    <p>So I abstracted the part that's the same, which is discover, understand, reserve, track, and let the middle layer flex. Shared components like the hero, countdown, FAQ, and concierge stay constant so the brand never breaks.</p>
+    <p>Trip-specific pieces swap underneath: cabin cards for cruises, a leg-by-leg timeline for journeys. That's what makes it a product instead of a series of one-off websites.</p>
+    <span class="anchor">Same spine: discover, understand, reserve, track &rarr; middle layer flexes &rarr; product, not one-offs</span>
+  </div></details>
+
+  <details><summary>Honest numbers &mdash; the copy rule and the pricing pull</summary><div class="a">
+    <p>One governing copy rule: never show a fake number, never hide the total, never make a promise the math doesn't support. No fabricated discounts, no hardcoded prices that go stale. Everything is dynamic with an honest fallback if data is missing.</p>
+    <p>I'd added exact dollar figures for gratuities and travel insurance. I like precision. Lonnie asked me to pull them, because cruise lines update those constantly and a stale exact number is a broken promise waiting to happen.</p>
+    <p>So we moved to honest approximations with a "Lonnie confirms your rate" handoff. Her domain expertise beat my precision instinct, and the product is more trustworthy for it.</p>
+    <span class="anchor">Never print a number the system can't guarantee</span>
+  </div></details>
+
+  <details><summary>"What would you do differently?"</summary><div class="a">
+    <p>Two things. I'd generalize the data schema earlier. I built cruise-first and had to refactor when the journey-type trip arrived.</p>
+    <p>And my research was all proxy. The advisor was a rich source since she fields every question, but I'd want direct guest interviews next time. Watching a first-time cruiser actually go through the reservation flow would've caught things faster.</p>
+  </div></details>
+
+  <details><summary>Story assignment (never reuse one in the same room)</summary><div class="a">
+    <p><em>Decision I'm proud of:</em> escalation banner. <em>A mistake:</em> the Africa birthday trip. <em>Working with stakeholders:</em> the onboarding pivot.</p>
+    <p><em>Honest numbers:</em> the pricing pull. <em>Systems thinking:</em> the IA flex. <em>Results:</em> the site signup that became a new group trip.</p>
+    <div class="guard"><b>Delivery rule:</b> when they ask about a feature, answer with the decision behind it. "Chips, because first-time users freeze at a blank prompt." That's what separates a designer from a builder in their ears.</div>
+  </div></details>
+
+</section>
+
 <section id="bench">
   <div class="grouphead"><h2>Bench Projects</h2><span class="tag">Depth behind the headline · honest zeros</span></div>
 
