@@ -70,13 +70,8 @@
     box-shadow:0 18px 40px rgba(0,0,0,.55);
     max-height:40vh; width:auto; object-fit:contain;
   }
-  @media (min-width:768px){
+  @media (min-width:1024px){
     .shot{cursor:zoom-in;}
-  }
-  @media (min-width:768px){
-    .slide-inner:has(.body ~ .body ~ .body ~ .body) .body{
-      font-size:22px;
-    }
   }
   .shotrow{
     display:flex; gap:16px; justify-content:center; align-items:flex-start; flex-wrap:wrap; margin-top:20px;
@@ -84,6 +79,9 @@
   .shotrow .shot{
     flex:1; width:auto; max-width:100%; margin-top:0;
   }
+  .media-col{margin-top:20px;}
+  .text-col:has(.body) + .media-col{margin-top:28px;}
+  .media-col > .shot, .media-col > .shotrow{margin-top:0;}
   .avatar{
     display:block; width:96px; height:96px; border-radius:50%; object-fit:cover;
     border:1px solid var(--line); margin:0 0 28px;
@@ -140,7 +138,7 @@
     .slide{transition:opacity .01s linear;}
   }
 
-  @media (max-width:767px){
+  @media (max-width:1023px){
     html,body{height:auto; overflow:auto;}
     #deck{position:static; width:100%; height:auto;}
     .slide{
@@ -160,6 +158,52 @@
     .shotrow .shot{width:100%; max-width:100%;}
     #counter{display:none;}
     #progress{display:block;}
+  }
+
+  @media (min-width:1024px){
+    .slide-inner:has(.media-col){
+      display:grid;
+      grid-template-columns:52% 48%;
+      column-gap:48px;
+      align-items:center;
+      max-width:1160px;
+    }
+    .slide-inner:has(.media-col) .text-col{
+      grid-column:1;
+      grid-row:1;
+    }
+    .slide-inner:has(.media-col) .media-col{
+      grid-column:2;
+      grid-row:1;
+      margin-top:0;
+    }
+    .slide-inner:has(.media-col) > .factstrip{
+      grid-column:1;
+      grid-row:2;
+    }
+    .media-col > .shot{
+      width:100%; max-width:100%;
+      max-height:74vh;
+      object-fit:contain;
+    }
+    .media-col > .shotrow > .shot{
+      max-height:66vh;
+    }
+
+    .slide.shrink-1 .body{font-size:22px;}
+    .slide.shrink-1 .shot{max-height:34vh;}
+    .slide.shrink-1 .media-col > .shot{max-height:62vh;}
+    .slide.shrink-1 .media-col > .shotrow > .shot{max-height:54vh;}
+
+    .slide.shrink-2 .body{font-size:19px;}
+    .slide.shrink-2 .shot{max-height:28vh;}
+    .slide.shrink-2 .media-col > .shot{max-height:52vh;}
+    .slide.shrink-2 .media-col > .shotrow > .shot{max-height:44vh;}
+
+    .slide.shrink-3 .body{font-size:17px;}
+    .slide.shrink-3 .shot{max-height:22vh;}
+    .slide.shrink-3 .media-col > .shot{max-height:42vh;}
+    .slide.shrink-3 .media-col > .shotrow > .shot{max-height:36vh;}
   }
 </style>
 </head>
@@ -202,21 +246,29 @@
 
   <section class="slide" data-index="4">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>The problem</h1>
-      <p class="body">A five-person overnight security team in a 33-floor Dallas high-rise. The schedule was a sticky note on the key box, then an Excel sheet a guard had to zoom into on his phone at 4 a.m.</p>
-      <img class="shot" src="/projects/2100/V1/excel-rotation-color-coded-v1.png" alt="Excel rotation sheet, color coded, V1">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>The problem</h1>
+        <p class="body">A five-person overnight security team in a 33-floor Dallas high-rise. The schedule was a sticky note on the key box, then an Excel sheet a guard had to zoom into on his phone at 4 a.m.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/2100/V1/excel-rotation-color-coded-v1.png" alt="Excel rotation sheet, color coded, V1">
+      </div>
       <p class="factstrip">Five guards, three posts, 33 floors, overnight.</p>
     </div>
   </section>
 
   <section class="slide" data-index="5">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>The user</h1>
-      <p class="body">Guard Reyes was new. He wore glasses, his phone screen was cracked, and he told me the schedule was hard to follow. He also said something I had not planned for.</p>
-      <p class="body">He wanted to check his post before he left home, not after he clocked in at the desk. That one sentence moved the whole product. It stopped being a thing you look at on shift and became a thing you check from your kitchen at ten at night.</p>
-      <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>The user</h1>
+        <p class="body">Guard Reyes was new. He wore glasses, his phone screen was cracked, and he told me the schedule was hard to follow. He also said something I had not planned for.</p>
+        <p class="body">He wanted to check his post before he left home, not after he clocked in at the desk. That one sentence moved the whole product. It stopped being a thing you look at on shift and became a thing you check from your kitchen at ten at night.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
+      </div>
       <p class="factstrip">Guard names in this deck are changed. The work is not.</p>
     </div>
   </section>
@@ -232,17 +284,21 @@
 
   <section class="slide" data-index="7">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>Three versions</h1>
-      <ul class="lines">
-        <li>V1, paper and Excel. The baseline.</li>
-        <li>V2, a Wix site. My security manager approved it day one.</li>
-        <li>V3, a production PWA I designed and built. She gave me room to build the real one.</li>
-      </ul>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V1/excel-rotation-color-coded-v1.png" alt="V1 Excel rotation sheet, color coded">
-        <img class="shot" src="/projects/2100/V2/prototype-rotation-v2.jpg" alt="V2 rotation prototype">
-        <img class="shot" src="/projects/2100/V3/full-schedule.png" alt="V3 full schedule screen">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>Three versions</h1>
+        <ul class="lines">
+          <li>V1, paper and Excel. The baseline.</li>
+          <li>V2, a Wix site. My security manager approved it day one.</li>
+          <li>V3, a production PWA I designed and built. She gave me room to build the real one.</li>
+        </ul>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V1/excel-rotation-color-coded-v1.png" alt="V1 Excel rotation sheet, color coded">
+          <img class="shot" src="/projects/2100/V2/prototype-rotation-v2.jpg" alt="V2 rotation prototype">
+          <img class="shot" src="/projects/2100/V3/full-schedule.png" alt="V3 full schedule screen">
+        </div>
       </div>
       <p class="factstrip">Timeline: paper to production PWA.</p>
     </div>
@@ -250,26 +306,34 @@
 
   <section class="slide" data-index="8">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>What V2 taught me</h1>
-      <p class="body">My security manager opened the V2 link and got a browser security warning. I started explaining that the domain forwards to a Wix site that does have HTTPS and a valid certificate.</p>
-      <p class="body">She said, "Huh?" And she was right.</p>
-      <p class="body">If the person approving it cannot get past the front door, the design behind the door does not exist. I told her I would come back with something easier to understand. That is why V3 is a real app on its own domain.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V2/prototype-social-login-v2.jpg" alt="V2 social login prototype">
-        <img class="shot" src="/projects/2100/V2/prototype-landing-v2.jpg" alt="V2 landing prototype">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>What V2 taught me</h1>
+        <p class="body">My security manager opened the V2 link and got a browser security warning. I started explaining that the domain forwards to a Wix site that does have HTTPS and a valid certificate.</p>
+        <p class="body">She said, "Huh?" And she was right.</p>
+        <p class="body">If the person approving it cannot get past the front door, the design behind the door does not exist. I told her I would come back with something easier to understand. That is why V3 is a real app on its own domain.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V2/prototype-social-login-v2.jpg" alt="V2 social login prototype">
+          <img class="shot" src="/projects/2100/V2/prototype-landing-v2.jpg" alt="V2 landing prototype">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="9">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>Entry with almost nothing</h1>
-      <p class="body">No password. He taps his name, enters his employee ID, and he is in. A password is one more thing to forget at 4 a.m., and forgetting it means the schedule goes back to being a sticky note.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V3/logout-switch-guard.png" alt="V3 logout and switch guard screen">
-        <img class="shot" src="/projects/2100/V3/live-login-start-dark-v3.jpg" alt="V3 live login start screen, dark mode">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>Entry with almost nothing</h1>
+        <p class="body">No password. He taps his name, enters his employee ID, and he is in. A password is one more thing to forget at 4 a.m., and forgetting it means the schedule goes back to being a sticky note.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V3/logout-switch-guard.png" alt="V3 logout and switch guard screen">
+          <img class="shot" src="/projects/2100/V3/live-login-start-dark-v3.jpg" alt="V3 live login start screen, dark mode">
+        </div>
       </div>
       <p class="factstrip">Passwordless entry: employee ID only.</p>
     </div>
@@ -277,67 +341,91 @@
 
   <section class="slide" data-index="10">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>Ranked by urgency</h1>
-      <p class="body">The home screen answers in order of how fast he needs it. Current block first, then his assigned post, then the patrol route under it. Everything else is one tap away, not one scroll away.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
-        <img class="shot" src="/projects/2100/V3/patrol-detail-dark.png" alt="V3 patrol detail screen, dark mode">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>Ranked by urgency</h1>
+        <p class="body">The home screen answers in order of how fast he needs it. Current block first, then his assigned post, then the patrol route under it. Everything else is one tap away, not one scroll away.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
+          <img class="shot" src="/projects/2100/V3/patrol-detail-dark.png" alt="V3 patrol detail screen, dark mode">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="11">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>Two principles fight</h1>
-      <p class="body">My first principle: zero-friction access beats feature richness, so login is stripped to almost nothing. My second: except where friction saves people.</p>
-      <p class="body">Once a month he inspects fire extinguishers, and there I deliberately added friction, a second ID confirmation, because a careless tap there creates a safety record that lies. Same app, two opposite calls, both right, because the constraint isn't in the interface, it's in the stakes.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V3/fire-ext-constraint.png" alt="V3 fire extinguisher inspection screen">
-        <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id-dark.png" alt="V3 fire extinguisher inspection, ID confirmation, dark mode">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>Two principles fight</h1>
+        <p class="body">My first principle: zero-friction access beats feature richness, so login is stripped to almost nothing. My second: except where friction saves people.</p>
+        <p class="body">Once a month he inspects fire extinguishers, and there I deliberately added friction, a second ID confirmation, because a careless tap there creates a safety record that lies. Same app, two opposite calls, both right, because the constraint isn't in the interface, it's in the stakes.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V3/fire-ext-constraint.png" alt="V3 fire extinguisher inspection screen">
+          <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id-dark.png" alt="V3 fire extinguisher inspection, ID confirmation, dark mode">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="12">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>The handoff</h1>
-      <p class="body">Every shift inherits what the last shift saw. Passdown notes live inside the app instead of a notebook at the desk, so the guard reads them where he already is, on the same screen that told him his post.</p>
-      <img class="shot" src="/projects/2100/V2/prototype-passdown-v2.jpg" alt="V2 shift passdown prototype">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>The handoff</h1>
+        <p class="body">Every shift inherits what the last shift saw. Passdown notes live inside the app instead of a notebook at the desk, so the guard reads them where he already is, on the same screen that told him his post.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/2100/V2/prototype-passdown-v2.jpg" alt="V2 shift passdown prototype">
+      </div>
     </div>
   </section>
 
   <section class="slide" data-index="13">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>One tap to Command Center</h1>
-      <p class="body">When something is wrong, nobody should be hunting for a phone number. The Command Center line is a single tap from any screen, because in an emergency the interface should get out of the way completely.</p>
-      <img class="shot" src="/projects/2100/V3/shortcut-call-to-command-center.png" alt="V3 shortcut, call to command center">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>One tap to Command Center</h1>
+        <p class="body">When something is wrong, nobody should be hunting for a phone number. The Command Center line is a single tap from any screen, because in an emergency the interface should get out of the way completely.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/2100/V3/shortcut-call-to-command-center.png" alt="V3 shortcut, call to command center">
+      </div>
     </div>
   </section>
 
   <section class="slide" data-index="14">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>The rules</h1>
-      <p class="body">Every rotation is checked against five written scheduling rules before anything ships. The engine in code runs the nightly rotation and the safety gate. Same input, same answer, whether the rule runs in code or in me.</p>
-      <img class="shot" src="/projects/2100/V3/full-schedule.png" alt="V3 full schedule screen">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>The rules</h1>
+        <p class="body">Every rotation is checked against five written scheduling rules before anything ships. The engine in code runs the nightly rotation and the safety gate. Same input, same answer, whether the rule runs in code or in me.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/2100/V3/full-schedule.png" alt="V3 full schedule screen">
+      </div>
       <p class="factstrip">Fire gate: calendar logic drives the monthly inspection.</p>
     </div>
   </section>
 
   <section class="slide" data-index="15">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>Light and dark</h1>
-      <p class="body">I put hours into a version I was proud of. She looked at it and said, "Nah, I don't like it." That landed hard, and I did not let it show.</p>
-      <p class="body">I took a breath and asked her why. She said, "I can't see it." It was never about taste.</p>
-      <p class="body">It was contrast, in a lit lobby and a dark stairwell, on a cracked screen at 4 a.m. I built light and dark as equals. She saw the next version and told me it was good work.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id.png" alt="V3 fire extinguisher inspection, ID confirmation, light mode">
-        <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id-dark.png" alt="V3 fire extinguisher inspection, ID confirmation, dark mode">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>Light and dark</h1>
+        <p class="body">I put hours into a version I was proud of. She looked at it and said, "Nah, I don't like it." That landed hard, and I did not let it show.</p>
+        <p class="body">I took a breath and asked her why. She said, "I can't see it." It was never about taste.</p>
+        <p class="body">It was contrast, in a lit lobby and a dark stairwell, on a cracked screen at 4 a.m. I built light and dark as equals. She saw the next version and told me it was good work.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id.png" alt="V3 fire extinguisher inspection, ID confirmation, light mode">
+          <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id-dark.png" alt="V3 fire extinguisher inspection, ID confirmation, dark mode">
+        </div>
       </div>
     </div>
   </section>
@@ -353,26 +441,34 @@
 
   <section class="slide" data-index="17">
     <div class="slide-inner">
-      <span class="tag">2100 Security</span>
-      <h1>Results</h1>
-      <ul class="lines">
-        <li>Five guards use it nightly.</li>
-        <li>Three documented versions without losing the team.</li>
-        <li>The manager who could not read the schedule on shift got dark mode early.</li>
-      </ul>
-      <div class="shotrow">
-        <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
-        <img class="shot" src="/projects/2100/V3/full-schedule.png" alt="V3 full schedule screen">
+      <div class="text-col">
+        <span class="tag">2100 Security</span>
+        <h1>Results</h1>
+        <ul class="lines">
+          <li>Five guards use it nightly.</li>
+          <li>Three documented versions without losing the team.</li>
+          <li>The manager who could not read the schedule on shift got dark mode early.</li>
+        </ul>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
+          <img class="shot" src="/projects/2100/V3/full-schedule.png" alt="V3 full schedule screen">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="18">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>The problem</h1>
-      <p class="body">My client is an independent travel advisor running thirty-plus person group trips out of Chicago. Her business was thriving but everything ran through texts and DMs.</p>
-      <img class="shot" src="/projects/Lonnies/lonnies_home_mobile.png" alt="Lonnie's Locations mobile home">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>The problem</h1>
+        <p class="body">My client is an independent travel advisor running thirty-plus person group trips out of Chicago. Her business was thriving but everything ran through texts and DMs.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile.png" alt="Lonnie's Locations mobile home">
+      </div>
       <p class="factstrip">Thirty-plus person group trips, many first-time cruisers.</p>
     </div>
   </section>
@@ -388,58 +484,78 @@
 
   <section class="slide" data-index="20">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>The spine</h1>
-      <p class="body">One structure for every trip. Discover, understand, reserve, track. A guest moves through the same four moments whether it is a cruise or a land journey, so nothing has to be relearned trip to trip.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile.png" alt="Lonnie's Locations mobile home">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_group_trips.png" alt="Lonnie's Locations group trips screen">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_trip_card.png" alt="Lonnie's Locations trip card view">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>The spine</h1>
+        <p class="body">One structure for every trip. Discover, understand, reserve, track. A guest moves through the same four moments whether it is a cruise or a land journey, so nothing has to be relearned trip to trip.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile.png" alt="Lonnie's Locations mobile home">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_group_trips.png" alt="Lonnie's Locations group trips screen">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_trip_card.png" alt="Lonnie's Locations trip card view">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="21">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>The middle layer flexes</h1>
-      <p class="body">The spine holds, the middle changes. Cabin cards for cruises, a leg-by-leg timeline for journeys. That flex is what makes this a product instead of a series of one-off websites.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_choose_cabin.png" alt="Lonnie's Locations choose cabin flow">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_trip_status.png" alt="Lonnie's Locations trip status screen">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>The middle layer flexes</h1>
+        <p class="body">The spine holds, the middle changes. Cabin cards for cruises, a leg-by-leg timeline for journeys. That flex is what makes this a product instead of a series of one-off websites.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_choose_cabin.png" alt="Lonnie's Locations choose cabin flow">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_trip_status.png" alt="Lonnie's Locations trip status screen">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="22">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>Choosing a cabin</h1>
-      <p class="body">For a first-time cruiser, picking a cabin is the moment the trip stops being an idea. The flow answers what it costs, what is included, and what happens next, in that order, because that is the order the questions arrive in.</p>
-      <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_choose_cabin.png" alt="Lonnie's Locations choose cabin flow">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>Choosing a cabin</h1>
+        <p class="body">For a first-time cruiser, picking a cabin is the moment the trip stops being an idea. The flow answers what it costs, what is included, and what happens next, in that order, because that is the order the questions arrive in.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_choose_cabin.png" alt="Lonnie's Locations choose cabin flow">
+      </div>
     </div>
   </section>
 
   <section class="slide" data-index="23">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>The pricing pull</h1>
-      <p class="body">I added exact dollar figures for gratuities and travel insurance to the reservation flow. I like precision. Lonnie asked me to pull them, because cruise lines update those prices constantly, and a stale exact number is a broken promise waiting to happen.</p>
-      <p class="body">Her domain expertise beat my precision instinct. The rule that came out of it governs the whole platform: never print a number the system can't guarantee.</p>
-      <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_choose_cabin.png" alt="Lonnie's Locations choose cabin flow">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>The pricing pull</h1>
+        <p class="body">I added exact dollar figures for gratuities and travel insurance to the reservation flow. I like precision. Lonnie asked me to pull them, because cruise lines update those prices constantly, and a stale exact number is a broken promise waiting to happen.</p>
+        <p class="body">Her domain expertise beat my precision instinct. The rule that came out of it governs the whole platform: never print a number the system can't guarantee.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_choose_cabin.png" alt="Lonnie's Locations choose cabin flow">
+      </div>
     </div>
   </section>
 
   <section class="slide" data-index="24">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>Copy is a contract</h1>
-      <p class="body">A gold banner in the concierge chat said Lonnie has been notified, she will reach out personally. I was testing as a guest on my phone, one step from sending her the link, and I read my own microcopy the way a guest would. So I asked the question.</p>
-      <p class="body">Does this system really notify her? It did not. The detection worked, the banner displayed, and nothing behind it existed.</p>
-      <p class="body">A promise on screen with nothing behind it breaks trust worse than no promise at all. I built the loop: every escalation logged, a live dashboard ranked by urgency, and the agent now asks for the guest's contact info. The banner finally tells the truth.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/Lonnies/case-study/admin-escalations-list.jpg" alt="Lonnie's Locations admin concierge escalations list">
-        <img class="shot" src="/projects/Lonnies/case-study/escalation-detail-modal.jpg" alt="Lonnie's Locations admin escalation detail modal">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>Copy is a contract</h1>
+        <p class="body">A gold banner in the concierge chat said Lonnie has been notified, she will reach out personally. I was testing as a guest on my phone, one step from sending her the link, and I read my own microcopy the way a guest would. So I asked the question.</p>
+        <p class="body">Does this system really notify her? It did not. The detection worked, the banner displayed, and nothing behind it existed.</p>
+        <p class="body">A promise on screen with nothing behind it breaks trust worse than no promise at all. I built the loop: every escalation logged, a live dashboard ranked by urgency, and the agent now asks for the guest's contact info. The banner finally tells the truth.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/Lonnies/case-study/admin-escalations-list.jpg" alt="Lonnie's Locations admin concierge escalations list">
+          <img class="shot" src="/projects/Lonnies/case-study/escalation-detail-modal.jpg" alt="Lonnie's Locations admin escalation detail modal">
+        </div>
       </div>
       <p class="factstrip">Caught it myself in testing.</p>
     </div>
@@ -447,22 +563,30 @@
 
   <section class="slide" data-index="25">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>Capture the person first</h1>
-      <p class="body">Lonnie asked for a lead process. Underneath the ask was a drop-rate problem. I audited the flow and found contact capture sitting at the very end, one screen before success.</p>
-      <p class="body">Anyone who browsed and left early was invisible, and there were no analytics anywhere to even count them. I moved capture to a conversational welcome, one question per screen, phone optional to protect completion.</p>
-      <p class="body">The eighteen-question planning form became five. There is no before-and-after number, because no measurement existed before. I fixed a structural blind spot, not a measured funnel.</p>
-      <img class="shot" src="/projects/Lonnies/lonnies_home_menu_mobile.png" alt="Lonnie's Locations mobile menu">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>Capture the person first</h1>
+        <p class="body">Lonnie asked for a lead process. Underneath the ask was a drop-rate problem. I audited the flow and found contact capture sitting at the very end, one screen before success.</p>
+        <p class="body">Anyone who browsed and left early was invisible, and there were no analytics anywhere to even count them. I moved capture to a conversational welcome, one question per screen, phone optional to protect completion.</p>
+        <p class="body">The eighteen-question planning form became five. There is no before-and-after number, because no measurement existed before. I fixed a structural blind spot, not a measured funnel.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/Lonnies/lonnies_home_menu_mobile.png" alt="Lonnie's Locations mobile menu">
+      </div>
     </div>
   </section>
 
   <section class="slide" data-index="26">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>The concierge</h1>
-      <p class="body">Her guests ask the same questions at midnight that they ask her at noon. The concierge is built for this platform specifically, on her trips and her policies, which buys depth instead of reach. Choosing custom over a general product was the design judgment, not a technical one.</p>
-      <p class="body">When Lonnie asked me to strip speculative pricing from its knowledge base for liability, it was the same rule again. Never print a number the system cannot guarantee.</p>
-      <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_concierge.png" alt="Lonnie's Locations AI concierge screen">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>The concierge</h1>
+        <p class="body">Her guests ask the same questions at midnight that they ask her at noon. The concierge is built for this platform specifically, on her trips and her policies, which buys depth instead of reach. Choosing custom over a general product was the design judgment, not a technical one.</p>
+        <p class="body">When Lonnie asked me to strip speculative pricing from its knowledge base for liability, it was the same rule again. Never print a number the system cannot guarantee.</p>
+      </div>
+      <div class="media-col">
+        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_concierge.png" alt="Lonnie's Locations AI concierge screen">
+      </div>
     </div>
   </section>
 
@@ -489,28 +613,36 @@
 
   <section class="slide" data-index="29">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>Behind the counter</h1>
-      <p class="body">She runs the business from the admin side. Traveler lists, trip detail, and the lead flow all live in one place, so the tool she uses daily got the same design attention as the site her guests see.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/Lonnies/case-study/admin-today-dashboard.jpg" alt="Lonnie's Locations admin Today dashboard">
-        <img class="shot" src="/projects/Lonnies/case-study/admin-leads-list.jpg" alt="Lonnie's Locations admin leads page">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>Behind the counter</h1>
+        <p class="body">She runs the business from the admin side. Traveler lists, trip detail, and the lead flow all live in one place, so the tool she uses daily got the same design attention as the site her guests see.</p>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/Lonnies/case-study/admin-today-dashboard.jpg" alt="Lonnie's Locations admin Today dashboard">
+          <img class="shot" src="/projects/Lonnies/case-study/admin-leads-list.jpg" alt="Lonnie's Locations admin leads page">
+        </div>
       </div>
     </div>
   </section>
 
   <section class="slide" data-index="30">
     <div class="slide-inner">
-      <span class="tag">Lonnie's Locations</span>
-      <h1>Results</h1>
-      <ul class="lines">
-        <li>Live in production. Three trips, thirty-plus guests served.</li>
-        <li>Roughly $2.50 a month in infrastructure. One designer.</li>
-        <li>A signup through the site became a new group trip she's organizing.</li>
-      </ul>
-      <div class="shotrow">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_group_trips.png" alt="Lonnie's Locations group trips screen">
-        <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_trip_status.png" alt="Lonnie's Locations trip status screen">
+      <div class="text-col">
+        <span class="tag">Lonnie's Locations</span>
+        <h1>Results</h1>
+        <ul class="lines">
+          <li>Live in production. Three trips, thirty-plus guests served.</li>
+          <li>Roughly $2.50 a month in infrastructure. One designer.</li>
+          <li>A signup through the site became a new group trip she's organizing.</li>
+        </ul>
+      </div>
+      <div class="media-col">
+        <div class="shotrow">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_group_trips.png" alt="Lonnie's Locations group trips screen">
+          <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_trip_status.png" alt="Lonnie's Locations trip status screen">
+        </div>
       </div>
       <p class="factstrip">December 2025 to present. Solo build.</p>
     </div>
@@ -540,7 +672,7 @@
   var slides = document.querySelectorAll('.slide');
   var counter = document.getElementById('counter');
   var progress = document.getElementById('progress');
-  var mobile = window.matchMedia('(max-width:767px)').matches;
+  var mobile = window.matchMedia('(max-width:1023px)').matches;
 
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
@@ -670,6 +802,29 @@
   window.addEventListener('scroll', updateProgress, {passive:true});
   window.addEventListener('resize', updateProgress);
   updateProgress();
+
+  var shrinkLevels = ['shrink-1', 'shrink-2', 'shrink-3'];
+
+  function fitSlides(){
+    if (mobile) return;
+    for (var i = 0; i < slides.length; i++){
+      var slide = slides[i];
+      var inner = slide.querySelector('.slide-inner');
+      if (!inner) continue;
+      slide.classList.remove('shrink-1', 'shrink-2', 'shrink-3');
+      var style = window.getComputedStyle(slide);
+      var available = slide.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+      if (inner.scrollHeight <= available) continue;
+      for (var L = 0; L < shrinkLevels.length; L++){
+        slide.classList.add(shrinkLevels[L]);
+        if (inner.scrollHeight <= available) break;
+      }
+    }
+  }
+
+  window.addEventListener('load', fitSlides);
+  window.addEventListener('resize', fitSlides);
+  fitSlides();
 })();
 </script>
 
