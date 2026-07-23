@@ -64,7 +64,8 @@
     letter-spacing:.04em; margin-top:22px;
   }
   .shot{
-    display:block; margin:20px auto 0; border-radius:12px; border:1px solid var(--line);
+    display:block; margin:20px auto 0; border-radius:12px;
+    box-shadow:0 18px 40px rgba(0,0,0,.55);
     max-height:46vh; width:auto; object-fit:contain;
   }
   .shotrow{
@@ -81,18 +82,60 @@
     position:fixed; bottom:22px; right:26px; font-family:"IBM Plex Mono",monospace; font-size:14px;
     color:var(--muted); letter-spacing:.04em; z-index:10; pointer-events:none;
   }
-  @media (max-width:720px){
-    h1{font-size:40px;}
-    .body, ul.lines li{font-size:20px;}
-    .subline{font-size:20px;}
-    .slide{padding:6vh 6vw;}
+  #progress{
+    position:fixed; top:0; left:0; height:3px; width:0%; background:var(--accent);
+    z-index:20; display:none;
   }
+
+  @media (prefers-reduced-motion:no-preference){
+    .slide-inner > *{
+      opacity:0; transform:translateY(14px);
+      transition:opacity .42s ease-out, transform .42s ease-out;
+    }
+    .slide.active .slide-inner > *,
+    .slide.in-view .slide-inner > *{
+      opacity:1; transform:translateY(0);
+    }
+    .slide-inner > *:nth-child(1){transition-delay:0ms;}
+    .slide-inner > *:nth-child(2){transition-delay:70ms;}
+    .slide-inner > *:nth-child(3){transition-delay:140ms;}
+    .slide-inner > *:nth-child(4){transition-delay:210ms;}
+    .slide-inner > *:nth-child(5){transition-delay:280ms;}
+    .slide-inner > *:nth-child(6){transition-delay:350ms;}
+    .slide-inner > *:nth-child(7){transition-delay:420ms;}
+    .slide-inner > *:nth-child(8){transition-delay:490ms;}
+  }
+
   @media (prefers-reduced-motion:reduce){
     .slide{transition:opacity .01s linear;}
+  }
+
+  @media (max-width:767px){
+    html,body{height:auto; overflow:auto;}
+    #deck{position:static; width:100%; height:auto;}
+    .slide{
+      position:static; inset:auto; display:block;
+      opacity:1; transform:none; pointer-events:auto; z-index:auto;
+      padding:56px 24px; transition:none;
+      border-bottom:1px solid var(--line);
+    }
+    .slide:last-of-type{border-bottom:none;}
+    .slide-inner{max-width:100%; width:100%;}
+    h1{font-size:30px;}
+    .subline{font-size:19px;}
+    .body, ul.lines li{font-size:17px;}
+    .small-line, .factstrip, .tagline, .demo-link{font-size:15px;}
+    .shot{max-height:none; width:100%; height:auto;}
+    .shotrow{flex-direction:column;}
+    .shotrow .shot{width:100%; max-width:100%;}
+    #counter{display:none;}
+    #progress{display:block;}
   }
 </style>
 </head>
 <body>
+
+<div id="progress"></div>
 
 <div id="deck">
 
@@ -141,8 +184,9 @@
     <div class="slide-inner">
       <span class="tag">2100 Security</span>
       <h1>The user</h1>
-      <p class="body">A tired guard at 4 a.m. abandons anything hard. He taps his name, enters an employee ID, and lands on the one question he actually has. What's my post right now. From there, his full rotation, his patrols, and the notes handed down from last shift.</p>
+      <p class="body">Guard Reyes was new. He wore glasses, his phone screen was cracked, and he told me the schedule was hard to follow. He also said something I had not planned for. He wanted to check his post before he left home, not after he clocked in at the desk. That one sentence moved the whole product. It stopped being a thing you look at on shift and became a thing you check from your kitchen at ten at night.</p>
       <img class="shot" src="/projects/2100/V3/home-logged-in.png" alt="V3 home screen, logged in">
+      <p class="factstrip">Guard names in this deck are changed. The work is not.</p>
     </div>
   </section>
 
@@ -176,7 +220,7 @@
     <div class="slide-inner">
       <span class="tag">2100 Security</span>
       <h1>What V2 taught me</h1>
-      <p class="body">The Wix version worked on my screen and failed on theirs. Guards kept hitting browser security warnings before the schedule ever loaded. Trust broke at the door, so the design behind it never got a chance. That is why V3 is a real app on its own domain.</p>
+      <p class="body">My security manager opened the V2 link and got a browser security warning. I started explaining that the domain forwards to a Wix site that does have HTTPS and a valid certificate. She said, "Huh?" And she was right. If the person approving it cannot get past the front door, the design behind the door does not exist. I told her I would come back with something easier to understand. That is why V3 is a real app on its own domain.</p>
       <div class="shotrow">
         <img class="shot" src="/projects/2100/V2/prototype-social-login-v2.jpg" alt="V2 social login prototype">
         <img class="shot" src="/projects/2100/V2/prototype-landing-v2.jpg" alt="V2 landing prototype">
@@ -253,7 +297,7 @@
     <div class="slide-inner">
       <span class="tag">2100 Security</span>
       <h1>Light and dark</h1>
-      <p class="body">Dark mode shipped early, and not as a style choice. My security manager could not read the schedule on shift. The same screen has to work in a lit lobby and in a dark stairwell, so both are first-class, not one and a toggle.</p>
+      <p class="body">I put hours into a version I was proud of. She looked at it and said, "Nah, I don't like it." That landed hard, and I did not let it show. I took a breath and asked her why. She said, "I can't see it." It was never about taste. It was contrast, in a lit lobby and a dark stairwell, on a cracked screen at 4 a.m. I built light and dark as equals. She saw the next version and told me it was good work.</p>
       <div class="shotrow">
         <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id.png" alt="V3 fire extinguisher inspection, ID confirmation, light mode">
         <img class="shot" src="/projects/2100/V3/fire-ext-constraint-with-id-dark.png" alt="V3 fire extinguisher inspection, ID confirmation, dark mode">
@@ -351,8 +395,12 @@
     <div class="slide-inner">
       <span class="tag">Lonnie's Locations</span>
       <h1>Copy is a contract</h1>
-      <p class="body">A banner promised something the product did not deliver yet. That is not a missing feature, it is an integrity defect, and it costs more than the feature would have. Every promise in the copy now has something behind it.</p>
-      <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_lets_go.png" alt="Lonnie's Locations lets go screen">
+      <p class="body">A gold banner in the concierge chat said Lonnie has been notified, she will reach out personally. I was testing as a guest on my phone, one step from sending her the link, and I read my own microcopy the way a guest would. So I asked the question. Does this system really notify her? It did not. The detection worked, the banner displayed, and nothing behind it existed. A promise on screen with nothing behind it breaks trust worse than no promise at all. I built the loop: every escalation logged, a live dashboard ranked by urgency, and the agent now asks for the guest's contact info. The banner finally tells the truth.</p>
+      <div class="shotrow">
+        <img class="shot" src="/projects/Lonnies/case-study/admin-escalations-list.jpg" alt="Lonnie's Locations admin concierge escalations list">
+        <img class="shot" src="/projects/Lonnies/case-study/escalation-detail-modal.jpg" alt="Lonnie's Locations admin escalation detail modal">
+      </div>
+      <p class="factstrip">Caught it myself in testing.</p>
     </div>
   </section>
 
@@ -360,7 +408,7 @@
     <div class="slide-inner">
       <span class="tag">Lonnie's Locations</span>
       <h1>Capture the person first</h1>
-      <p class="body">Lonnie felt it before the data showed it. Guests were being asked to commit before anyone knew who they were. We moved the capture earlier, so the relationship starts before the reservation does.</p>
+      <p class="body">Lonnie asked for a lead process. Underneath the ask was a drop-rate problem. I audited the flow and found contact capture sitting at the very end, one screen before success. Anyone who browsed and left early was invisible, and there were no analytics anywhere to even count them. I moved capture to a conversational welcome, one question per screen, phone optional to protect completion. The eighteen-question planning form became five. There is no before-and-after number, because no measurement existed before. I fixed a structural blind spot, not a measured funnel.</p>
       <img class="shot" src="/projects/Lonnies/lonnies_home_menu_mobile.png" alt="Lonnie's Locations mobile menu">
     </div>
   </section>
@@ -369,7 +417,7 @@
     <div class="slide-inner">
       <span class="tag">Lonnie's Locations</span>
       <h1>The concierge</h1>
-      <p class="body">Her guests ask the same questions at midnight that they ask her at noon. The concierge is built for this platform specifically, on her trips and her policies, which buys depth instead of reach. Choosing custom over a general product was the design judgment, not a technical one.</p>
+      <p class="body">Her guests ask the same questions at midnight that they ask her at noon. The concierge is built for this platform specifically, on her trips and her policies, which buys depth instead of reach. Choosing custom over a general product was the design judgment, not a technical one. When Lonnie asked me to strip speculative pricing from its knowledge base for liability, it was the same rule again. Never print a number the system cannot guarantee.</p>
       <img class="shot" src="/projects/Lonnies/lonnies_home_mobile_concierge.png" alt="Lonnie's Locations AI concierge screen">
     </div>
   </section>
@@ -377,16 +425,33 @@
   <section class="slide" data-index="27">
     <div class="slide-inner">
       <span class="tag">Lonnie's Locations</span>
-      <h1>Behind the counter</h1>
-      <p class="body">She runs the business from the admin side. Traveler lists, trip detail, and the lead flow all live in one place, so the tool she uses daily got the same design attention as the site her guests see.</p>
-      <div class="shotrow">
-        <img class="shot" src="/projects/Lonnies/admin-top-page.jpg" alt="Lonnie's Locations admin top page">
-        <img class="shot" src="/projects/Lonnies/admin-traveler-list-redacted.jpg" alt="Lonnie's Locations admin traveler list, redacted">
-      </div>
+      <h1>I designed her out of her own trip</h1>
+      <p class="body">Chloe was planning three weeks in Kenya, Tanzania, and Zanzibar for her 30th. I built an elevated version of her itinerary. It saw thirty, Africa, premium tier, and produced a magazine cover story. Then I audited my own work against her original document. I had cut her birthday dinner at the beach club. I had cut the Kilimanjaro day hike she had already named the tour operator for. I had cut the women's beading cooperative, and every club she had listed in Nairobi. She wanted to dance on her birthday and spend a morning with that cooperative. My version treated that as a contradiction and resolved it by deleting half of her.</p>
     </div>
   </section>
 
   <section class="slide" data-index="28">
+    <div class="slide-inner">
+      <span class="tag">Lonnie's Locations</span>
+      <h1>Archived, not deleted</h1>
+      <p class="body">Nobody complained. No client flagged it. I caught it because I asked to see what my version had removed before it ever reached her. The faithful itinerary became the live page, and it kept the same polish, because honoring what she chose should not mean a downgrade. The elevated version is still in the database, unpublished and reversible, in case she ever wants it. Her expertise adds to the client's vision. It does not overwrite it.</p>
+      <p class="factstrip">The archived row is still there.</p>
+    </div>
+  </section>
+
+  <section class="slide" data-index="29">
+    <div class="slide-inner">
+      <span class="tag">Lonnie's Locations</span>
+      <h1>Behind the counter</h1>
+      <p class="body">She runs the business from the admin side. Traveler lists, trip detail, and the lead flow all live in one place, so the tool she uses daily got the same design attention as the site her guests see.</p>
+      <div class="shotrow">
+        <img class="shot" src="/projects/Lonnies/case-study/admin-today-dashboard.jpg" alt="Lonnie's Locations admin Today dashboard">
+        <img class="shot" src="/projects/Lonnies/case-study/admin-leads-list.jpg" alt="Lonnie's Locations admin leads page">
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-index="30">
     <div class="slide-inner">
       <span class="tag">Lonnie's Locations</span>
       <h1>Results</h1>
@@ -403,7 +468,7 @@
     </div>
   </section>
 
-  <section class="slide" data-index="29">
+  <section class="slide" data-index="31">
     <div class="slide-inner">
       <h1>Thank you</h1>
       <p class="body">alanponton.com</p>
@@ -413,14 +478,16 @@
 
 </div>
 
-<div id="counter">1 / 29</div>
+<div id="counter">1 / 31</div>
 
 <script>
 (function(){
-  var total = 29;
+  var total = 31;
   var current = 1;
   var slides = document.querySelectorAll('.slide');
   var counter = document.getElementById('counter');
+  var progress = document.getElementById('progress');
+  var mobile = window.matchMedia('(max-width:767px)').matches;
 
   function clamp(n){
     return Math.min(total, Math.max(1, n));
@@ -431,7 +498,7 @@
       var idx = Number(slides[i].getAttribute('data-index'));
       slides[i].classList.toggle('active', idx === current);
     }
-    counter.textContent = current + ' / ' + total;
+    if (counter) counter.textContent = current + ' / ' + total;
     history.replaceState(null, '', '#' + current);
   }
 
@@ -443,36 +510,67 @@
   function next(){ goTo(current + 1); }
   function prev(){ goTo(current - 1); }
 
-  window.addEventListener('keydown', function(e){
-    if (e.key === 'ArrowRight'){
-      next();
-    } else if (e.key === 'ArrowLeft'){
-      prev();
-    } else if (e.key === ' ' || e.code === 'Space'){
-      e.preventDefault();
-      next();
-    }
-  });
-
-  document.addEventListener('click', function(e){
-    if (e.clientX > window.innerWidth / 2){
-      next();
-    } else {
-      prev();
-    }
-  });
-
-  window.addEventListener('hashchange', function(){
-    var n = parseInt(location.hash.replace('#', ''), 10);
-    if (n >= 1 && n <= total){
-      current = n;
-      render();
-    }
-  });
-
   var initial = parseInt(location.hash.replace('#', ''), 10);
   current = (initial >= 1 && initial <= total) ? initial : 1;
   render();
+
+  if (!mobile){
+    window.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight'){
+        next();
+      } else if (e.key === 'ArrowLeft'){
+        prev();
+      } else if (e.key === ' ' || e.code === 'Space'){
+        e.preventDefault();
+        next();
+      }
+    });
+
+    document.addEventListener('click', function(e){
+      if (e.clientX > window.innerWidth / 2){
+        next();
+      } else {
+        prev();
+      }
+    });
+
+    window.addEventListener('hashchange', function(){
+      var n = parseInt(location.hash.replace('#', ''), 10);
+      if (n >= 1 && n <= total){
+        current = n;
+        render();
+      }
+    });
+  } else {
+    if ('IntersectionObserver' in window){
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.15});
+      for (var s = 0; s < slides.length; s++){
+        observer.observe(slides[s]);
+      }
+    } else {
+      for (var s2 = 0; s2 < slides.length; s2++){
+        slides[s2].classList.add('in-view');
+      }
+    }
+  }
+
+  function updateProgress(){
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop;
+    var height = doc.scrollHeight - doc.clientHeight;
+    var pct = height > 0 ? (scrollTop / height) * 100 : 0;
+    if (progress) progress.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
 })();
 </script>
 
